@@ -1,0 +1,129 @@
+﻿<AddDataFormTemplateSpec
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	ID="48fc7590-6dc0-45a1-b9b5-ccb6e349e4bc"
+	Name="Inventory Process Business Process Add Form"
+	Description="Adds an inventory process parameter set.  Data form for adding inventory process business parameters."
+	Author="Technical Training"
+	RecordType="Constituent"
+	DataFormInstanceID="809c00a5-43e7-410d-8b0d-dc4b63d8d2e9"
+	common:SecurityUIFolder="Constituent\Food Bank\Inventory"
+	xmlns:common="bb_appfx_commontypes"
+	xmlns="bb_appfx_adddataformtemplate">
+
+	<!--
+	This adds the inventory process parameters.  
+  The Name and Description are pretty much stock for business processes
+	-->
+	
+	<SPDataForm>
+		<SaveImplementation SPName="USR_USP_DATAFORMTEMPLATE_ADD_INVENTORYPROCESSBUSINESS">
+			<common:CreateProcedureSQL>
+				<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_ADD_INVENTORYPROCESSBUSINESS
+(
+	@ID uniqueidentifier = null output,
+    @CHANGEAGENTID uniqueidentifier = null,
+	@NAME nvarchar(100),
+	@DESCRIPTION nvarchar(255) = '',
+	@IDSETREGISTERID uniqueidentifier,
+	@QUERYVIEWID uniqueidentifier
+)
+as
+
+set nocount on;
+
+if @ID is null
+	set @ID = newid()
+
+if @CHANGEAGENTID is null  
+    exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output
+
+declare @CURRENTDATE datetime
+set @CURRENTDATE = getdate()
+
+begin try
+	-- handle inserting the data
+	insert into dbo.USR_INVENTORYPROCESS(
+		ID, 
+		NAME,
+		DESCRIPTION,
+		IDSETREGISTERID,
+		QUERYVIEWID,
+		ADDEDBYID, 
+		CHANGEDBYID, 
+		DATEADDED, 
+		DATECHANGED)
+    values(
+		@ID, 
+		@NAME,
+		@DESCRIPTION,
+		@IDSETREGISTERID,
+		@QUERYVIEWID,
+		@CHANGEAGENTID, 
+		@CHANGEAGENTID, 
+		@CURRENTDATE, 
+		@CURRENTDATE)
+	
+end try
+
+begin catch
+    exec dbo.USP_RAISE_ERROR
+    return 1
+end catch
+
+return 0				
+				]]>
+			</common:CreateProcedureSQL>
+            <common:ExpectedDBExceptions>
+                <common:Constraints>
+                    <common:Constraint Name="CK_USR_INVENTORYPROCESS_NAME" Field="NAME" Type="Format" />
+                    <common:Constraint Name="FK_USR_INVENTORYPROCESS_IDSETREGISTERID" Field="IDSETREGISTERID" Type="ForeignKey" />
+                    <common:Constraint Name="FK_USR_INVENTORYPROCESS_QUERYVIEWID" Field="QUERYVIEWID" Type="ForeignKey" />
+                    <common:Constraint Name="UC_USR_INVENTORYPROCESS_NAME" Field="NAME" Type="Unique" />
+                </common:Constraints>
+            </common:ExpectedDBExceptions>
+		</SaveImplementation>
+	</SPDataForm>
+	<common:FormMetaData>
+		<common:FormFields>
+			<!-- Name and Description are pretty much the standard for business processes paremeters. -->
+			<common:FormField FieldID="NAME" Caption="Name" DataType="String" MaxLength="100" Required="true" />
+			<common:FormField FieldID="DESCRIPTION" Caption="Description" DataType="String" MaxLength="255" Multiline="true"  />
+
+      <!-- This is the selection search list found in the Blackbaud.AppFx.Platform.Catalog.dll assembly
+					This search has a FormField parameter called RECORDTYPE that is used to filter the search list down.
+					Since I want ONLY a constituent selection, I did this override to force the search list to have the value
+					"Constituent" in there(via the DefaultValueText value).-->
+      <common:FormField FieldID="IDSETREGISTERID" Caption="Selection" DataType="Guid" Required="true">
+        <common:SearchList SearchListID="1f0e603c-1c55-4e1e-8218-bdb877b2cbe8" EnableQuickFind="true">
+					<common:FormFieldOverrides>
+						<common:FormFieldOverride FieldID="RECORDTYPE" Caption="Record type" ReadOnly="true" DefaultValueText="Constituent" />
+					</common:FormFieldOverrides>
+				</common:SearchList>
+			</common:FormField>
+		
+			<!--This is another product simple data list.  This simple data list takes in 2 parameters @TAG and @RECORDTYPE 
+				(both strings).  I pass these in to be "Inventory" and "Food Bank".  It will give a list of business process
+				views (output formats) that have a record type of "Food Bank" and have a meta tag of "Inventory".-->
+			<common:FormField FieldID="QUERYVIEWID" DataType="Guid" Caption="Output format" Required="true">
+				<common:SimpleDataList SimpleDataListID="34B82F99-03E8-4421-9A0D-F815E02734FC">
+					<common:Params>
+						<common:Param ID="TAG">
+							<common:Value>Inventory</common:Value>
+						</common:Param>
+						<common:Param ID="RECORDTYPE">
+							<common:Value>Food Bank</common:Value>
+						</common:Param>
+					</common:Params>
+				</common:SimpleDataList>
+			</common:FormField>
+		</common:FormFields>
+
+		<common:WebUIComponent>
+			<common:WebUI>
+				<common:DefaultWebUI/>
+			</common:WebUI>
+		</common:WebUIComponent>
+	</common:FormMetaData>
+</AddDataFormTemplateSpec>

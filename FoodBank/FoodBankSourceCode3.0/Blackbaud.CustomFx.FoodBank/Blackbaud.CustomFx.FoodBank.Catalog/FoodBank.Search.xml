@@ -1,0 +1,82 @@
+<SearchListSpec 
+    xmlns="bb_appfx_searchlist"
+    xmlns:common="bb_appfx_commontypes"
+    ID="3eceea4c-cf42-4938-9cf1-c7c77ebc7dc9"
+    Name="Food Bank Search"
+    Description="Search list for food banks."
+    Author="Technical Training"
+    RecordType="Food Bank"
+    TranslationFunctionID="66d00b36-8c81-4327-84fa-3265e9888b29">
+
+	<!-- describe the SP used to fetch the results from the given filters.  
+  Note that the @MAXROWS parameter is required, and should be 
+	used to limit the number of rows returned to a reasonable number. -->
+  
+	<SPSearchList SPName="USR_USP_SEARCHLIST_FOODBANK">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_SEARCHLIST_FOODBANK
+(
+	@NAME nvarchar(100) = null,
+  @FOODBANKTYPE uniqueidentifier = null,
+	@MAXROWS smallint = 500
+)
+as
+	set @NAME = COALESCE(@NAME,'') + '%' ;
+  /* set @FOODBANKTYPE = COALESCE(@FOODBANKTYPE,'') + '%' ; */
+
+	select top(@MAXROWS)
+		FB.ID,
+		C.KEYNAME as NAME,
+		FBTC.DESCRIPTION as FOODBANKTYPE
+	from 
+		dbo.CONSTITUENT C
+	inner join
+		dbo.USR_FOODBANK FB on C.ID = FB.CONSTITUENTID
+	left join
+		dbo.USR_FOODBANKTYPECODE FBTC on FB.FOODBANKTYPECODEID = FBTC.ID
+	where
+		 (C.KEYNAME like @NAME) 
+     AND ((@FOODBANKTYPE is null) or (FBTC.ID = @FOODBANKTYPE))
+	order by 
+		C.NAME asc
+			]]>
+		</common:CreateProcedureSQL>
+	</SPSearchList>
+
+	<!-- describe the filter fields for the search screen -->
+	<common:FormMetaData>
+		<common:FormFields>
+			<common:FormField FieldID="NAME" Caption="Name" DataType="String" MaxLength="100" />
+      <common:FormField FieldID="FOODBANKTYPE" Caption="Food Bank Type" MaxLength="100">
+        <common:CodeTable CodeTableName="USR_FOODBANKTYPECODE"/>
+      </common:FormField>
+		</common:FormFields>
+
+       
+
+		<!-- indicate the client-side component for the filter user interface -->
+		<!--<common:FormUIComponent FormUIComponentType="CustomComponent">
+			<common:CustomComponentID AssemblyName="REPLACE_WITH_ASSEMBLYNAME" ClassName="REPLACE_WITH_FULLCLASSNAME" />
+		</common:FormUIComponent>-->
+    
+    <!-- Switching over to the default WebUI instad of the Win Form UI for the filter user interface -->
+    <common:WebUIComponent>
+      <common:UIModel AssemblyName="Blackbaud.CustomFx.FoodBank.UIModel.dll" ClassName="Blackbaud.CustomFx.FoodBank.UIModel.FoodBankSearchUIModel" />
+        <common:WebUI>
+          <common:ExternalResource Url="browser/htmlforms/custom/blackbaud.customfx.foodbank/FoodBankSearch.html" />
+      </common:WebUI>
+    </common:WebUIComponent>
+  </common:FormMetaData>
+
+   <!-- also describe the output fields for the search screen -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="ID" Caption="ID" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="NAME" Caption="Name" DataType="String" />
+			<OutputField FieldID="FOODBANKTYPE" Caption="Type" DataType="String"  />
+		</OutputFields>
+	</Output>
+ 
+</SearchListSpec>
+

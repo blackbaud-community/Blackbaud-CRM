@@ -1,0 +1,23 @@
+﻿<TableSpec 
+	xmlns="bb_appfx_table"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="b1f82e24-0a59-4eb7-90a2-8b7131fab503"
+	Name="USR_PHONE"
+	Description="Phone extension table"
+	Author="Technical Training"
+	Tablename="USR_PHONE"		 
+  PrimaryKeyAsForeignKeyTablename="PHONE">
+
+	<!-- define fields on the table -->
+	<Fields>
+    <EnumField Name="BESTTIMETOCALLCODE" DefaultValue="0" Description="Custom field within USR_PHONE that extends the PHONE table.">
+      <EnumValues>
+        <EnumValue ID="0" Translation="Morning"/>
+        <EnumValue ID="1" Translation="Midday"/>
+        <EnumValue ID="2" Translation="Afternoon"/>
+        <EnumValue ID="3" Translation="After Work"/>
+        <EnumValue ID="4" Translation="Evening"/>
+      </EnumValues>
+    </EnumField>
+	</Fields>
+</TableSpec>

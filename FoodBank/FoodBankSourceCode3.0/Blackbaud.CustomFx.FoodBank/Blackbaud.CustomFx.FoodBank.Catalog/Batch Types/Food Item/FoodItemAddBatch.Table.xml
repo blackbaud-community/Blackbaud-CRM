@@ -1,0 +1,29 @@
+<TableSpec 
+    xmlns:common="bb_appfx_commontypes"
+    ID="a613c7a0-20db-4618-9112-17b5d6f59113"
+    Name="Food Item Add Batch"
+    Description="Stores food item add batch information."
+    Author="Technical Training"
+    Tablename="USR_BATCHFOODITEMADD"
+    IsBuiltIn="false"
+    xmlns="bb_appfx_table">
+  <Fields>
+		<ForeignKeyField Name="BATCHID" Required="true" ForeignTable="BATCH" OnDelete="CascadeDelete" />
+		<SequenceField Name="SEQUENCE" />
+		<TextField Name="NAME" Length="100" Required="true"/>
+		<MemoField Name="DESCRIPTION"/>
+		<MoneyField Name="CURRENTCOST"/>
+		<NumberField Name="LOWINVENTORYTHRESHOLD" Type="smallint" />
+		<DecimalField Description="The weight of a food item." Name="WEIGHT" Precision="10" Scale="2" />
+    <BooleanField Name="WEIGHTREQUIRED" DefaultValue="0" Description="Weight Required Batch Parameter Setting"/>
+	</Fields>
+
+  <Indexes>
+    <Index IsUnique="true">
+      <IndexFields>
+        <IndexField Name="BATCHID"/>
+        <IndexField Name="NAME"/>
+      </IndexFields>
+    </Index>
+  </Indexes>
+</TableSpec>

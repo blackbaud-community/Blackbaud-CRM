@@ -1,0 +1,11 @@
+<FunctionalAreaSpec
+	xmlns="bb_appfx_functionalarea"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="2b32333c-5cd7-4e54-a3d3-a41b382cdfa9"
+	Name="Food Bank Functional Area"
+	Description="Functional area for the food bank custmization."
+	Author="Technical Training"
+	ImageKey="CATALOG:Blackbaud.CustomFx.FoodBank.Catalog,Blackbaud.CustomFx.FoodBank.Catalog.bread-1.png"
+	Sequence="1001"
+	Visible ="false"
+	/>

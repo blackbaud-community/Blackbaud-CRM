@@ -1,0 +1,33 @@
+<RecordOperationSpec 
+    xmlns:common="bb_appfx_commontypes"
+    ID="42b3c606-57ff-4ec1-9cf7-3fb2875471f2"
+    Name="Food Item Add Batch Row: Delete"
+    Description="This deletion handles the deletion rules for deleting a food item add batch row."
+    Author="Technical Training"
+    RecordType="Food Item Add Batch"
+    OperationType="Delete"
+    common:SecurityUIFolder="Constituent\Food Bank\Food Item\Batch"
+    xmlns="bb_appfx_recordoperation"
+    >
+	<SPRecord>
+		<SPOperationImplementation SPName="USR_USP_BATCHFOODITEMADD_DELETE">
+			<common:CreateProcedureSQL>
+  <![CDATA[
+	create procedure dbo.USR_USP_BATCHFOODITEMADD_DELETE
+	(
+		@ID uniqueidentifier,
+		@CHANGEAGENTID uniqueidentifier
+	)
+	as
+		set nocount on;
+         
+		exec USP_USR_BATCHFOODITEMADD_DELETEBYID_WITHCHANGEAGENTID @ID, @CHANGEAGENTID;
+
+		return 0;
+]]></common:CreateProcedureSQL>
+		</SPOperationImplementation>
+	</SPRecord>
+	<Prompt>
+		<StandardPrompt Text="Are you sure you want to delete this food item batch row?" />
+	</Prompt>
+</RecordOperationSpec>

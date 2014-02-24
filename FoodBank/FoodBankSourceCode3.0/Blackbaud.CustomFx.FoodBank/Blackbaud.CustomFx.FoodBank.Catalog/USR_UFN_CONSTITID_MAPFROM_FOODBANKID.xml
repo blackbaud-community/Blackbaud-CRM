@@ -1,0 +1,28 @@
+﻿<SQLFunctionSpec
+	xmlns="bb_appfx_sqlfunction"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="f52b7954-a72d-4b5f-9960-8a10bdeb6a67"
+	Name="USR_UFN_CONSTITID_MAPFROM_FOODBANKID"
+	Description="Sql function to map a food bank Id to a constituent Id."
+	Author="Technical Training"
+	DBFunctionName="USR_UFN_CONSTITID_MAPFROM_FOODBANKID" 
+	GrantServiceRolePermission="true" 
+	>
+
+	<CreateFunctionSQL>
+		<![CDATA[
+create function dbo.USR_UFN_CONSTITID_MAPFROM_FOODBANKID(@FOODBANKID uniqueidentifier)
+returns uniqueidentifier
+as begin
+	declare @ID uniqueidentifier;
+	
+	select @ID = CONSTITUENTID from dbo.USR_FOODBANK where ID = @FOODBANKID;
+	
+	return @ID;
+end
+		]]>
+	</CreateFunctionSQL>
+
+	<RecordSecurityIDMap FromRecordType="Food Bank" ToRecordType="Constituent"/>
+	<NotificationIDMap FromRecordType="Food Bank" ToRecordType="Constituent"/>
+</SQLFunctionSpec>

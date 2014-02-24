@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>FoodBankBreakdownReport.rdl.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>FoodBankBreakdownReportUIModel</ClassName>
+  <HtmlInfo GenerateHtml="true">
+    <HtmlFile>FoodBankBreakdownReport.html</HtmlFile>
+    <HtmlFolder>htmlforms\custom\blackbaud.customfx.foodbank\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

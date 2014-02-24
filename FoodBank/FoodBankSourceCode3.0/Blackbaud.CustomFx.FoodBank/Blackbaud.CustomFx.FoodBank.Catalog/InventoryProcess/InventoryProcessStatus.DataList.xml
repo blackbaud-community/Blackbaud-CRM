@@ -1,0 +1,75 @@
+﻿<DataListSpec 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	ID="7ff36611-ac9d-4ae2-a3f8-900fca2f24c2" 
+	Name="Inventory Process Business Process Status List" 
+	Description="Returns a status list for the inventory business process." 
+	Author="Technical Training" 
+	common:SecurityUIFolder="Constituent\Food Bank\Inventory" 
+	xmlns:common="bb_appfx_commontypes" 
+	xmlns="bb_appfx_datalist">
+	
+	<CLRDataList AssemblyName="Blackbaud.AppFx.Platform.Catalog" 
+               ClassName="Blackbaud.AppFx.Platform.Catalog.BusinessProcessStatusDatalist">
+		<common:GrantSelectList>
+			<common:GrantSelect>BUSINESSPROCESSCATALOG</common:GrantSelect>
+			<common:GrantSelect>BUSINESSPROCESSSTATUS</common:GrantSelect>
+			<common:GrantSelect>APPUSER</common:GrantSelect>
+		</common:GrantSelectList>
+		<common:StaticParameters>
+			<common:ParameterList>
+				<common:Param ID="BusinessProcessCatalogID">
+					<common:Value>a28d4f17-53fe-48d9-85bc-37e12884dc00</common:Value>
+				</common:Param>
+				<common:Param ID="ApplyParametersIDFilter">
+					<common:Value>True</common:Value>
+				</common:Param>
+			</common:ParameterList>
+		</common:StaticParameters>
+	</CLRDataList>
+	<Parameters>
+		<common:FormMetaData>
+			<common:FormFields>
+				<common:FormField FieldID="StatusCode" Caption="Status">
+					<common:ValueList>
+						<common:Items>
+							<common:Item>
+								<common:Value>0</common:Value>
+								<common:Label>Completed</common:Label>
+							</common:Item>
+							<common:Item>
+								<common:Value>1</common:Value>
+								<common:Label>Running</common:Label>
+							</common:Item>
+							<common:Item>
+								<common:Value>2</common:Value>
+								<common:Label>Did not finish</common:Label>
+							</common:Item>
+						</common:Items>
+					</common:ValueList>
+				</common:FormField>
+			</common:FormFields>
+		</common:FormMetaData>
+	</Parameters>
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="ID" Caption="ID" IsHidden="true" DataType="Guid" />
+			<OutputField FieldID="Process name" Caption="Process name" IsHidden="true" DataType="String" />
+			<OutputField FieldID="Status" Caption="Status" DataType="String" />
+			<OutputField FieldID="Status message" Caption="Status message" DataType="String" />
+			<OutputField FieldID="Started by" Caption="Started by" DataType="String" />
+			<OutputField FieldID="Started on" Caption="Started on" DataType="Date" />
+			<OutputField FieldID="Ended on" Caption="Ended on" DataType="Date" />
+			<OutputField FieldID="Duration" Caption="Duration" DataType="String" />
+			<OutputField FieldID="Number of records processed" Caption="Number of records processed" DataType="String" />
+			<OutputField FieldID="NumberOfExceptionRecords" Caption="Number of exception records" DataType="String" />
+			<OutputField FieldID="Total count" Caption="Total count" IsHidden="true" DataType="String" />
+			<OutputField FieldID="Server name" Caption="Server name" DataType="String" />
+			<OutputField FieldID="ImageKey" Caption="ImageKey" IsHidden="true" DataType="String" />
+			<OutputField FieldID="Completed" Caption="Completed" IsHidden="true" DataType="String" />
+			<OutputField FieldID="EnableDownload" Caption="EnableDownload" IsHidden="true" DataType="String" />
+			<OutputField FieldID="EnableLetterMailMerge" Caption="EnableLetterMailMerge" IsHidden="true" DataType="String" />
+			<OutputField FieldID="EnableLabelMailMerge" Caption="EnableLabelMailMerge" IsHidden="true" DataType="String" />
+		</OutputFields>
+	</Output>
+</DataListSpec>

@@ -1,0 +1,112 @@
+<AddDataFormTemplateSpec
+    xmlns:c="bb_appfx_commontypes"
+    ID="89025448-7cab-430e-8b9a-b057bf4966cb"
+    Name="Food Bank Organization Extension Add Form"
+    Description="Used for adding a new Food Bank to an organization"
+    Author="Technical Training"
+    RecordType="Food Bank"
+    DataFormInstanceID="735c77b6-bb12-4298-b76d-aa811da97584"
+    c:SecurityUIFolder="Constituent\Food Bank"
+    xmlns="bb_appfx_adddataformtemplate"
+    >
+  <SPDataForm>
+    <!-- describe the preload SP (if applicable), which should be used to fetch field default values from the database.  If no
+		preload is needed, then this section can be removed -->
+    <SaveImplementation SPName="USR_USP_DATAFORMTEMPLATE_ADD_ORGFOOD_BANK">
+
+      <c:CreateProcedureSQL>
+        <![CDATA[
+
+CREATE procedure dbo.USR_USP_DATAFORMTEMPLATE_ADD_ORGFOOD_BANK
+(
+@ID uniqueidentifier = null output,
+@CONSTITUENTID uniqueidentifier,
+@ADDFOODBANK bit = 0,
+@CHANGEAGENTID uniqueidentifier = null,
+@DESCRIPTION nvarchar(max) = '',
+@MISSIONSTATEMENT nvarchar(max) = '',
+@FOODBANKTYPECODEID uniqueidentifier = null
+)
+as
+set nocount on;
+DECLARE @CURRENTDATE datetime
+DECLARE @CONSTITUENCYCODEID as uniqueidentifier
+set @ID = @CONSTITUENTID
+if @CHANGEAGENTID is null
+	exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output
+
+set @CURRENTDATE = getdate()
+
+begin try
+	IF @ADDFOODBANK = 1
+	BEGIN
+		-- handle inserting the data
+		insert into dbo.USR_FOODBANK
+			(ID, CONSTITUENTID, DESCRIPTION, MISSIONSTATEMENT, FOODBANKTYPECODEID, ADDEDBYID, CHANGEDBYID, DATEADDED, DATECHANGED)
+		values
+			(@CONSTITUENTID, @CONSTITUENTID, @DESCRIPTION, @MISSIONSTATEMENT, @FOODBANKTYPECODEID, @CHANGEAGENTID, @CHANGEAGENTID, @CURRENTDATE, @CURRENTDATE)
+
+	END
+end try
+
+begin catch
+  exec dbo.USP_RAISE_ERROR
+  return 1
+end catch
+
+return 0
+
+]]>
+      </c:CreateProcedureSQL>
+      <c:ExpectedDBExceptions>
+        <c:Constraints>
+          <c:Constraint Name="FK_USR_FOODBANK_FOODBANKTYPECODEID" Field="FOODBANKTYPECODEID" Type="ForeignKey" />
+        </c:Constraints>
+      </c:ExpectedDBExceptions>
+    </SaveImplementation>
+  </SPDataForm>
+
+  <!-- describe the context ID for this form (if applicable), which corresponds to a parameter in the SP.-->
+  <Context ContextRecordType="Constituent" RecordIDParameter="CONSTITUENTID" />
+
+  <c:FormMetaData FixedDialog="true">
+    <c:FormFields>
+      <c:FormField FieldID="ADDFOODBANK" Caption="Add Food Bank" DataType="Boolean" />
+      <c:FormField FieldID="DESCRIPTION" Caption="Description" DataType="String" Multiline="true" />
+      <c:FormField FieldID="MISSIONSTATEMENT" DataType="String" Caption="Mission Statement" Multiline="true" />
+      <c:FormField FieldID="FOODBANKTYPECODEID" DataType="Guid" Caption="Food Bank Type">
+        <c:CodeTable CodeTableName="USR_FOODBANKTYPECODE" />
+      </c:FormField>
+    </c:FormFields>
+
+    <c:WebUIComponent>
+      <c:UIModel AssemblyName="Blackbaud.CustomFx.FoodBank.UIModel.dll"
+                 ClassName="Blackbaud.CustomFx.FoodBank.UIModel.FoodBankOrganizationExtensionAddFormUIModel" />
+      <c:WebUI>
+        <c:ExternalResource
+          Url="browser/htmlforms/custom/blackbaud.customfx.foodbank/FoodBankOrganizationExtensionAddForm.html" />
+      </c:WebUI>
+    </c:WebUIComponent>
+
+    <c:FieldGroups>
+      <c:FieldGroup ID="GENERALINFORMATIONGROUP"  Caption="General Information">
+        <c:Fields>
+          <c:Field>ADDFOODBANK</c:Field>
+          <c:Field>DESCRIPTION</c:Field>
+          <c:Field>MISSIONSTATEMENT</c:Field>
+        </c:Fields>
+      </c:FieldGroup>
+      <c:FieldGroup ID="OTHERGROUP"  Caption="Other">
+        <c:Fields>
+          <c:Field>FOODBANKTYPECODEID</c:Field>
+        </c:Fields>
+      </c:FieldGroup>
+    </c:FieldGroups>
+  </c:FormMetaData>
+
+  <!-- Extending the Organization Add Data Form -->
+  <c:DataFormExtension DataFormInstanceID="ca3ed110-a5f0-4b5b-8eb7-0616e0a82e8e"  
+                        RenderStyle="AfterParent" TabCaption="Food Bank"/>
+  
+</AddDataFormTemplateSpec>
+

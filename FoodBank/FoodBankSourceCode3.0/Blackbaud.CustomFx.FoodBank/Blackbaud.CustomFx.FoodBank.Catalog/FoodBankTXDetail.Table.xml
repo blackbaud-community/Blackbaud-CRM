@@ -1,0 +1,82 @@
+<TableSpec 
+	xmlns="bb_appfx_table"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="2063E8C1-23F0-4846-8747-70BF888070F2"
+	Name="Food Bank Transaction Detail"
+	Description="Tracks food bank transactions.  Detailed transactions of donations to the food bank and food given to those in need are tracked."
+	Author="Technical Training"
+	IsCustomizable="true"
+	Tablename="USR_FOODBANKTXDETAIL"		   
+	>
+
+	<!-- define fields on the table -->
+	<Fields>
+
+		<ForeignKeyField
+			Name="FOODBANKTXHEADERID"
+			ForeignTable="USR_FOODBANKTXHEADER"
+			Cardinality="ManyToOne"
+			Description="Foreign key to the food bank transaction header record."
+			OnDelete="CascadeDelete"
+			Required="true" 
+			/>
+
+
+
+		<ForeignKeyField
+			Name="FOODITEMID"
+			ForeignTable="USR_FOODITEM"
+			Description="A food bank transaction occurs on a food item. "
+			Cardinality="ManyToOne"
+			OnDelete="CascadeDelete"
+			Required="true"
+			/>
+    
+    <!--
+    
+		<EnumField DefaultValue="0" Name="FOODBANKTXTYPECODE" Description="The tx type code.">
+			<EnumValues>
+				<EnumValue ID="0" Translation="Receive"/>
+				<EnumValue ID="1" Translation="Distribute"/>
+			</EnumValues>
+		</EnumField>
+-->
+
+		<MoneyField Name="FOODITEMAMOUNT" DefaultValue="0" Description="The amount of the food item at the time of the transaction.  Defaults to the food item current cost."/>
+		<NumberField Name="QUANTITY" DefaultValue="1" Description="The number of food items donated." Type ="smallint"/>
+		<ComputedColumnField Name="LINEAMOUNT" Expression="FOODITEMAMOUNT * QUANTITY"/>
+		
+	</Fields>
+
+	<!-- define any additional check constraints on the table 
+	<CheckConstraints>
+
+	</CheckConstraints>
+-->
+	<!-- define any indexes on the table -->
+	<Indexes>
+		<Index IsUnique="true">
+			<IndexFields>
+				<IndexField Name="FOODBANKTXHEADERID"/>
+				<IndexField Name="FOODITEMID"/>
+			</IndexFields>
+		</Index>
+		<Index>
+			<IndexFields>
+				<IndexField Name="FOODBANKTXHEADERID"/>
+			</IndexFields>
+		</Index>
+		<Index>
+			<IndexFields>
+				<IndexField Name="FOODITEMID"/>
+			</IndexFields>
+		</Index>
+	</Indexes>
+		 
+	<!-- define any triggers on the table 
+	<Triggers>
+
+	</Triggers>
+	
+-->
+</TableSpec>

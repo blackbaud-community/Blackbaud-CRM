@@ -1,0 +1,15 @@
+﻿<TaskSpec 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  ID="654d3c26-b944-4a6e-87e6-c4d8c8068f88" 
+  Name="Manage Business Processes" 
+  Description="Business process to check for inventories per food bank." 
+  Author="Technical Training" 
+  ImageKey="res:businessprocessspec" 
+  FunctionalAreaID="2b32333c-5cd7-4e54-a3d3-a41b382cdfa9" 
+  TaskGroupImageKey="res:businessprocessspec" 
+  Sequence="100" xmlns="bb_appfx_task">
+  <ShowPage PageID="a899e5e7-3e19-41ec-9f40-f0dd278b5325" 
+            TabID="00000000-0000-0000-0000-000000000000" 
+            xmlns="bb_appfx_commontypes" />
+</TaskSpec>

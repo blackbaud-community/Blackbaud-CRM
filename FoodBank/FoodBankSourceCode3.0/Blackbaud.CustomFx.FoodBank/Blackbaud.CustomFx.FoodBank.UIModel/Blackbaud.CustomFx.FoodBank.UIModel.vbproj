@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BA763C92-C600-494F-8FF8-B78D2C3B5092}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Blackbaud.CustomFx.FoodBank.UIModel</RootNamespace>
+    <AssemblyName>Blackbaud.CustomFx.FoodBank.UIModel</AssemblyName>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OptionInfer>On</OptionInfer>
+    <OptionStrict>Off</OptionStrict>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/Blackbaud.CustomFx.FoodBank.UIModel/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\..\..\..\Inetpub\wwwroot\bbappfx25\bbappfx\SDK\DLLReferences\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRuleSet>Migrated rules for Blackbaud.CustomFx.FoodBank.UIModel.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRuleSet>Migrated rules for Blackbaud.CustomFx.FoodBank.UIModel.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Blackbaud.AppFx, Version=1.0.363.1205, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.BatchUI, Version=2.93.1563.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\InfinityWebServer\SDK\DLLReferences\Blackbaud.AppFx.BatchUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.Constituent.UIModel, Version=2.5.465.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.DataHygiene.UIModel, Version=2.94.1232.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\InfinityWebServer\SDK\DLLReferences\Blackbaud.AppFx.DataHygiene.UIModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.Platform.Catalog, Version=2.94.1232.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\InfinityWebServer\SDK\DLLReferences\Blackbaud.AppFx.Platform.Catalog.dll</HintPath>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.Server, Version=1.0.443.759, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.UIModeling.Core, Version=1.0.363.1205, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.XmlTypes, Version=1.0.443.759, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.XmlTypes.XmlSerializers, Version=1.0.443.759, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Blackbaud.AppFx.UIModeling.Core" />
+    <Import Include="Blackbaud.AppFx" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.ComponentModel" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddIns\ConstituentBatch.AddIn.vb" />
+    <Compile Include="AddIns\PhoneAdd.AddIn.CodeGen.vb">
+      <DependentUpon>PhoneAdd.AddIn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddIns\PhoneAdd.AddIn.vb" />
+    <Compile Include="AddIns\RelationshipOrganizationtoIndividualAddForm2.AddIn.CodeGen.vb">
+      <DependentUpon>RelationshipOrganizationtoIndividualAddForm2.AddIn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddIns\RelationshipOrganizationtoIndividualAddForm2.AddIn.vb" />
+    <Compile Include="Batch\Food Bank TX Adv Add\Reconcile Dialog Window\FBTXBatchReconcileCustomFOODITEMSUIModel.CodeGen.vb">
+      <DependentUpon>FBTXBatchReconcileCustomUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Batch\Food Bank TX Adv Add\Reconcile Dialog Window\FBTXBatchReconcileCustomUIModel.CodeGen.vb">
+      <DependentUpon>FBTXBatchReconcileCustomUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Batch\Food Bank TX Adv Add\Reconcile Dialog Window\FBTXBatchReconcileCustomUIModel.vb" />
+    <Compile Include="Batch\Food Bank TX Adv Add\FoodBankTransactionAddBatchHandler.vb" />
+    <Compile Include="Batch\Food Bank TX Adv Add\TX Detail Food Items Dialog Window\FBTXBatchFoodItemsCustomFOODITEMSUIModel.CodeGen.vb">
+      <DependentUpon>FBTXBatchFoodItemsCustomUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Batch\Food Bank TX Adv Add\TX Detail Food Items Dialog Window\FBTXBatchFoodItemsCustomUIModel.CodeGen.vb">
+      <DependentUpon>FBTXBatchFoodItemsCustomUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Batch\Food Bank TX Adv Add\TX Detail Food Items Dialog Window\FBTXBatchFoodItemsCustomUIModel.vb" />
+    <Compile Include="Batch\Food Item\FoodItemAddBatchHandler.vb" />
+    <Compile Include="Batch\Food Item\FoodItemCapitalizeImportHandler.vb" />
+    <Compile Include="Content.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Content.resx</DependentUpon>
+    </Compile>
+    <Compile Include="FoodBankOrganizationExtensionAddFormUIModel.CodeGen.vb">
+      <DependentUpon>FoodBankOrganizationExtensionAddFormUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodBankOrganizationExtensionAddFormUIModel.vb" />
+    <Compile Include="FoodBankSearchUIModel.CodeGen.vb">
+      <DependentUpon>FoodBankSearchUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodBankSearchUIModel.vb" />
+    <Compile Include="FoodBankSummaryViewUIModel.CodeGen.vb">
+      <DependentUpon>FoodBankSummaryViewUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodBankSummaryViewUIModel.vb" />
+    <Compile Include="FoodBankTopShortagesUIWidgetDataListUIModel.CodeGen.vb">
+      <DependentUpon>FoodBankTopShortagesUIWidgetDataListUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodBankTopShortagesUIWidgetDataListUIModel.vb" />
+    <Compile Include="FoodBankTransactionDetailEditFormUIModel.CodeGen.vb">
+      <DependentUpon>FoodBankTransactionDetailEditFormUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodBankTransactionDetailEditFormUIModel.vb" />
+    <Compile Include="FoodBankTransactionHeaderAddForm2FOODITEMSUIModel.CodeGen.vb">
+      <DependentUpon>FoodBankTransactionHeaderAddForm2UIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodBankTransactionHeaderAddForm2UIModel.CodeGen.vb">
+      <DependentUpon>FoodBankTransactionHeaderAddForm2UIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodBankTransactionHeaderAddForm2UIModel.vb" />
+    <Compile Include="FoodItemAddBatchFoodItemValidationUIModel.CodeGen.vb">
+      <DependentUpon>FoodItemAddBatchFoodItemValidationUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodItemAddBatchFoodItemValidationUIModel.vb" />
+    <Compile Include="FoodItemAddFormUIModel.CodeGen.vb">
+      <DependentUpon>FoodItemAddFormUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodItemAddFormUIModel.vb" />
+    <Compile Include="FoodItemEditFormUIModel.CodeGen.vb">
+      <DependentUpon>FoodItemEditFormUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodItemEditFormUIModel.vb" />
+    <Compile Include="FoodItemListUIModel.CodeGen.vb">
+      <DependentUpon>FoodItemListUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodItemListUIModel.vb" />
+    <Compile Include="FoodItemSearchUIModel.CodeGen.vb">
+      <DependentUpon>FoodItemSearchUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FoodItemSearchUIModel.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FoodBankBreakdownReportAVAILABLEDATAUIModel.CodeGen.vb">
+      <DependentUpon>FoodBankBreakdownReportUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FoodBankBreakdownReportAVAILABLEITEMSUIModel.CodeGen.vb">
+      <DependentUpon>FoodBankBreakdownReportUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FoodBankBreakdownReportCHOSENITEMSUIModel.CodeGen.vb">
+      <DependentUpon>FoodBankBreakdownReportUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FoodBankBreakdownReportUIModel.CodeGen.vb">
+      <DependentUpon>FoodBankBreakdownReportUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FoodBankBreakdownReportUIModel.vb" />
+    <Compile Include="UIWidgets\TopFoodItemShortagesByBPRunDataListUIModel.CodeGen.vb">
+      <DependentUpon>TopFoodItemShortagesByBPRunDataListUIModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UIWidgets\TopFoodItemShortagesByBPRunDataListUIModel.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Migrated rules for Blackbaud.CustomFx.FoodBank.UIModel.ruleset" />
+    <None Include="My Project\Settings.settings">
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="postbuild.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Blackbaud.CustomFx.FoodBank.Catalog\Batch Types\Food Item\FoodItemAdd.Batch.xml">
+      <Link>LinkedSpecs\FoodItemAdd.Batch.xml</Link>
+    </None>
+    <EmbeddedResource Include="AddIns\ConstituentBatch.AddIn.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="FoodBankTopShortagesUIWidgetDataListUIModel.xml">
+      <DependentUpon>FoodBankTopShortagesUIWidgetDataListUIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="FoodItemAddBatchFoodItemValidationUIModel.xml">
+      <DependentUpon>FoodItemAddBatchFoodItemValidationUIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\Copy of TopFoodItemShortagesByBPRunDataList.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodBankListBuilderColumnTemplates.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodBankTopShortagesUIWidgetDataList.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodItemAddBatchFoodItemValidation.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\TopFoodItemShortagesByBPRunDataList.html" />
+    <Content Include="UIWidgets\TopFoodItemShortagesByBPRunDataListUIModel.xml">
+      <DependentUpon>TopFoodItemShortagesByBPRunDataListUIModel.vb</DependentUpon>
+    </Content>
+    <None Include="..\Blackbaud.CustomFx.FoodBank.Catalog\Reports\FoodBankBreakdownReport.rdl.xml">
+      <Link>LinkedSpecs\FoodBankBreakdownReport.rdl.xml</Link>
+    </None>
+    <None Include="Batch\Food Bank TX Adv Add\TX Detail Food Items Dialog Window\FBTXBatchFoodItemsCustomUIModel.xml">
+      <DependentUpon>FBTXBatchFoodItemsCustomUIModel.vb</DependentUpon>
+    </None>
+    <Content Include="Batch\Food Bank TX Adv Add\Reconcile Dialog Window\FBTXBatchReconcileCustomUIModel.xml">
+      <DependentUpon>FBTXBatchReconcileCustomUIModel.vb</DependentUpon>
+    </Content>
+    <None Include="Batch\Food Bank TX Adv Add\Reconcile Dialog Window\FoodBankTXBatchVersusCurrentInvReconcileCustomUIModel.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FBTXBatchDetailFoodItemsCustom.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FBTXBatchFoodItemsCustomUIModel.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodBankBreakdownReport.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FBTXBatchVsCurInvReconcileCustomUIModel.html" />
+    <Content Include="Reports\FoodBankBreakdownReportUIModel.xml">
+      <DependentUpon>FoodBankBreakdownReportUIModel.vb</DependentUpon>
+    </Content>
+    <None Include="..\Blackbaud.CustomFx.FoodBank.Catalog\DataFormExtensions\OrganizationFoodBankExtension.Add.xml">
+      <Link>LinkedSpecs\OrganizationFoodBankExtension.Add.xml</Link>
+    </None>
+    <None Include="..\Blackbaud.CustomFx.FoodBank.Catalog\FoodItem.Add.xml">
+      <Link>LinkedSpecs\FoodItem.Add.xml</Link>
+    </None>
+    <None Include="..\Blackbaud.CustomFx.FoodBank.Catalog\FoodBankTXHeaderAdvanced.Add.xml">
+      <Link>LinkedSpecs\FoodBankTXHeaderAdvanced.Add.xml</Link>
+    </None>
+    <None Include="..\Blackbaud.CustomFx.FoodBank.Catalog\FoodItem.Edit.xml">
+      <Link>LinkedSpecs\FoodItem.Edit.xml</Link>
+    </None>
+    <None Include="..\..\..\..\..\..\Files\Technical Training\SDK\Web UI\Captivate\Code\Blackbaud.CustomFx.FoodBank.Catalog\FoodBankTXDetail.Edit.xml">
+      <Link>LinkedSpecs\FoodBankTXDetail.Edit.xml</Link>
+    </None>
+    <None Include="..\Blackbaud.CustomFx.FoodBank.Catalog\FoodItem.DataList.xml">
+      <Link>LinkedSpecs\FoodItem.DataList.xml</Link>
+    </None>
+    <None Include="..\Blackbaud.CustomFx.FoodBank.Catalog\FoodItem.Search.xml">
+      <Link>LinkedSpecs\FoodItem.Search.xml</Link>
+    </None>
+    <None Include="..\Blackbaud.CustomFx.FoodBank.Catalog\FoodBank.Search.xml">
+      <Link>LinkedSpecs\FoodBank.Search.xml</Link>
+    </None>
+    <None Include="..\Blackbaud.CustomFx.FoodBank.Catalog\FoodBankSummary.View.xml">
+      <Link>LinkedSpecs\FoodBankSummary.View.xml</Link>
+    </None>
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\ChooseCorrectFoodBankConstituentPageAction.js" />
+    <Content Include="FoodBankOrganizationExtensionAddFormUIModel.xml">
+      <DependentUpon>FoodBankOrganizationExtensionAddFormUIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="FoodBankSearchUIModel.xml">
+      <DependentUpon>FoodBankSearchUIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="FoodBankSummaryViewUIModel.xml">
+      <DependentUpon>FoodBankSummaryViewUIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="FoodBankTransactionDetailEditFormUIModel.xml">
+      <DependentUpon>FoodBankTransactionDetailEditFormUIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="FoodBankTransactionHeaderAddForm2UIModel.xml">
+      <DependentUpon>FoodBankTransactionHeaderAddForm2UIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="FoodItemAddFormUIModel.xml">
+      <DependentUpon>FoodItemAddFormUIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="FoodItemEditFormUIModel.xml">
+      <DependentUpon>FoodItemEditFormUIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="FoodItemListUIModel.xml">
+      <DependentUpon>FoodItemListUIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="FoodItemSearchUIModel.xml">
+      <DependentUpon>FoodItemSearchUIModel.vb</DependentUpon>
+    </Content>
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodBankOrganizationExtensionAddForm.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodBankSearch.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodBankSummaryView.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodBankTransactionDetailEditForm.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodBankTransactionHeaderAddForm2.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodItemAddForm.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodItemEditForm.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodItemList.html" />
+    <Content Include="htmlforms\custom\blackbaud.customfx.foodbank\FoodItemSearch.html" />
+    <Content Include="htmlforms\custom\constituent\ConstituentProfileViewExtension.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Content.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy Blackbaud.CustomFx.FoodBank.UIModel.dll "D:\InfinityWebServer\BBInfinity\bbappfx\vroot\bin\custom" /y
+xcopy Blackbaud.CustomFx.FoodBank.UIModel.pdb "D:\InfinityWebServer\BBInfinity\bbappfx\vroot\bin\custom" /y
+xcopy "$(ProjectDir)\htmlforms\custom\blackbaud.customfx.foodbank\*.html" "D:\InfinityWebServer\BBInfinity\bbappfx\vroot\browser\htmlforms\custom\blackbaud.customfx.foodbank" /y
+xcopy "$(ProjectDir)\htmlforms\custom\blackbaud.customfx.foodbank\*.js" "D:\InfinityWebServer\BBInfinity\bbappfx\vroot\browser\htmlforms\custom\blackbaud.customfx.foodbank" /y
+xcopy "$(ProjectDir)\htmlforms\custom\blackbaud.customfx.foodbank\*.js" "D:\InfinityWebServer\BBInfinity\bbappfx\vroot\browser\htmlforms\custom\blackbaud.customfx.foodbank" /y
+"C:\Windows\System32\inetsrv\appcmd.exe" recycle apppool DefaultAppPool
+
+
+
+REM $(ProjectDir)postbuild.bat</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,11 @@
+<FunctionalAreaSpec
+	xmlns="bb_appfx_functionalarea"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="b7830c57-898a-43a5-bbea-7b99bf437ae0"
+	Name="Food Banks"
+	Description="New Functional area for the food bank customization. Optimized for Web Shell User Interface"
+	Author="Technical Training"
+	ImageKey="CATALOG:Blackbaud.CustomFx.FoodBank.Catalog,Blackbaud.CustomFx.FoodBank.Catalog.bread-1.png"
+	Sequence="1001"
+	Visible ="true"
+	/>

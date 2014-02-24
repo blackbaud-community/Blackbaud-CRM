@@ -1,0 +1,57 @@
+﻿<SQLStoredProcedureSpec
+	xmlns="bb_appfx_sqlstoredprocedure"
+	xmlns:common="bb_appfx_commontypes"
+	Name="USR_USP_PHONES_VALIDATEPHONES"
+	ID="eca8fdfd-5db1-4bec-94c0-02e343619909"
+	Description="USR_USP_PHONES_VALIDATEPHONES"
+	Author="Technical Training"
+	SPName="USR_USP_PHONES_VALIDATEPHONES"
+	GrantServiceRolePermission="false">
+
+  <common:DependencyList>
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_UFN_CONSTITUENTBATCH_GETPHONESWITHSEASONAL.xml" />
+  </common:DependencyList>
+
+  <CreateProcedureSQL>
+    <![CDATA[
+			create procedure dbo.USR_USP_PHONES_VALIDATEPHONES(
+				@PHONES xml
+			) as
+				set nocount on;
+				
+				declare @PHONESTABLE table
+				(
+					ID uniqueidentifier,
+					ISPRIMARY bit,
+					NUMBER nvarchar(100),
+					PHONETYPECODEID uniqueidentifier,
+					SEQUENCE int
+				);
+				
+				insert into @PHONESTABLE(ID, ISPRIMARY, NUMBER, PHONETYPECODEID, SEQUENCE)
+					select ID, ISPRIMARY, NUMBER, PHONETYPECODEID, SEQUENCE
+					from dbo.USR_UFN_CONSTITUENTBATCH_GETPHONESWITHSEASONAL_FROMITEMLISTXML(@PHONES);
+				
+				declare @PRIMARYCOUNT int;
+				
+				select
+					@PRIMARYCOUNT = count(*)
+				from @PHONESTABLE
+				where ISPRIMARY = 1;
+				
+				if @PRIMARYCOUNT > 1 begin
+					raiserror('Only one primary phone number is allowed.', 13, 1)
+					return 1;
+				end
+				
+				if @PRIMARYCOUNT < 1 and (select count(*) from @PHONESTABLE) != 0 begin
+					raiserror('You must mark at least one phone number as primary.', 13, 1)
+					return 1;
+				end
+
+				return 0;
+		]]>
+  </CreateProcedureSQL>
+</SQLStoredProcedureSpec>
+

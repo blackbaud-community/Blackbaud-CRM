@@ -1,0 +1,361 @@
+﻿<PageDefinitionSpec xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  ID="753229b2-9549-41ce-8058-027e9b5e9230"
+  Name="Food Banks"
+  Description="Page displays food bank tasks, UI widgets for inventory, and a list builder."
+  Author="Technical Training"
+  ExpressionDataFormID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_pagedefinition">
+  <PageHeader Caption="Food Banks" />
+  <Tabs>
+    <Tab
+      Caption="Tasks"
+      ID="de6cafeb-3263-4041-9fe6-92067e40a0c8" />
+    <Tab
+      Caption="Inventory"
+      ID="1703ce2a-813f-449a-8598-5130b63b8b20">
+      <Sections>
+        <Section
+          ID="36b60e94-9141-446e-8308-d0924167da50"
+          Caption="Top food item shortages"
+          DisplayStyle="Inline">
+          <DataList
+            ID="772f60b1-9f96-4f34-ba94-a5a4f1a81180">
+            <RenderStyle>
+              <StandardView />
+            </RenderStyle>
+          </DataList>
+        </Section>
+        <Section
+          ID="438fb1c1-d786-48b0-9eb9-c066f42f89c1"
+          Caption="Top food item shortages UI widget breakdown chart"
+          Visible="=Globals.isWebshell"
+          DisplayStyle="Inline">
+          <UIWidget
+            ID="d1c1c745-1807-4231-82f7-ddd5f0426c29" />
+        </Section>
+        <Section
+          ID="438fb1c1-d786-48b0-9eb9-c066f42f89c2"
+          Caption="Multi data series area chart"
+          Visible="=Globals.isWebshell"
+          DisplayStyle="Inline">
+          <UIWidget
+            ID="d1c1c745-1807-4231-82f7-ddd5f0426c30" />
+        </Section>
+        <Section
+          ID="2ac67d40-c733-4106-973e-3bd1aa1ae316"
+          Caption="Top Shortages by Food Bank"
+          Visible="=Globals.isWebShell"
+          DisplayStyle="Inline">
+          <UIWidget
+            ID="3d0fdf64-262d-4827-8684-72ab1283b608" />
+        </Section>
+      </Sections>
+    </Tab>
+    <Tab
+      Caption="List Builder"
+      ID="fa06aec1-87d8-4453-99f9-729516492a8c">
+      <Sections>
+        <Section 
+          ID="e46ef631-d80d-43f8-b230-ee860f2094cd" Caption="List builder with composite column">
+          <ListBuilder QueryViewID="AE91E1A7-2130-409C-8D06-198030EB0AA7" ItemsPerPage="5" >
+            <RequiredColumns>
+              <Column Name="FBCONSTITUENTID" />
+              <Column Name="FOODBANKTXHEADERID" />
+              <Column Name="FOODBANKTXDETAILID" />
+              <Column
+                Name="FBCONSTITUENTNAME" />
+              <Column
+                Name="TXCONSTITUENTID" />
+              <Column
+                Name="TXCONSTITUENTNAME" />
+            </RequiredColumns>
+            <RenderStyle>
+              <StandardView>
+                <DetailViewForm ViewDataFormID="703f99d3-fb38-409f-9843-3a6a1ab13b4c" 
+                                RecordIDField="FBCONSTITUENTID"  DockStyle="Bottom"/>
+                <Legend>
+                  <LegendExpressionList>
+                    <LegendExpression ID="18cd3f64-0701-4f00-afe5-aa7e5fc16106" 
+                                      ForeColor="Green" Bold="true">= Fields!LINEAMOUNT &gt; 10.00</LegendExpression>
+                  </LegendExpressionList>
+                </Legend>
+              </StandardView>
+            </RenderStyle>
+          </ListBuilder>
+          <Actions>
+            <Action
+              ID="dc31cefa-11ac-4cbc-802b-81cbbc1fa68e"
+              Caption="Add"
+              ImageKey="res:newitem">
+              <ShowAddDataForm
+                DataFormID="d580abbd-2974-4adb-bd8a-8cf6f76de8e6" xmlns="bb_appfx_commontypes">
+                <PostActionEvent>
+                  <GoToPage>
+                    <SpecificPage
+                      PageID="2ca4f7de-41d0-4131-8c1b-5a532385794a"
+                      TabID="1cfdf9d2-7d0b-437a-9034-6cfbc6ba1a49"
+                      SectionID="00000000-0000-0000-0000-000000000000" />
+                  </GoToPage>
+                </PostActionEvent>
+              </ShowAddDataForm>
+            </Action>
+            <Action
+              ID="1e468045-0abb-4d3d-b479-0d6bb2f3d985"
+              Caption="Go to Food Bank"
+              DefaultAction="false"
+              LinkFieldID="FBCONSTITUENTNAME">
+              <ShowPage
+                PageID="2ca4f7de-41d0-4131-8c1b-5a532385794a"
+                TabID="00000000-0000-0000-0000-000000000000"
+                SectionID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+                <ActionContext>
+                  <SectionField>FBCONSTITUENTID</SectionField>
+                </ActionContext>
+              </ShowPage>
+            </Action>
+            <Action
+              ID="1c541318-77b0-477e-b5a5-97751d0bd829"
+              Caption="Go to TX Constituent"
+              DefaultAction="true"
+              LinkFieldID="TXCONSTITUENTNAME">
+              <ShowPage
+                PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f"
+                TabID="00000000-0000-0000-0000-000000000000"
+                SectionID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+                <ActionContext>
+                  <SectionField>TXCONSTITUENTID</SectionField>
+                </ActionContext>
+              </ShowPage>
+            </Action>
+            <Action
+              ID="ee9c1fbb-4b81-4075-ad3e-4623947ee047"
+              Caption="View as organization"
+              ImageKey="res:goto_round"
+              DefaultAction="true">
+              <ShowPage
+                PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f"
+                TabID="00000000-0000-0000-0000-000000000000"
+                SectionID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+                <ActionContext>
+                  <SectionField>FBCONSTITUENTID</SectionField>
+                </ActionContext>
+              </ShowPage>
+            </Action>
+            <Action
+              ID="c8614bc7-d13e-488f-92cb-e4253d456de5"
+              Caption="View Transaction"
+              ImageKey="res:goto_round"
+              DefaultAction="true">
+              <ShowPage
+                PageID="48322a26-bbc2-44b5-b021-9711f02736f3"
+                TabID="00000000-0000-0000-0000-000000000000"
+                SectionID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+                <ActionContext>
+                  <SectionField>FOODBANKTXHEADERID</SectionField>
+                </ActionContext>
+              </ShowPage>
+            </Action>
+            <Action
+              ID="31e67813-e6e0-4975-b493-e263f4d90ffd"
+              Caption="Add Transaction"
+              ImageKey="RES:NewItem">
+              <ShowAddDataForm
+                DataFormID="d19db1cd-3933-4bff-8aca-cc96f334cf44" xmlns="bb_appfx_commontypes">
+                <ActionContext>
+                  <SectionField>FBCONSTITUENTID</SectionField>
+                </ActionContext>
+              </ShowAddDataForm>
+            </Action>
+            <Action
+              ID="1c992130-8f50-4b5a-a0d1-c1c41608e414"
+              Caption="Add Transaction Detail"
+              ImageKey="RES:NewItem">
+              <ShowAddDataForm
+                DataFormID="a3482f13-e3f2-498e-ad62-916f6d329ad8" xmlns="bb_appfx_commontypes">
+                <ActionContext>
+                  <SectionField>FOODBANKTXHEADERID</SectionField>
+                </ActionContext>
+              </ShowAddDataForm>
+            </Action>
+            <Action
+              ID="9d532105-9478-486c-88bd-0be70508ef32"
+              Caption="Delete Food Bank"
+              ImageKey="res:delete">
+              <ExecuteRecordOperation
+                RecordOperationID="e4e36cf4-0f48-44a2-9525-2b2b6b85a26e" xmlns="bb_appfx_commontypes">
+                <ActionContext>
+                  <SectionField>FBCONSTITUENTID</SectionField>
+                </ActionContext>
+                <PostActionEvent>
+                  <RefreshSection />
+                </PostActionEvent>
+              </ExecuteRecordOperation>
+            </Action>
+            <Action
+              ID="bf977080-82f8-4c53-8f7d-19723892a0d1"
+              Caption="Delete Transaction Header"
+              ImageKey="res:delete">
+              <ExecuteRecordOperation
+                RecordOperationID="2b8d6fff-a679-464a-9bab-48e0e128eb90" xmlns="bb_appfx_commontypes">
+                <ActionContext>
+                  <SectionField>FOODBANKTXHEADERID</SectionField>
+                </ActionContext>
+                <PostActionEvent>
+                  <RefreshSection />
+                </PostActionEvent>
+              </ExecuteRecordOperation>
+            </Action>
+            <Action
+              ID="88ff8931-73b0-4c07-9790-d94e10bd8f49"
+              Caption="Delete Transaction Detail"
+              ImageKey="res:delete">
+              <ExecuteRecordOperation
+                RecordOperationID="955a09f3-c75d-4048-986c-d8edf1d1d214"
+                ShowPrompt="false" xmlns="bb_appfx_commontypes">
+                <ActionContext>
+                  <SectionField>FOODBANKTXDETAILID</SectionField>
+                </ActionContext>
+                <PostActionEvent>
+                  <RefreshSection />
+                </PostActionEvent>
+                <AllowsMultiSelect />
+              </ExecuteRecordOperation>
+            </Action>
+          </Actions>
+        </Section>
+      </Sections>
+    </Tab>
+  </Tabs>
+  <PageActionGroups>
+    <PageActionGroup
+      ID="5a24ff48-44e5-4467-a87d-216de4389c12"
+      Caption="Food banks and items">
+      <Actions>
+        <Action
+          ID="6e109af9-abec-4ee1-8a4b-1f8854a02ae7"
+          Caption="Food bank search"
+          ImageKey="RES:search">
+          <ShowPage
+            PageID="2ca4f7de-41d0-4131-8c1b-5a532385794a"
+            TabID="00000000-0000-0000-0000-000000000000"
+            SectionID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+            <ActionContext>
+              <SearchListReturnValue
+                SearchListID="3eceea4c-cf42-4938-9cf1-c7c77ebc7dc9" />
+            </ActionContext>
+          </ShowPage>
+        </Action>
+        <Action
+          ID="9ba1e992-eb6a-44ef-998d-ed7a2c1c14ab"
+          Caption="Custom food bank search">
+          <ExecuteCLRAction xmlns="bb_appfx_commontypes">
+            <ScriptIdentifier
+              Url="browser/htmlforms/custom/blackbaud.customfx.foodbank/ChooseCorrectFoodBankConstituentPageAction.js"
+              ObjectName="BBUI.customactions.foodbank.ChooseCorrectFoodBankConstituentPageAction">
+              <StaticParameters>
+                <ParameterList>
+                  <Param
+                    ID="ConstituentPageID">
+                    <Value>88159265-2b7e-4c7b-82a2-119d01ecd40f</Value>
+                  </Param>
+                  <Param
+                    ID="FoodBankPageID">
+                    <Value>2ca4f7de-41d0-4131-8c1b-5a532385794a</Value>
+                  </Param>
+                </ParameterList>
+              </StaticParameters>
+            </ScriptIdentifier>
+            <ActionContext>
+              <SearchListReturnValue
+                SearchListID="ef1da4e7-0631-49de-bd60-7d084cb7cb2b">
+                <AddDataForms>
+                  <AddDataForm
+                    ID="ca3ed110-a5f0-4b5b-8eb7-0616e0a82e8e"
+                    Caption="Add" />
+                </AddDataForms>
+              </SearchListReturnValue>
+            </ActionContext>
+          </ExecuteCLRAction>
+        </Action>
+        <Action
+          ID="932a0e22-a49a-4293-b2a1-addeddbe8535"
+          Caption="Add food bank"
+          ImageKey="catalog:Blackbaud.AppFx.Constituent.Catalog.dll,Blackbaud.AppFx.Constituent.Catalog.neworganization.png">
+          <ShowAddDataForm
+            DataFormID="d580abbd-2974-4adb-bd8a-8cf6f76de8e6" xmlns="bb_appfx_commontypes">
+            <PostActionEvent>
+              <GoToPage>
+                <SpecificPage
+                  PageID="2ca4f7de-41d0-4131-8c1b-5a532385794a"
+                  TabID="1cfdf9d2-7d0b-437a-9034-6cfbc6ba1a49"
+                  SectionID="00000000-0000-0000-0000-000000000000" />
+              </GoToPage>
+            </PostActionEvent>
+          </ShowAddDataForm>
+        </Action>
+        <Action
+          ID="bf544a07-0e59-4b3c-8838-fee417f870b4"
+          Caption="Add organization"
+          ImageKey="catalog:Blackbaud.AppFx.Constituent.Catalog.dll,Blackbaud.AppFx.Constituent.Catalog.neworganization.png">
+          <ShowAddDataForm
+            DataFormID="ca3ed110-a5f0-4b5b-8eb7-0616e0a82e8e" xmlns="bb_appfx_commontypes">
+            <PostActionEvent>
+              <GoToPage>
+                <SpecificPage
+                  PageID="2ca4f7de-41d0-4131-8c1b-5a532385794a"
+                  TabID="1cfdf9d2-7d0b-437a-9034-6cfbc6ba1a49"
+                  SectionID="00000000-0000-0000-0000-000000000000" />
+              </GoToPage>
+            </PostActionEvent>
+          </ShowAddDataForm>
+        </Action>
+        <Action
+          ID="bac88546-6fe3-422c-b69a-60dbdb8b9731"
+          Caption="Add food item"
+          ImageKey="CATALOG:Blackbaud.CustomFx.FoodBank.Catalog,Blackbaud.CustomFx.FoodBank.Catalog.AddFoodItem.png">
+          <ShowAddDataForm
+            DataFormID="b911e219-42f2-4b64-9f02-d9e2ff899799" xmlns="bb_appfx_commontypes" />
+        </Action>
+      </Actions>
+      <RenderLocation>
+        <Tab
+          ID="de6cafeb-3263-4041-9fe6-92067e40a0c8" />
+      </RenderLocation>
+    </PageActionGroup>
+    <PageActionGroup
+      ID="166c1e53-b07a-4291-98fc-05174da76123"
+      Caption="Processing">
+      <Actions>
+        <Action
+          ID="1cebcfc5-3bb0-47c0-85af-5f68b9c677ef"
+          Caption="Calculate inventory and shortages">
+          <ShowPage
+            PageID="a899e5e7-3e19-41ec-9f40-f0dd278b5325"
+            TabID="00000000-0000-0000-0000-000000000000"
+            SectionID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes" />
+        </Action>
+      </Actions>
+      <RenderLocation>
+        <Tab
+          ID="de6cafeb-3263-4041-9fe6-92067e40a0c8" />
+      </RenderLocation>
+    </PageActionGroup>
+    <PageActionGroup
+      ID="3d76839e-0e42-4eff-a74c-a6396ca0d8a1"
+      Caption="Reports">
+      <Actions>
+        <Action
+          ID="349a7f88-3c3d-4c07-84be-a0cb1863ae6d"
+          Caption="Food bank breakdown">
+          <ShowPage
+            PageID="da4eab88-402f-409d-a717-3efaaa63e9c7"
+            TabID="00000000-0000-0000-0000-000000000000"
+            SectionID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes" />
+        </Action>
+      </Actions>
+      <RenderLocation>
+        <Tab
+          ID="de6cafeb-3263-4041-9fe6-92067e40a0c8" />
+      </RenderLocation>
+    </PageActionGroup>
+  </PageActionGroups>
+</PageDefinitionSpec>

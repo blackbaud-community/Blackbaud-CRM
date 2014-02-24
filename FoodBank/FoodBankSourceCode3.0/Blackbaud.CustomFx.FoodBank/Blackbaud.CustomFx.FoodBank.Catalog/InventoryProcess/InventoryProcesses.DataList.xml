@@ -1,0 +1,62 @@
+﻿<DataListSpec
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	ID="53a74b52-b121-4210-bb93-505ddcaa22ec"
+	Name="Inventory Process Business List"
+	Description="Returns a list of Inventory Process Business process parameter sets.  Data list is filtered based on security permissions for the current application user."
+	Author="Technical Training"
+	common:SecurityUIFolder="Constituent\Food Bank\Inventory"
+	xmlns:common="bb_appfx_commontypes"
+	xmlns="bb_appfx_datalist">
+
+	<!-- This pulls all the different business process instances.  
+    Notice there is just one thing special in the where
+		clause to filter based on security permissions.  
+    For this I needed to pass in the @CURRENTAPPUSERID parameter
+		which can come into any SP in the system pretty much as 
+    long as it is specified.-->
+	
+	<SPDataList SPName="USR_USP_DATALIST_USR_INVENTORYPROCESS">
+		<common:CreateProcedureSQL>
+			<![CDATA[					
+create procedure dbo.USR_USP_DATALIST_USR_INVENTORYPROCESS
+(
+	@CURRENTAPPUSERID uniqueidentifier = null
+)
+as
+	set nocount on;
+		
+	SELECT
+		IP.ID,
+		IP.NAME,
+		IDS.NAME as IDSETREGISTERNAME,
+		BPV.CAPTION as QUERYVIEWCAPTION,
+    IP.DESCRIPTION,
+    BPI.OWNERID
+	FROM
+		dbo.USR_INVENTORYPROCESS IP
+	INNER JOIN
+		dbo.IDSETREGISTER IDS on IP.IDSETREGISTERID = IDS.ID
+	INNER JOIN BusinessProcessView BPV on IP.QUERYVIEWID = BPV.QUERYVIEWCATALOGID
+  
+	LEFT JOIN
+		dbo.BUSINESSPROCESSINSTANCE BPI on IP.ID = BPI.BUSINESSPROCESSPARAMETERSETID
+	where 
+		dbo.UFN_SECURITY_APPUSER_GRANTED_BUSINESSPROCESSINSTANCE_IN_SYSTEMROLE(@CURRENTAPPUSERID, IP.ID) = 1
+	order by 
+		IP.NAME
+				]]>
+		</common:CreateProcedureSQL>
+	</SPDataList>
+
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="ID" Caption="System record Id" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="NAME" Caption="Name" DataType="String" />
+			<OutputField FieldID="IDSETREGISTERNAME" Caption="Selection" DataType="String" />
+      <OutputField FieldID="QUERYVIEWCAPTION" Caption="Output Format" DataType="String" />
+      <OutputField FieldID="DESCRIPTION" Caption="Description" DataType="String" />
+      <OutputField FieldID="OWNERID" Caption="Owner ID" DataType="Guid" IsHidden="true" />
+		</OutputFields>
+	</Output>
+</DataListSpec>

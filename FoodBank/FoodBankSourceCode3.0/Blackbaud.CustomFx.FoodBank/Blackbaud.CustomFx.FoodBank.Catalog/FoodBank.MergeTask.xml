@@ -1,0 +1,39 @@
+﻿<MergeTaskSpec
+	xmlns="bb_appfx_mergetask"
+	xmlns:common="bb_appfx_commontypes"
+	ID="b2d76649-c4e8-469f-b707-b3079bcc7a6d"
+	Name="Food Bank Merge Task"
+	Description="Merge task to merge to food banks." 
+	Author="Technical Training"
+	RecordType="Food Bank"
+	common:SecurityUIFolder="Food Bank"
+	>
+
+	<!-- describe the stored procedure used to merge the data for the given source and target record IDs -->
+	<SpImplementation SpName="USR_USP_MERGETASK_FOODBANK">
+		<CreateProcedureSql>
+			<![CDATA[
+create procedure dbo.USR_USP_MERGETASK_FOODBANK
+(
+	@SOURCEID uniqueidentifier,
+	@TARGETID uniqueidentifier,
+	@CHANGEAGENTID uniqueidentifier
+)
+as
+	set nocount on;
+	
+	-- write sql to handle merging the data for the given source and target IDs
+	
+	update dbo.USR_FOODBANK set
+		CONSTITUENTID = @TARGETID, 
+		CHANGEDBYID = @CHANGEAGENTID,
+		DATECHANGED = getdate()
+	where 
+		CONSTITUENTID = @SOURCEID
+			
+	return 0;
+			]]>
+		</CreateProcedureSql>
+	</SpImplementation>
+	
+</MergeTaskSpec>

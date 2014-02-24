@@ -1,0 +1,75 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="dc6902af-07ac-460d-8e44-e22c06e29ce8" 
+	Name="Food Item Shortage List"
+	Description="Sums the shortage amount of all food items for all food items.  Returns the top 6 food item shortages" 
+	Author="Technical Training"
+	common:SecurityUIFolder="Constituent\Food Bank\Food Item">
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_FOODITEMSHORTAGE">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_DATALIST_FOODITEMSHORTAGE
+as
+	set nocount on;
+
+		  
+WITH LOWINVENTORY_CTE (FOODBANKID, FOODITEMID, ITEMCOUNT)
+AS
+(
+SELECT
+	
+	FBTH.FOODBANKID,
+	FBTD.FOODITEMID,
+	sum(case 
+		when FBTH.FOODBANKTXTYPECODE = 0 then FBTD.QUANTITY
+		else FBTD.QUANTITY * -1
+	end) as FOODITEMCOUNT
+FROM 
+	dbo.USR_FOODBANKTXHEADER FBTH
+JOIN
+	dbo.USR_FOODBANKTXDETAIL FBTD on FBTH.ID = FBTD.FOODBANKTXHEADERID
+JOIN USR_FOODITEM FI on FBTD.FOODITEMID = FI.ID
+GROUP BY 
+	FBTH.FOODBANKID, FBTD.FOODITEMID
+	)
+SELECT TOP 6
+	  CTE.FOODITEMID,
+	  FI.NAME as FOODITEMNAME,
+	  SUM(FI.LOWINVENTORYTHRESHOLD - CTE.ITEMCOUNT) as INVENTORYSHORTAGE
+    from
+	  LOWINVENTORY_CTE CTE
+    join
+	  dbo.USR_FOODITEM FI on CTE.FOODITEMID = FI.ID
+    where
+	  CTE.ITEMCOUNT < FI.LOWINVENTORYTHRESHOLD
+	GROUP BY CTE.FOODITEMID, FI.NAME
+	ORDER BY INVENTORYSHORTAGE DESC
+	
+			]]>
+		</common:CreateProcedureSQL>
+	</SPDataList>
+
+
+	<!-- describe any parameters (other than the context ID) defined on the SP
+	<Parameters>
+		<common:FormMetaData>
+			<common:FormFields>
+				<common:FormField FieldID="PARAMETER1" Caption="Paramter1" DataType="REPLACE_WITH_DATATYPE"/>
+			</common:FormFields>
+		</common:FormMetaData>
+	</Parameters>-->
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="FOODITEMID" Caption="ID" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="FOODITEMNAME" Caption="REPLACE_WITH_CAPTION" DataType="String"   />
+			<OutputField FieldID="INVENTORYSHORTAGE" Caption="REPLACE_WITH_CAPTION" DataType="Integer" />
+			
+		</OutputFields>
+	</Output>
+
+</DataListSpec>

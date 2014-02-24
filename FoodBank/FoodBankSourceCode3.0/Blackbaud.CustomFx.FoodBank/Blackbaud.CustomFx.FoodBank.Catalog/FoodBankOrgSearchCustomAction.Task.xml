@@ -1,0 +1,74 @@
+﻿<TaskSpec
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  ID="2D9AA05E-C8A1-4BE3-924C-7B73EF0DDD6A"
+  Name="Food Bank Org Custom Action Search"
+  Description="Uses the stock org search list to retrieve 
+  the action context (constituent id) and then calls a custom action (JavaScript)
+  to redirect to either the constituent page or the food bank page."
+  Author="Blackbaud Product Development"
+  FunctionalAreaID="2b32333c-5cd7-4e54-a3d3-a41b382cdfa9"
+  Sequence="3"
+  xmlns="bb_appfx_task">
+
+  <ExecuteCLRAction xmlns="bb_appfx_commontypes">
+    <!--  
+      To calling a custom action within a task place a ScriptIdentifier tag within 
+      the ExecuteCLRAction tag.  ScriptIdentifier is the replacement for the 
+      winform based ComponentIdentifier element.  ComponentIdentifier elements 
+      are not compatible with the WebShell web based user interface.  
+      
+      The URL is relative to the location where the JS file resides on the 
+      Infinity web application's virtual directory.  The ObjectName is the 
+      fully qualified name of your JavaScript custom action object.
+      The ParameterList values from the StaticParameters will be available 
+      within the custom action ChooseCorrectFoodBankConstituentPageAction object.  
+      In addition, the context record id value provided by the ActionContext 
+      tag will also be available. 
+      -->
+    <ScriptIdentifier Url="browser/htmlforms/custom/blackbaud.customfx.foodbank/ChooseCorrectFoodBankConstituentPageAction.js"
+                    ObjectName="BBUI.customactions.foodbank.ChooseCorrectFoodBankConstituentPageAction">
+
+      <!--
+        The static parameter values are GUIDs which uniquely identify two pages.  
+        The custom action will use either of these ids to navigate to the correct 
+        page depending on whether the organization is a food bank.
+        -->
+      <StaticParameters>
+        <ParameterList>
+          <Param ID="ConstituentPageID">
+            <Value>88159265-2b7e-4c7b-82a2-119d01ecd40f</Value>
+          </Param>
+          <Param ID="FoodBankPageID">
+            <Value>2ca4f7de-41d0-4131-8c1b-5a532385794a</Value>
+          </Param>
+        </ParameterList>
+      </StaticParameters>
+    </ScriptIdentifier>
+
+    <!--
+      ActionContext is used to retrieve a context record id BEFORE the heart of the 
+      action is executed.  The ActionContext below calls upon the Organization Search list
+      which allows the user to search for an org.  The ID returned by the search list
+      is then passed to the custom action by the platform.  The code within the 
+      ChooseCorrectFoodBankConstituentPageAction custom action object will utilize
+      this context record id value.
+      -->
+    <ActionContext>
+      <SearchListReturnValue SearchListID="ef1da4e7-0631-49de-bd60-7d084cb7cb2b">
+        <AddDataForms>
+          <AddDataForm ID="ca3ed110-a5f0-4b5b-8eb7-0616e0a82e8e" Caption="Add"/>
+        </AddDataForms>
+      </SearchListReturnValue>
+    </ActionContext>
+    <!--
+      Note that this task does not utilize a PostAction which tells the task to do
+      something else after the primary function of the task has been completed.
+      If it did then we would have to call the callback function within our action action.
+      <PostActionEvent>
+      </PostActionEvent>
+      -->
+  </ExecuteCLRAction>
+
+</TaskSpec>
+

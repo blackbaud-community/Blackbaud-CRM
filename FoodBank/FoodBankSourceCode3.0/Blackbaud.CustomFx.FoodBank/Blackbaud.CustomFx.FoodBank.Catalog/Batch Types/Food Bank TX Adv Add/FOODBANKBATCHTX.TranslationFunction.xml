@@ -1,0 +1,26 @@
+﻿<TranslationFunctionSpec
+	xmlns="bb_appfx_translationfunction"
+	xmlns:common="bb_appfx_commontypes"
+	ID="315c143f-4fa2-42c5-ad3b-785ed9425bb3"
+	Name="FOODBANK BATCH TX"
+	Description="Food Bank Batch TX"
+	Author="Technical Training"
+	RecordType="CONSTITUENT"
+	>
+
+	<SQLTranslationFunction FNName="USR_UFN_TRANSLATIONFUNCTION_FOODBANKBATCHTX">
+		<common:CreateFunctionSQL>
+			<![CDATA[
+create function dbo.USR_UFN_TRANSLATIONFUNCTION_FOODBANKBATCHTX(@ID uniqueidentifier) 
+returns nvarchar(100) 
+as
+begin
+	declare @s nvarchar(100);
+	select @s = KEYNAME FROM CONSTITUENT where ID = @ID;
+	return @s;
+end	
+			]]>
+		</common:CreateFunctionSQL>
+	</SQLTranslationFunction>
+
+</TranslationFunctionSpec>

@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8CBB0FEC-AD26-4454-B2F3-2C561B3D148A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Blackbaud.CustomFx.FoodBank.Catalog</RootNamespace>
+    <AssemblyName>Blackbaud.CustomFx.FoodBank.Catalog</AssemblyName>
+    <MyType>Windows</MyType>
+    <OptionStrict>Off</OptionStrict>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionInfer>On</OptionInfer>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/Blackbaud.CustomFx.FoodBank.Catalog/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRuleSet>Migrated rules for Blackbaud.CustomFx.FoodBank.Catalog.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Blackbaud.AppFx, Version=2.5.465.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.Constituent.UIModel, Version=2.5.465.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.Server, Version=1.0.128.756, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.UIModeling.Core, Version=2.5.465.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.XmlTypes, Version=1.0.128.756, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.XmlTypes.XmlSerializers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Dev\Firebird\DLLReferences\Blackbaud.AppFx.XmlTypes.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddIns\IndividualProperCase.AddIn.CodeGen.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>IndividualProperCase.AddIn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddIns\IndividualProperCase.AddIn.vb" />
+    <Compile Include="InventoryProcess\InventoryProcessBusinessProcess.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="UI Widgets\Low Inv BP Run\UIWidget Chart\Data List\CLR Data List\LowInvBPRunCLR.DataList.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBank.Search.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Packages\FoodBank.Package.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodBank.Table.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodBankFoodRaised.Kpi.xml" />
+    <EmbeddedResource Include="FoodBank.Translation.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodBankTXDetail.Table.xml" />
+    <EmbeddedResource Include="FoodBankTXHeader.Table.xml" />
+    <EmbeddedResource Include="FoodBankTypeCode.xml" />
+    <EmbeddedResource Include="FoodItem.SimpleList.xml" />
+    <EmbeddedResource Include="FoodItem.Table.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBank.FunctionalArea.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankTXHeader.MergeTask.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConstituentFoodBankTXCount.SmartField.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="USR_USP_CONSTITUENTSMARTFIELD_FOODBANKTXCOUNT.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConstituentLastFoodTX.SmartQuery.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Food Bank\FoodBank.BatchExtension.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Food Bank\BatchFoodBank.Table.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodItem.Add.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBank.Dashboard.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankDashboardInformation.DataList.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankSummary.View.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="USR_UFN_FOODBANKTX_COUNT.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankSummary.Page.xml" />
+    <EmbeddedResource Include="FoodBankExpression.View.xml" />
+    <EmbeddedResource Include="FoodBankTXDetailSummary.View.xml" />
+    <EmbeddedResource Include="FoodBank.Add.Task.xml" />
+    <EmbeddedResource Include="FoodBank.Add.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodBank.Edit.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodBankDelete.RecordOperation.xml" />
+    <EmbeddedResource Include="FoodBank.Page.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodBankTXDetail.Add.xml" />
+    <EmbeddedResource Include="FoodBankTXDetail.DataList.xml" />
+    <EmbeddedResource Include="FoodBankTXDetail.Edit.xml" />
+    <EmbeddedResource Include="FoodBankTXDetailDelete.RecordOperation.xml" />
+    <EmbeddedResource Include="FoodBankTXHeader.Add.xml" />
+    <EmbeddedResource Include="FoodBankTXHeader.DataList.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodBankTXHeader.Edit.xml" />
+    <EmbeddedResource Include="FoodBankTXHeaderDelete.RecordOperation.xml" />
+    <EmbeddedResource Include="FoodItem.Add.Task.xml" />
+    <EmbeddedResource Include="FoodItem.DataList.xml" />
+    <EmbeddedResource Include="FoodItem.Search.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodItem.Translation.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodItem.Edit.xml" />
+    <EmbeddedResource Include="FoodItemDelete.RecordOperation.xml" />
+    <EmbeddedResource Include="USR_UFN_FOODBANKSUMFOODITEMAMT.xml" />
+    <EmbeddedResource Include="USR_UFN_FOODBANKSUMFOODITEMWEIGHT.xml" />
+    <EmbeddedResource Include="USR_UFN_FOODBANKTXFOODITEMAMT.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankTXHeaderAdvanced.Add.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\bread.jpg" />
+    <EmbeddedResource Include="USR_UFN_FOODTXDETAIL_FOODITEM.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankSearch.Task.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankFoodRaisedLBS.Kpi.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodItem.View.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankTXDetailExpression.View.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankTXDetail.Page.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Packages\AdvancedConfigPageDesignerFoodBank.Package.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBank.Query.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBank.MergeTask.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InventoryProcess\InventoryBusinessProcess.Package.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcess.Add.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcess.BusinessProcess.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcess.Edit.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcessStatus.Page.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryProcess\InventoryProcess.View.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcessCurrentInventoryOutput.Query.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcessDelete.RecordOperation.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcesses.DataList.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcessLowInventoryOutput.Query.xml" />
+    <EmbeddedResource Include="InventoryProcess\ManageBusinessProcesses.Task.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcessPageExpression.View.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcessStatus.DataList.xml" />
+    <EmbeddedResource Include="InventoryProcess\InventoryProcess.Table.xml" />
+    <EmbeddedResource Include="InventoryProcess\USR_UFN_FOODBANKSELECTION.xml" />
+    <EmbeddedResource Include="InventoryProcess\USR_USP_INVENTORYPROCESS_GETPARAMETERS.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="USR_UFN_CONSTITID_MAPFROM_FOODBANKID.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PostToGLCustom.Query.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataFormExtensions\OrganizationFoodBankExtension.Add.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AddIns\PhoneAdd.AddIn.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AddIns\RelationshipOrganizationtoIndividualAddForm2.AddIn.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AddIns\IndividualProperCase.AddIn.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\bread-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Phone\BatchConstituentPhone.BatchExtension.xml" />
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Phone\BatchConstituentPhoneExt.Table.xml" />
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Phone\USR_PHONE.Table.xml" />
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Phone\USR_UFN_CONSTITUENTBATCH_GETPHONESWITHSEASONAL.xml" />
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Phone\USR_USP_CONSTITUENTBATCHEXTCOMMIT_GETPHONESWITHSEASONAL_ADDFROMXML.xml" />
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Phone\USR_USP_PHONES_VALIDATEPHONES.xml" />
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Food Bank\USR_USP_FOODBANK_BATCHEXTVALIDATE.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\FoodItemUpsertDupCheck.Search.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\FoodItemUpsert.Batch.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\FoodItemUpsertBatch.Add.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\FoodItemUpsertBatch.Edit.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\FoodItemUpsertBatch.Table.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\FoodItemUpsertBatchCommit.Add.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\FoodItemUpsertBatchCommit.Edit.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\FoodItemUpsertBatchDelete.RecordOperation.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item\FoodItemAdd.Batch.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Batch Types\Food Item\FoodItemAddBatch.Add.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item\FoodItemAddBatch.Edit.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item\FoodItemAddBatch.Table.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item\FoodItemAddBatchCommit.Add.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item\FoodItemAddBatchDelete.RecordOperation.xml" />
+    <EmbeddedResource Include="Batch Types\Food Item\USR_USP_DATAFORMTEMPLATE_ADD_FOOD_ITEMBATCH.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Food Bank\ConstituentBatchFoodBankExtension.Package.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Extensions\Constituent Batch Phone\ConstituentBatchPhoneExtension.Package.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Types\Food Item\FoodItemAddBatch.Package.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\USR_USP_DATAFORMTEMPLATE_ADD_FOOD_ITEMUPSERTBATCH.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\USR_USP_DATAFORMTEMPLATE_EDITLOAD_FOOD_ITEMUPSERTBATCH.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\USR_USP_DATAFORMTEMPLATE_EDIT_FOOD_ITEMUPSERTBATCH.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Types\Food Item Upsert\FoodItemUpsertBatch.Package.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InventoryProcess\InventoryProcessParameterSet.Page.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RecordOperationSpec.RecordOperation1.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UFN_SQLFUNCTION1.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Documentation\" />
+    <Folder Include="LinkedSpecs\" />
+    <Folder Include="ListBuilder\Building Block Samples\" />
+    <Folder Include="NewFolder1\" />
+    <Folder Include="UI Widgets\Low Inv BP Run\Data Form\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Migrated rules for Blackbaud.CustomFx.FoodBank.Catalog.ruleset" />
+    <EmbeddedResource Include="Reports\FoodBankTransactionTotalsReport.rdl" />
+    <EmbeddedResource Include="Reports\ConfigurableTemplate.rdl" />
+    <EmbeddedResource Include="Reports\FoodBankBreakdownReport.rdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankSummaryOldWinFormClient.View.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConstituentIsFoodBank.View.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankOrgSearchCustomAction.Task.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\FoodBankTransactionTotalsReport.rdl.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\FoodBankBreakdownReport.rdl.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankBreakdownReport.Page.xml" />
+    <EmbeddedResource Include="FoodBankBreakdownReport.Task.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Packages\FoodBankReports.Package.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConstituentSummaryCustom.View.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\LowInventoryFoodBanks.DataList.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Other UI Widgets\TopGivers.DataList.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Other UI Widgets\TopGivers.UIWidget.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Other UI Widgets\TopGiversPage.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Other UI Widgets\TopGiversPage.Task.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\CopyOfFoodBankTXHeaderAdvanced.Add.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\USR_UFN_FOODBANKCURRENTINVENTORY.xml" />
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\USR_UFN_FOODBANKBATCHINVENTORY.xml" />
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FoodBankTXBatchVersusCurrentInvReconcile.DataList.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FOODBANKBATCHTX.SimpleList.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FOODBANKBATCHTX.TranslationFunction.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FoodBankTransactionAdd.Batch.xml" />
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FoodBankTransactionAddBatch.Add.xml" />
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FoodBankTransactionAddBatch.Edit.xml" />
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FoodBankTransactionAddBatch.Table.xml" />
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FoodBankTransactionAddBatchCommit.Add.xml" />
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FoodBankTransactionAddBatchDelete.RecordOperation.xml" />
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FoodBankTransactionAddBatchFoodItem.Table.xml" />
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\UFN_BATCHFOODBANKTRANSACTIONADD_GETFOODITEMS.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Batch Types\Food Bank TX Adv Add\FoodBankTransactionAddBatch.Package.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Low Inv BP Run\UIWidget Chart\Data List\LowInvBPRuns.SimpleList.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Low Inv BP Run\UIWidget Chart\Data List\LowInvBPRuns.TranslationFunction.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBankWorkcenter.Page.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Low Inv BP Run\UIWidget Chart\Data List\CLR Data List\LowInvBPRunCLR.DataList.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Low Inv BP Run\UIWidget Chart\Data List\CLR Data List\USR_USP_DATALIST_TopFoodItemShortByBPRunCLR.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBanks.Task.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FoodBanks.FunctionalArea.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\AddFoodItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Low Inv BP Run\UIWidget Chart\Completed Settings\LowInvBPRunsMultiSeriesAreaChartSettings.UIWidget.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Low Inv BP Run\UIWidget Chart\Data List\LowInvBPRunSettings.DataList.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Low Inv BP Run\UIWidget Chart\Completed Settings\LowInvBPRunsBreakdownChartSettings.UIWidget.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI Widgets\Low Inv BP Run\List Widget\Top5FoodBankShortage.DataList.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListBuilder\Final\FoodBankListBuilder.Query.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI Widgets\Low Inv BP Run\List Widget\FoodBankTopShortages.UIWidget.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Packages\UIModelDevFoodBank.Package.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoodBankToast.Add.Task.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="GlobalChange\FoodBankTX.DeleteHistory.GlobalChange.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="ListBuilder\Final\FoodBankListBuilderCompositeColumn.Query.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\twitter16.png" />
+    <EmbeddedResource Include="Images\facebook.png" />
+    <Content Include="UI Widgets\Low Inv BP Run\UIWidget Chart\Data List\CLR Data List\ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy Blackbaud.CustomFx.FoodBank.Catalog.dll "D:\InfinityWebServer\BBInfinity\bbappfx\vroot\bin\custom" /y</PostBuildEvent>
+  </PropertyGroup>
+</Project>

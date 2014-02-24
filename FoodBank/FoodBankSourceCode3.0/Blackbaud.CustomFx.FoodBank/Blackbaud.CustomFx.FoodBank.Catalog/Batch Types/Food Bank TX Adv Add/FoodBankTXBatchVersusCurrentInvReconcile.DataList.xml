@@ -1,0 +1,72 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="e999e2b9-a6a2-48c6-8746-5c6cdd2c53eb" 
+	Name="FoodBankTXBatchVersusCurrentInvReconcile Data List"
+	Description="FoodBankTXBatchVersusCurrentInvReconcile Data List" 
+	Author="Technical Training"
+	common:SecurityUIFolder="Constituent\Food Bank">
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_FBTXBATCH_VS_CURINVRECONCILE">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_DATALIST_FBTXBATCH_VS_CURINVRECONCILE
+(
+@BATCHID uniqueidentifier
+, @FOODBANKID uniqueidentifier = NULL
+)
+as
+	set nocount on;
+
+SELECT BATCHINV.BATCHID
+, BATCHINV.BATCHTXFOODBANKID
+, CURRENTINV.FOODBANKNAME
+, BATCHINV.BATCHTXFOODITEMID
+, BATCHINV.BATCHTXFOODITEMNAME
+, CURRENTINV.CURRENTPRODINV
+, BATCHINV.BATCHTXINV
+, CURRENTINV.CURRENTPRODINV + BATCHINV.BATCHTXINV AS POTENTIALRECONCILEDPRODINV
+FROM dbo.USR_UFN_FOODBANKBATCHINVENTORY(@FOODBANKID, @BATCHID) AS BATCHINV 
+  INNER JOIN dbo.USR_UFN_FOODBANKCURRENTINVENTORY(@FOODBANKID) AS CURRENTINV ON 
+    BATCHINV.BATCHTXFOODBANKID = CURRENTINV.FOODBANKID AND BATCHINV.BATCHTXFOODITEMID = CURRENTINV.FOODITEMID
+	
+			]]>
+		</common:CreateProcedureSQL>
+	</SPDataList>
+
+	<!-- describe the context ID parameter for the SP (if applicable)-->
+  <Context ContextRecordType="Batch" RecordIDParameter="BATCHID" />
+	<!-- describe any parameters (other than the context ID) defined on the SP-->
+	<Parameters>
+		<common:FormMetaData>
+			<common:FormFields>
+        <common:FormField FieldID="FOODBANKID" Caption="Select a food bank from the batch" DataType="Guid">
+          <common:SimpleDataList SimpleDataListID="a8736d9e-912b-4b87-97b4-d53a01984e5c">
+            
+            <common:Params>
+              <common:Param ID="BATCHTXCONTEXTID">
+                <common:Value>Form!ContextID</common:Value>
+              </common:Param>
+            </common:Params>
+          </common:SimpleDataList>
+        </common:FormField>
+			</common:FormFields>
+		</common:FormMetaData>
+	</Parameters>
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="BATCHID" Caption="BATCHID" DataType="Guid" />
+			<OutputField FieldID="BATCHTXFOODBANKID" Caption="BATCHTXFOODBANKID" DataType="Guid" />
+			<OutputField FieldID="FOODBANKNAME" Caption="FOODBANKNAME" DataType="String" />
+			<OutputField FieldID="BATCHTXFOODITEMID" Caption="BATCHTXFOODITEMID" DataType="Guid" />
+      <OutputField FieldID="BATCHTXFOODITEMNAME" Caption="FOODITEMNAME" DataType="String" />
+      <OutputField FieldID="CURRENTPRODINV" Caption="CURRENTPRODINV" DataType="Integer" />
+      <OutputField FieldID="BATCHTXINV" Caption="BATCHTXINV" DataType="Integer" />
+      <OutputField FieldID="POTENTIALRECONCILEDPRODINV" Caption="POTENTIALRECONCILEDPRODINV" DataType="Integer" />
+    </OutputFields>
+	</Output>
+
+</DataListSpec>

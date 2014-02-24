@@ -1,0 +1,42 @@
+﻿<UIWidgetSpec
+  xmlns="bb_appfx_uiwidget"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="3d0fdf64-262d-4827-8684-72ab1283b608" 
+	Name="Food Bank Top 5 Shortages UI Widget"
+	Description="This is the description." 
+	Author="Technical Training"
+  Title="Top Food Bank Shortages" 
+  HasSettings="false" 
+	>
+    <DataSource>
+        <DataList ID="0ef415cd-05ff-47d1-b8b8-c52c74fbae09">
+            <RenderStyle>
+                <List EnableSelection="true">
+                  <DetailViewForm ViewDataFormID="703f99d3-fb38-409f-9843-3a6a1ab13b4c" RecordIDField="ID"/>
+                    <LinkActions>
+                        <LinkAction LinkFieldID="NAME">
+                            <ShowPage PageID="2ca4f7de-41d0-4131-8c1b-5a532385794a">
+                                <ActionContext>
+                                    <DataListField>ID</DataListField>
+                                </ActionContext>
+                            </ShowPage>
+                        </LinkAction>
+                    </LinkActions>
+                </List>
+            </RenderStyle>
+          <FilterOptions>
+            <ReloadTriggers>
+              <TriggerFields>
+                <TriggerField FieldID="BUSINESSPROCESSOUTPUTID"/>
+              </TriggerFields>
+            </ReloadTriggers>
+          </FilterOptions>
+          
+        </DataList>
+    </DataSource>
+  
+  <!--<MoreLink AlwaysVisible="false" Caption="more">
+    <ShowPage PageID="" TabID="" 
+  </MoreLink>-->
+	
+</UIWidgetSpec>

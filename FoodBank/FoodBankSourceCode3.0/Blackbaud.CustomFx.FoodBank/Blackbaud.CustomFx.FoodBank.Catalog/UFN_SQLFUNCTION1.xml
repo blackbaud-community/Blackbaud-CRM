@@ -1,0 +1,43 @@
+﻿<SQLFunctionSpec
+	xmlns="bb_appfx_sqlfunction"
+	xmlns:common="bb_appfx_commontypes"
+	ID="20332741-2b72-4519-9e0e-1025418a1d0c"
+	Name="USR_UFN_CONSTITUENT_GETREVENUE"
+	Description="USR_UFN_CONSTITUENT_GETREVENUE Custom"
+	Author="Technical Training"
+	DBFunctionName="USR_UFN_CONSTITUENT_GETREVENUE">
+
+  <CreateFunctionSQL>
+    <![CDATA[
+			create function dbo.USR_UFN_CONSTITUENT_GETREVENUE
+			(
+				@CONSTITUENTID uniqueidentifier
+			)
+			returns table
+			as
+			return
+			(
+				select
+					[ID]
+      ,[DATE]
+      ,[AMOUNT]
+      ,[SOURCECODE]
+      ,[FINDERNUMBER]
+      ,[APPEALID]
+      ,[MAILINGID]
+      ,[CHANNELCODEID]
+      ,[GIVENANONYMOUSLY]
+      ,[DONOTACKNOWLEDGE]
+      ,[TRANSACTIONTYPE]
+				from
+					dbo.REVENUE
+				where
+					CONSTITUENTID = @CONSTITUENTID
+			);
+		]]>
+  </CreateFunctionSQL>
+  <CreateChildCollectionFunction
+  RootElementName="REVENUES"
+  BaseTableName="REVENUE"
+  ParentIDColumn="CONSTITUENTID"/>
+</SQLFunctionSpec>

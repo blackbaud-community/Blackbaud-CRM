@@ -1,0 +1,23 @@
+D:\TFS Source\Emerging Markets\Inetpub\wwwroot\bbappfx25\bbappfx\SDK\DLLReferences\Blackbaud.CustomFx.FoodBank.UIModel.dll
+D:\TFS Source\Emerging Markets\Inetpub\wwwroot\bbappfx25\bbappfx\SDK\DLLReferences\Blackbaud.CustomFx.FoodBank.UIModel.pdb
+D:\TFS Source\Emerging Markets\Inetpub\wwwroot\bbappfx25\bbappfx\SDK\DLLReferences\Blackbaud.CustomFx.FoodBank.UIModel.dll.CodeAnalysisLog.xml
+D:\TFS Source\Emerging Markets\Inetpub\wwwroot\bbappfx25\bbappfx\SDK\DLLReferences\Blackbaud.CustomFx.FoodBank.UIModel.dll.lastcodeanalysissucceeded
+D:\TFS Source\Emerging Markets\BBEC\SDK Training\TrainingCourse\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\bin\Release\Blackbaud.CustomFx.FoodBank.UIModel.dll
+D:\TFS Source\Emerging Markets\BBEC\SDK Training\TrainingCourse\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\bin\Release\Blackbaud.CustomFx.FoodBank.UIModel.pdb
+D:\TFS Source\Emerging Markets\BBEC\SDK Training\TrainingCourse\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\bin\Release\Blackbaud.AppFx.BatchUI.dll
+D:\TFS Source\Emerging Markets\BBEC\SDK Training\TrainingCourse\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\bin\Release\Blackbaud.AppFx.DataHygiene.UIModel.dll
+D:\TFS Source\Emerging Markets\BBEC\SDK Training\TrainingCourse\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\bin\Release\Blackbaud.AppFx.Platform.Catalog.dll
+D:\TFS Source\Emerging Markets\BBEC\SDK Training\TrainingCourse\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\obj\Release\Blackbaud.CustomFx.FoodBank.UIModel.Content.resources
+D:\TFS Source\Emerging Markets\BBEC\SDK Training\TrainingCourse\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\obj\Release\Blackbaud.CustomFx.FoodBank.UIModel.vbproj.GenerateResource.Cache
+D:\TFS Source\Emerging Markets\BBEC\SDK Training\TrainingCourse\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\obj\Release\Blackbaud.CustomFx.FoodBank.UIModel.dll
+D:\TFS Source\Emerging Markets\BBEC\SDK Training\TrainingCourse\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\obj\Release\Blackbaud.CustomFx.FoodBank.UIModel.pdb
+D:\DeleteME\FBSC\FoodBankSourceCode3.0\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\bin\Release\Blackbaud.CustomFx.FoodBank.UIModel.dll
+D:\DeleteME\FBSC\FoodBankSourceCode3.0\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\bin\Release\Blackbaud.CustomFx.FoodBank.UIModel.pdb
+D:\DeleteME\FBSC\FoodBankSourceCode3.0\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\bin\Release\Blackbaud.AppFx.BatchUI.dll
+D:\DeleteME\FBSC\FoodBankSourceCode3.0\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\bin\Release\Blackbaud.AppFx.DataHygiene.UIModel.dll
+D:\DeleteME\FBSC\FoodBankSourceCode3.0\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\bin\Release\Blackbaud.AppFx.Platform.Catalog.dll
+D:\DeleteME\FBSC\FoodBankSourceCode3.0\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\obj\Release\Blackbaud.CustomFx.FoodBank.UIModel.vbprojResolveAssemblyReference.cache
+D:\DeleteME\FBSC\FoodBankSourceCode3.0\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\obj\Release\Blackbaud.CustomFx.FoodBank.UIModel.Content.resources
+D:\DeleteME\FBSC\FoodBankSourceCode3.0\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\obj\Release\Blackbaud.CustomFx.FoodBank.UIModel.vbproj.GenerateResource.Cache
+D:\DeleteME\FBSC\FoodBankSourceCode3.0\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\obj\Release\Blackbaud.CustomFx.FoodBank.UIModel.dll
+D:\DeleteME\FBSC\FoodBankSourceCode3.0\Blackbaud.CustomFx.FoodBank\Blackbaud.CustomFx.FoodBank.UIModel\obj\Release\Blackbaud.CustomFx.FoodBank.UIModel.pdb

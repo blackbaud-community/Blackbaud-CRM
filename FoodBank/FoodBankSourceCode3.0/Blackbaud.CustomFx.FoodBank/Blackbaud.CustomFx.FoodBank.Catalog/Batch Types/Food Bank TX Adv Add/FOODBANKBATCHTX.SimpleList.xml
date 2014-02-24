@@ -1,0 +1,32 @@
+﻿<SimpleDataListSpec
+	xmlns="bb_appfx_simpledatalist"
+	xmlns:common="bb_appfx_commontypes"
+	ID="a8736d9e-912b-4b87-97b4-d53a01984e5c"
+	Name="FOODBANKBATCHTX Simple Data List"
+	Description="REPLACE_WITH_DESCRIPTION"
+	Author="Technical Training"
+	TranslationFunctionID="315c143f-4fa2-42c5-ad3b-785ed9425bb3"
+	>
+
+	<SPSimpleList SPName="USR_USP_SIMPLEDATALIST_FOODBANKBATCHTX">
+		<common:CreateProcedureSQL >
+			<![CDATA[
+create procedure dbo.USR_USP_SIMPLEDATALIST_FOODBANKBATCHTX
+(
+	@BATCHTXCONTEXTID uniqueidentifier = NULL
+) 
+as				
+	set nocount on;
+		
+	SELECT DISTINCT   
+    C.ID as VALUE
+  , C.KEYNAME as LABEL
+	FROM USR_BATCHFOODBANKTRANSACTIONADD BATCHTX
+	INNER JOIN CONSTITUENT C on BATCHTX.PRIMARYCONTEXTRECORDID = C.ID
+	WHERE BATCHTX.BATCHID = @BATCHTXCONTEXTID
+	ORDER BY C.KEYNAME
+			]]>
+		</common:CreateProcedureSQL>
+	</SPSimpleList>
+
+</SimpleDataListSpec>

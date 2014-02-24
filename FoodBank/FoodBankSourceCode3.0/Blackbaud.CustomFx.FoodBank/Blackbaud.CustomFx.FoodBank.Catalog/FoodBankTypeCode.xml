@@ -1,0 +1,10 @@
+<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	ID="447AD32B-8EE4-43ce-891C-1A30CFDD76E0" 
+	Name="FoodBank Type"
+	Description="This code table stores translations of food bank types."
+	Author="Technical Training"
+	DBTablename="USR_FOODBANKTYPECODE"
+	Category="Food Bank"
+	SortMethod="Alpha"
+/>

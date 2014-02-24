@@ -1,0 +1,50 @@
+﻿<SQLFunctionSpec
+	xmlns="bb_appfx_sqlfunction"
+	xmlns:common="bb_appfx_commontypes"
+	ID="20332741-2b72-4519-9e0e-1025418a1d0c"
+	Name="USR_UFN_CONSTITUENTBATCH_GETPHONESWITHSEASONAL"
+	Description="USR_UFN_CONSTITUENTBATCH_GETPHONESWITHSEASONAL Custom"
+	Author="Technical Training"
+	DBFunctionName="USR_UFN_CONSTITUENTBATCH_GETPHONESWITHSEASONAL">
+
+  <common:DependencyList>
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.BatchConstituentPhoneExt.Table.xml"/>
+  </common:DependencyList>
+  
+  <CreateFunctionSQL>
+    <![CDATA[
+			create function dbo.USR_UFN_CONSTITUENTBATCH_GETPHONESWITHSEASONAL
+			(
+				@BATCHCONSTITUENTID uniqueidentifier
+			)
+			returns table
+			as
+			return
+			(
+				select
+					ID,
+					PHONETYPECODEID,
+					NUMBER,
+					ISPRIMARY,
+					SEQUENCE,
+					STARTTIME,
+					ENDTIME,
+					STARTDATE,
+					COUNTRYID,
+          SEASONALSTARTDATE, 
+          SEASONALENDDATE,
+          BESTTIMETOCALLCODE
+				from
+					dbo.USR_BATCHCONSTITUENTPHONE
+				where
+					BATCHCONSTITUENTID = @BATCHCONSTITUENTID
+			);
+		]]>
+  </CreateFunctionSQL>
+  <CreateChildCollectionFunction
+  RootElementName="EXTPHONES"
+  BaseTableName="USR_BATCHCONSTITUENTPHONE"
+  ParentIDColumn="BATCHCONSTITUENTID"/>
+</SQLFunctionSpec>
+

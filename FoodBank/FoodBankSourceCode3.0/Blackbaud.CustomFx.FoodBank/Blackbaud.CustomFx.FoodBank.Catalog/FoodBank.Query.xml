@@ -1,0 +1,93 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="27ad8e6b-84ce-4966-9889-3d4adf550adf"
+	Name="Food Bank Query"
+	Description="Query to select the food bank constituent fields."
+	Author="Technical Training"
+	IsRoot="false"
+	PrimaryKeyField="ID"
+	RecordType="Food Bank"
+	common:SecurityUIFolder="Constituent\Food Bank" 
+	UseInReportModelGenerator="true"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_FOODBANK">
+		<ViewSQL>
+			<![CDATA[
+select
+	FB.ID,
+	FB.DESCRIPTION,
+	FB.MISSIONSTATEMENT,
+	FBT.DESCRIPTION as FOODBANKTYPECODE,
+	ADDEDBY.APPLICATIONNAME as ADDEDBY_APPLICATION,
+	ADDEDBY.USERNAME as ADDEDBY_USERNAME,
+	CHANGEDBY.APPLICATIONNAME as CHANGEDBY_APPLICATION,
+	CHANGEDBY.USERNAME as CHANGEDBY_USERNAME,
+	FB.DATEADDED,
+	FB.DATECHANGED,
+	FB.TSLONG
+from 
+	dbo.USR_FOODBANK FB
+left join
+	dbo.USR_FOODBANKTYPECODE FBT on FB.FOODBANKTYPECODEID = FBT.ID
+left join 
+	dbo.CHANGEAGENT as ADDEDBY ON ADDEDBY.ID = FB.ADDEDBYID
+left join
+	dbo.CHANGEAGENT as CHANGEDBY ON CHANGEDBY.ID = FB.CHANGEDBYID					
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Caption="System record ID" Category="System Fields" Name="ID" />
+			<OutputField Name="DESCRIPTION" Caption="Description" DataType="String" />
+			<OutputField Name="MISSIONSTATEMENT" Caption="Mission statement" DataType="String" />
+			<OutputField Name="FOODBANKTYPECODE" Caption="Type" DataType="String">
+				<LookupInfo>
+					<CodeTable CodeTableName="USR_FOODBANKTYPECODE" IncludeInactive="true" />
+				</LookupInfo>
+			</OutputField>
+			<!-- System field-->
+			<OutputField Name="ADDEDBY_APPLICATION" Caption="Added by application" Category="System Fields">
+				<LookupInfo>
+					<SimpleDataList SimpleDataListID="37E3E458-AF0D-4dbc-8A18-A93885521A42"/>
+				</LookupInfo>
+			</OutputField>
+			<OutputField Name="ADDEDBY_USERNAME" Caption="Added by user name" Category="System Fields">
+				<LookupInfo>
+					<SimpleDataList SimpleDataListID="CEA15E1C-E455-41be-9ECF-6B5453FA96A4"/>
+				</LookupInfo>
+			</OutputField>
+			<OutputField Name="CHANGEDBY_APPLICATION" Caption="Changed by application" Category="System Fields">
+				<LookupInfo>
+					<SimpleDataList SimpleDataListID="37E3E458-AF0D-4dbc-8A18-A93885521A42"/>
+				</LookupInfo>
+			</OutputField>
+			<OutputField Name="CHANGEDBY_USERNAME" Caption="Changed by user name" Category="System Fields">
+				<LookupInfo>
+					<SimpleDataList SimpleDataListID="CEA15E1C-E455-41be-9ECF-6B5453FA96A4"/>
+				</LookupInfo>
+			</OutputField>
+			<OutputField Name="DATEADDED" Caption="Date added" Category="System Fields" />
+			<OutputField Name="DATECHANGED" Caption="Date changed" Category="System Fields" />
+			<OutputField Name="TSLONG" Caption="Timestamp value" Category="System Fields" IsHidden="true" />
+		</OutputFields>
+		<IdentifyingFields>
+			<IdentifyingField Name="MISSIONSTATEMENT"/>
+		</IdentifyingFields>
+	</Output>
+
+	<RelationshipOperations>
+		<AddToParentView 
+			ParentView="V_QUERY_CONSTITUENT" 
+			ParentViewRelatedField="ID" 
+			Field="ID" 
+			Cardinality="OneToOptionalOne" 
+			PathAlias="Food Bank" />
+	</RelationshipOperations>
+</QueryViewSpec>
+

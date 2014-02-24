@@ -1,0 +1,82 @@
+<AddDataFormTemplateSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="39f02513-fbf2-42b1-a686-86316f9ea1f0"
+    Name="Food Bank Transaction Detail Add Form"
+    Description="Used for adding a new Food Bank Transaction Detail"
+    Author="Technical Training"
+    RecordType="Food Bank Transaction Detail"
+    DataFormInstanceID="a3482f13-e3f2-498e-ad62-916f6d329ad8"
+    c:SecurityUIFolder="Constituent\Food Bank\Food Bank Transaction Header\Food Bank Transaction Detail"
+    xmlns="bb_appfx_adddataformtemplate"
+    >
+    <SPDataForm>
+        <SaveImplementation SPName="USP_DATAFORMTEMPLATE_ADD_FOOD_BANK_TRANSACTION_DETAIL">
+            <c:CreateProcedureSQL>
+<![CDATA[
+create procedure dbo.USP_DATAFORMTEMPLATE_ADD_FOOD_BANK_TRANSACTION_DETAIL
+(
+    @ID uniqueidentifier = null output,
+    @CHANGEAGENTID uniqueidentifier = null,
+    @FOODBANKTXHEADERID uniqueidentifier,
+    @FOODITEMID uniqueidentifier,
+    @FOODITEMAMOUNT money = 0,
+    @QUANTITY smallint = 1
+)
+as
+
+set nocount on;
+
+if @ID is null
+    set @ID = newid()
+
+if @CHANGEAGENTID is null  
+    exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output
+
+declare @CURRENTDATE datetime
+set @CURRENTDATE = getdate()
+
+begin try
+	-- handle inserting the data
+	insert into dbo.USR_FOODBANKTXDETAIL
+		(ID, FOODBANKTXHEADERID, FOODITEMID, FOODITEMAMOUNT, QUANTITY, ADDEDBYID, CHANGEDBYID, DATEADDED, DATECHANGED)
+    values
+		(@ID, @FOODBANKTXHEADERID, @FOODITEMID, @FOODITEMAMOUNT, @QUANTITY, @CHANGEAGENTID, @CHANGEAGENTID, @CURRENTDATE, @CURRENTDATE)
+end try
+
+begin catch
+    exec dbo.USP_RAISE_ERROR
+    return 1
+end catch
+
+return 0				
+
+]]>
+</c:CreateProcedureSQL>
+            <c:ExpectedDBExceptions>
+                <c:Constraints>
+                    <c:Constraint Name="FK_USR_FOODBANKTXDETAIL_FOODITEMID" Field="FOODITEMID" Type="ForeignKey" />
+                </c:Constraints>
+            </c:ExpectedDBExceptions>
+        </SaveImplementation>
+    </SPDataForm>
+	
+	<Context ContextRecordType="Food Bank Transaction Header" RecordIDParameter="FOODBANKTXHEADERID" />
+	
+	<c:FormMetaData FixedDialog="true">
+        <c:FormFields>
+			      <c:FormField FieldID="FOODITEMID" DataType="Guid" Required="true" Caption="Food Item">
+				        <c:SearchList SearchListID="2C247ADD-E19E-407f-B6C3-8F3BC5216CCD" EnableQuickFind="true"/>
+			      </c:FormField>	
+            <c:FormField FieldID="FOODITEMAMOUNT" DataType="Money" Caption="Food Item Amount" />
+            <c:FormField FieldID="QUANTITY" DataType="SmallInt" Caption="Quantity" DefaultValueText="1" />
+        </c:FormFields>
+   
+    <!-- Switching over to the default WebUI instad of the Win Form UI-->
+    <c:WebUIComponent>
+      <c:WebUI>
+        <c:DefaultWebUI/>
+      </c:WebUI>
+    </c:WebUIComponent>
+    
+    </c:FormMetaData>
+</AddDataFormTemplateSpec>

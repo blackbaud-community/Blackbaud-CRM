@@ -1,0 +1,15 @@
+﻿<TaskSpec
+	xmlns="bb_appfx_task"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="a5253fbf-372e-40d9-bb43-19495c793dd4"
+	Name="Top Givers UI Widget Test"
+	Description="Top Givers UI Widget Test"
+	Author="Technical Training"
+	FunctionalAreaID="00050ce8-8abb-4a86-b9af-70a035ce0582"
+	Sequence="100"
+	>
+
+	<!-- indicate what this task should do (navigate to a page, show a form, etc. -->
+	<common:ShowPage PageID="c62ca015-9514-44b5-9ad8-e7d0bc125b58" />
+
+</TaskSpec>

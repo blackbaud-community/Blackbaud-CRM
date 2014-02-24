@@ -1,0 +1,116 @@
+<SmartQuerySpec 
+	xmlns="bb_appfx_smartquery"
+	xmlns:common="bb_appfx_commontypes"
+	ID="e200eada-d1c0-447a-9c77-ef1a385719e7"
+	Name="Constituent by Last Food Bank Transaction"
+	Description="Return constituents based on their last food bank transaction."
+	Author="Technical Training"
+	RecordType="Constituent"
+	PrimaryKeyField="ID"
+	common:SecurityUIFolder="Constituent\Food Bank"
+	>
+
+	<!-- describe the table-valued function used to produce the query results based on the given parameters -->
+	<TVFImplementation FunctionName="USR_UFN_SMARTQUERY_CONSTITUENTBYLASTFOODTXDATE">
+		<CreateFunctionSQL>
+			<![CDATA[
+create function dbo.USR_UFN_SMARTQUERY_CONSTITUENTBYLASTFOODTXDATE
+(
+	@CLAUSE tinyint = null,
+	@INTERVAL int = null,
+	@MAXROWS int = 500	
+)
+returns @T table 
+(
+	ID uniqueidentifier not null, 
+	KEYNAME nvarchar(100),
+	FIRSTNAME nvarchar(50)
+)
+as
+begin
+
+	declare @CURRENTDATE datetime = getdate()
+	
+	insert into @T(
+		ID,
+		KEYNAME,
+		FIRSTNAME)
+	select top (@MAXROWS)
+		 C.ID,
+		 C.KEYNAME,
+		 C.FIRSTNAME
+	from
+		dbo.CONSTITUENT C
+	where
+		exists (
+			select 1
+			from
+				dbo.USR_FOODBANKTXHEADER FBTH
+			where
+				FBTH.CONSTITUENTID = C.ID and
+				case
+					when @CLAUSE = 0 and datediff(day, TXDATE, @CURRENTDATE) < @INTERVAL then 1
+					when @CLAUSE = 1 and datediff(day, TXDATE, @CURRENTDATE) = @INTERVAL then 1
+					when @CLAUSE = 2 and datediff(day, TXDATE, @CURRENTDATE) > @INTERVAL then 1
+					else 0
+				end = 1
+			)
+	order by
+		C.KEYNAME
+			
+	return;
+end;
+			]]>
+		</CreateFunctionSQL>
+	</TVFImplementation>
+
+	<!-- describe the parameters to the table-valued function -->
+	<SmartQueryFormDefinition>
+		<FormMetaData xmlns="bb_appfx_commontypes">
+			<FormFields>
+				<FormField FieldID="CLAUSE" Caption="Greater than / Less than" DataType="TinyInt" Required="true" DefaultValueText="1">
+					<ValueList>
+						<Items>
+							<Item>
+								<Value>2</Value>
+								<Label>Greater than</Label>
+							</Item>
+							<Item>
+								<Value>1</Value>
+								<Label>Equal to</Label>
+							</Item>
+							<Item>
+								<Value>0</Value>
+								<Label>Less than</Label>
+							</Item>
+						</Items>
+					</ValueList>
+				</FormField>
+				<FormField FieldID="INTERVAL" Caption="Interval days" DataType="Integer" Required="true" DefaultValueText="30"/>
+			</FormFields>
+
+			<!-- indicate the client-side component for the user interface -->
+			<!--<FormUIComponent FormUIComponentType="CustomComponent">
+				<CustomComponentID AssemblyName="REPLACE_WITH_ASSEMBYNAME" ClassName="REPLACE_WITH_FULLCLASSNAME"/>
+			</FormUIComponent>-->
+
+      <!-- Switching over to the default WebUI instad of the Win Form UI-->
+      <common:WebUIComponent>
+        <common:WebUI>
+          <common:DefaultWebUI/>
+        </common:WebUI>
+      </common:WebUIComponent>
+
+    </FormMetaData>
+	</SmartQueryFormDefinition>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="ID" Caption="ID" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="KEYNAME" Caption="Last name" DataType="String"/>
+			<OutputField Name="FIRSTNAME" Caption="First name" DataType="String"/>
+		</OutputFields>
+	</Output>
+
+</SmartQuerySpec>

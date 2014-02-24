@@ -1,0 +1,281 @@
+<PackageSpec 
+	xmlns="bb_appfx_package"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="f9594657-1cd2-48dd-bcb8-b96c6b0a52c1" 
+	Name="Food Bank Package (SDK Training)"
+	Description="Package for the food bank customization." 
+	Author="Technical Training">
+		
+	<common:DependencyList>
+		<!-- codetables -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" 
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTypeCode.xml"/>
+		
+		<!-- tables -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.Table.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItem.Table.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXHeader.Table.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXDetail.Table.xml"/>
+		<!--<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.BatchFoodBank.Table.xml"/>-->
+		
+		<!-- Stored Procs and User Defined Functions-->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_UFN_FOODBANKSUMFOODITEMAMT.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_UFN_FOODBANKSUMFOODITEMWEIGHT.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_UFN_FOODBANKTX_COUNT.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_UFN_FOODBANKTXFOODITEMAMT.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_USP_CONSTITUENTSMARTFIELD_FOODBANKTXCOUNT.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_UFN_FOODTXDETAIL_FOODITEM.xml"/>
+
+		<!-- translation functions -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.Translation.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItem.Translation.xml"/>
+		
+		<!-- simple lists -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItem.SimpleList.xml"/>
+
+		<!-- Data Lists -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankDashboardInformation.DataList.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXDetail.DataList.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXHeader.DataList.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItem.DataList.xml"/>
+		
+		<!-- search lists -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.Search.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItem.Search.xml"/>
+		
+		<!-- kpis -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankFoodRaised.Kpi.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankFoodRaisedLBS.Kpi.xml"/>
+
+		<!-- functional areas -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.FunctionalArea.xml"/>
+		
+		<!-- tasks -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankSearch.Task.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.Add.Task.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItem.Add.Task.xml"/>
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankOrgSearchCustomAction.Task.xml"/>
+    
+   
+
+    <!-- smart fields -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.ConstituentFoodBankTXCount.SmartField.xml"/>
+
+		<!-- smart queries -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.ConstituentLastFoodTX.SmartQuery.xml"/>
+
+		<!-- merge tasks -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXHeader.MergeTask.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.MergeTask.xml"/>
+
+		<!-- Add Data Forms -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.Add.xml"/>
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.OrganizationFoodBankExtension.Add.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXDetail.Add.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXHeader.Add.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXHeaderAdvanced.Add.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItem.Add.xml"/>
+    
+    <!-- Edit Data Forms -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.Edit.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXDetail.Edit.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXHeader.Edit.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItem.Edit.xml"/>
+		
+		<!-- Record Operations -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankDelete.RecordOperation.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXHeaderDelete.RecordOperation.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXDetailDelete.RecordOperation.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemDelete.RecordOperation.xml"/>
+		
+		<!-- View Forms, Summary View Forms, Expression View Forms-->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankExpression.View.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankSummary.View.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXDetailSummary.View.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXDetailExpression.View.xml"/>
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.ConstituentIsFoodBank.View.xml"/>
+    
+    <!-- Batch Extensions 
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.BatchExtension.xml"/>-->
+		
+		<!-- Pages -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.Page.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXDetail.Page.xml"/>
+
+		<!-- Dashboard -->
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.Dashboard.xml"/>
+
+
+    <!--Inventory Business Process-->
+   <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                           CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_UFN_FOODBANKSELECTION.xml"/>
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_USP_INVENTORYPROCESS_GETPARAMETERS.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcess.Table.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcessDelete.RecordOperation.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcesses.DataList.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcessStatus.DataList.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcess.Add.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcess.Edit.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcess.View.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcessPageExpression.View.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcess.BusinessProcess.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcessStatus.Page.xml" />
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcessParameterSet.Page.xml" />
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.ManageBusinessProcesses.Task.xml" />
+
+    <!-- Queries -->
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" 
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.Query.xml"/>
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcessCurrentInventoryOutput.Query.xml"/>
+    
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.InventoryProcessLowInventoryOutput.Query.xml"/>
+
+
+    <!-- Food Banks Workcenter Page, UI Widgets, and List Builder -->
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBanks.FunctionalArea.xml" />
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBanks.Task.xml" />
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                      CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.LowInvBPRuns.TranslationFunction.xml" />
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.LowInvBPRuns.SimpleList.xml" />
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                        CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.LowInvBPRunSettings.DataList.xml" />
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.LowInvBPRunsBreakdownChartSettings.UIWidget.xml" />
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.LowInvBPRunsMultiSeriesAreaChartSettings.UIWidget.xml" />
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankListBuilder.Query.xml" />
+
+
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.Top5FoodBankShortage.DataList.xml" />
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTopShortages.UIWidget.xml" />
+
+
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankWorkcenter.Page.xml" />
+
+
+    <!--Constituent Batch Food Bank Extension-->
+      <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                         CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_USP_FOODBANK_BATCHEXTVALIDATE.xml" />
+      <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                         CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.BatchFoodBank.Table.xml" />
+      <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                         CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.BatchExtension.xml" />
+
+    <!--Constituent Batch Phone Extension-->
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                           CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_UFN_CONSTITUENTBATCH_GETPHONESWITHSEASONAL.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                     CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_USP_CONSTITUENTBATCHEXTCOMMIT_GETPHONESWITHSEASONAL_ADDFROMXML.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                     CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_USP_PHONES_VALIDATEPHONES.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                     CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.BatchConstituentPhoneExt.Table.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                     CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.BatchConstituentPhone.BatchExtension.xml" />
+
+    <!--Food Item Add Batch-->
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                         CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_USP_DATAFORMTEMPLATE_ADD_FOOD_ITEMBATCH.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemAddBatch.Table.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemAddBatchDelete.RecordOperation.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemAddBatch.Add.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemAddBatchCommit.Add.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemAddBatch.Edit.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemAdd.Batch.xml" />
+
+    <!--Food Item Upsert Batch-->
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                      CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_USP_DATAFORMTEMPLATE_ADD_FOOD_ITEMUPSERTBATCH.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_USP_DATAFORMTEMPLATE_EDIT_FOOD_ITEMUPSERTBATCH.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_USP_DATAFORMTEMPLATE_EDITLOAD_FOOD_ITEMUPSERTBATCH.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemUpsertBatch.Table.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemUpsertDupCheck.Search.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemUpsertBatchDelete.RecordOperation.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemUpsertBatch.Add.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemUpsertBatchCommit.Add.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemUpsertBatch.Edit.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemUpsertBatchCommit.Edit.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll"
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItemUpsert.Batch.xml" />
+
+
+    <!--Food Bank Transaction Add Batch-->
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAddBatch.Table.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAddBatchFoodItem.Table.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_UFN_FOODBANKBATCHINVENTORY.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_UFN_FOODBANKCURRENTINVENTORY.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.UFN_BATCHFOODBANKTRANSACTIONADD_GETFOODITEMS.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTXBatchVersusCurrentInvReconcile.DataList.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FOODBANKBATCHTX.TranslationFunction.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FOODBANKBATCHTX.SimpleList.xml" />
+
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAddBatchDelete.RecordOperation.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAddBatch.Add.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAddBatchCommit.Add.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAddBatch.Edit.xml" />
+    <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAdd.Batch.xml" />
+    
+  </common:DependencyList>
+</PackageSpec>

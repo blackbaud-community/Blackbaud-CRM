@@ -1,0 +1,38 @@
+﻿<SimpleDataListSpec
+	xmlns="bb_appfx_simpledatalist"
+	xmlns:common="bb_appfx_commontypes"
+	ID="5710af5e-2cef-4014-a9b4-eec1f246b582"
+	Name="Food Low Inv BP Runs Simple Data List"
+	Description="Food Low Inventory Business Process Runs Simple Data List.  Used as parameter for the Top Food Item Shortages By BPRun Data List"
+	Author="Technical Training"
+	TranslationFunctionID="315fca64-b3fc-40cd-a65d-4235213644ed"
+	>
+
+	<SPSimpleList SPName="USR_USP_SIMPLEDATALIST_FoodLowInvBPRuns">
+		<common:CreateProcedureSQL >
+			<![CDATA[
+create procedure dbo.USR_USP_SIMPLEDATALIST_FoodLowInvBPRuns as
+
+/*select 
+		ID as VALUE, 
+		CODETABLENAME as LABEL
+	from dbo.TABLE1
+	order by CODETABLENAME
+  */
+  
+  SELECT     TOP (20) 
+  dbo.BUSINESSPROCESSOUTPUT.ID as VALUE
+,  dbo.USR_INVENTORYPROCESS.NAME + ' (' + CONVERT(VARCHAR(20), dbo.BUSINESSPROCESSSTATUS.STARTEDON, 100) + ')' as LABEL
+FROM dbo.BUSINESSPROCESSOUTPUT 
+INNER JOIN
+dbo.BUSINESSPROCESSSTATUS ON dbo.BUSINESSPROCESSOUTPUT.BUSINESSPROCESSSTATUSID = dbo.BUSINESSPROCESSSTATUS.ID 
+INNER JOIN
+dbo.USR_INVENTORYPROCESS ON dbo.BUSINESSPROCESSSTATUS.BUSINESSPROCESSPARAMETERSETID = dbo.USR_INVENTORYPROCESS.ID
+WHERE     (dbo.USR_INVENTORYPROCESS.QUERYVIEWID = 'C4EA9FE3-F272-4DE8-B6E9-53622A28EBED') 
+AND (dbo.BUSINESSPROCESSSTATUS.STATUS = 'COMPLETED')
+ORDER BY dbo.BUSINESSPROCESSSTATUS.STARTEDON DESC
+]]>
+		</common:CreateProcedureSQL>
+	</SPSimpleList>
+
+</SimpleDataListSpec>

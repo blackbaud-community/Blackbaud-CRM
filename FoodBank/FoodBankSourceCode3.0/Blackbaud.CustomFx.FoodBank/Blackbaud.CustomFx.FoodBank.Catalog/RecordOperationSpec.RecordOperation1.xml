@@ -1,0 +1,44 @@
+﻿<RecordOperationSpec
+    xmlns:c="bb_appfx_commontypes"
+    ID="c4e01155-e3ca-4d71-8b30-6fe0d559cc06"
+    Name="Sample Param Test Record Operation"
+    Description="Used to delete using parameters"
+    Author="Technical Training"
+    RecordType="Some Record Type"
+    OperationType="Delete"
+    c:SecurityUIFolder="Some Folder"
+    xmlns="bb_appfx_recordoperation">
+  <SPRecord>
+    <SPOperationImplementation SPName="USR_USP_DeleteParamTest">
+      <c:CreateProcedureSQL>
+        <![CDATA[
+create procedure dbo.USR_USP_DeleteParamTest
+(
+	@ID uniqueidentifier,
+  @CONSTITUENTID uniqueidentifier,
+	@CHANGEAGENTID uniqueidentifier
+)
+as begin
+	
+  -- Write the SP code to perform the record operation using the parameters
+  -- defined within the Parameters tag.  
+  -- SP Parameters are mapped to the FieldID's within the Parameters FormFields.
+	
+  return 0;
+end
+]]>
+      </c:CreateProcedureSQL>
+    </SPOperationImplementation>
+  </SPRecord>
+  <Prompt>
+    <StandardPrompt Text="Are you sure you want to delete this ?" />
+  </Prompt>
+  
+  <Parameters>
+    <FormFields>
+      <c:FormField  FieldID="CONSTITUENTID" Caption="Pick the person" Required="true">
+        <c:SearchList SearchListID="4685952f-6964-486c-9acd-5560a8a30862" EnableQuickFind="true"/>
+      </c:FormField>
+    </FormFields>
+  </Parameters>
+</RecordOperationSpec>

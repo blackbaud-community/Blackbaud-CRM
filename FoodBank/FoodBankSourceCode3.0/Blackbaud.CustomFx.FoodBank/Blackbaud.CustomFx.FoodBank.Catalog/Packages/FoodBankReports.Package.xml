@@ -1,0 +1,59 @@
+<PackageSpec 
+    xmlns="bb_appfx_package"
+    xmlns:common="bb_appfx_commontypes"
+    ID="547fe227-854c-4f47-b421-5285266f2f88"
+    Name="Food Bank Reports Package"
+    Description="Package for Food Bank Reports"
+    Author="Technical Training"
+    >
+
+	<!-- Note:  the order of the items listed here is important.  For example, you won't be able to load a data form that references 
+	a table that hasn't been loaded, etc.  In general, the following order is recommended:
+	
+		(functions and procedures first)
+		SQLFunctionSpec
+		SQLStoredProcedureSpec
+		TranslationFunctionSpec
+
+		(tables next)
+		CodeTableSpec
+		TableSpec
+
+		(features next)
+		SimpleDataListSpec		
+		SearchListSpec
+		RecordOperationSpec
+		DataListSpec
+		
+		(forms next)
+		AddDataFormTemplateSpec
+		EditDataFormTemplateSpec
+		ViewDataFormTemplateSpec		
+
+		(more feature types)
+		BatchTypeSpec
+		BusinessProcessSpec
+		FlashDashSpec
+		IDMapperSpec
+		KpiSpec
+		MergeConfiguration
+		MergeTaskSpec
+		QueryViewSpec
+		ReportSpec
+		SmartFieldSpec
+		SmartQuerySpec
+
+		(functional areas, pages, and tasks last)
+		PageDefinitionSpec
+		FunctionalAreaSpec
+		TaskSpec	
+	-->
+	
+	<common:DependencyList>
+        <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionTotals.rdl.xml" />      
+        <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankBreakdownReport.rdl.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankBreakdownReport.Page.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankBreakdownReport.Task.xml" />
+  </common:DependencyList>
+
+</PackageSpec>

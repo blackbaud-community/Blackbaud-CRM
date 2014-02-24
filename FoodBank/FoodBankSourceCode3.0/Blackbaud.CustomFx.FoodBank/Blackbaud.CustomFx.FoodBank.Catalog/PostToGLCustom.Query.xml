@@ -1,0 +1,67 @@
+<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes"
+	ID="FFDEC01C-B2EC-48FF-9CB6-D738B68C05C0"
+	Name="Post to GL Custom output"
+	Description="View used for custom output for the post to GL process."
+	Author="Technical Training"
+	PrimaryKeyField="GLTRANSACTIONID"
+	RecordType="Post to GL Process"
+	IsBuiltIn="false"
+	IsRoot="false"
+	common:SecurityUIFolder="Revenue\Business Process\Post to GL"
+	UseInReportModelGenerator="false"
+	>
+
+  <common:DependencyList>
+    <common:Dependency CatalogAssembly ="Blackbaud.AppFx.Fundraising.Catalog.dll" CatalogItem ="Blackbaud.AppFx.Fundraising.Catalog.PostToGL.BusinessProcess.xml"/>
+  </common:DependencyList>
+
+  <common:InstalledProductList>
+    <common:InstalledProduct ID="3117d2c8-7f46-42f2-abeb-b654f2f63046" />
+    <common:InstalledProduct ID="42c15648-749e-4859-a56d-3a6474814cc7" />
+  </common:InstalledProductList>
+
+  <ViewImplementation ViewName="USR_V_QUERY_POSTTOGLPROCESSCUSTOM">
+    <ViewSQL>
+      <![CDATA[
+				
+				select 
+					ID as GLTRANSACTIONID,
+					ACCOUNT as ACCOUNTSTRING,
+					POSTDATE,
+					'C' as TRANTYPE,
+					case TRANSACTIONTYPECODE when 0 then 'D' else 'C' end as DEBITCREDIT,
+					AMOUNT,
+					JOURNAL,
+					REFERENCE,
+					cast('CUSTOM FORMAT' as nvarchar(36)) as BATCH,
+					PROJECT
+				from 
+					dbo.GLTRANSACTION
+					
+			]]>
+    </ViewSQL>
+  </ViewImplementation>
+
+  <Output>
+    <OutputFields>
+      <OutputField Name="GLTRANSACTIONID" Caption="GL Transaction ID"/>
+      <OutputField Name="ACCOUNTSTRING" Caption="Account"/>
+      <OutputField Name="POSTDATE" Caption="PostDate"/>
+      <OutputField Name="TRANTYPE" Caption="TranType"/>
+      <OutputField Name="DEBITCREDIT" Caption="Debit or credit"/>
+      <OutputField Name="AMOUNT" Caption="Amount"/>
+      <OutputField Name="JOURNAL" Caption="Journal"/>
+      <OutputField Name="REFERENCE" Caption="Reference"/>
+      <OutputField Name="BATCH" Caption="Batch"/>
+      <OutputField Name="PROJECT" Caption="Project"/>
+    </OutputFields>
+  </Output>
+
+  <BusinessProcessOutput BusinessProcessID="48EF5B33-14CC-41cd-96BF-29F490B0A60F" Caption ="Custom post format">
+    <JoinField>GLTRANSACTIONID</JoinField>
+  </BusinessProcessOutput>
+</QueryViewSpec>
+
+

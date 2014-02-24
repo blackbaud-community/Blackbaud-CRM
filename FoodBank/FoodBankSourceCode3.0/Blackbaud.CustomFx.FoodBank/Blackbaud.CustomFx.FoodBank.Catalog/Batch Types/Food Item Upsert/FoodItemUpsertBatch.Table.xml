@@ -1,0 +1,38 @@
+<TableSpec 
+    xmlns:common="bb_appfx_commontypes"
+    ID="f5cdcb46-81ad-492e-9069-4f15e19c7ab5"
+    Name="Batch Food Item Upsert"
+    Description="Stores food item upsert batch information."
+    Author="Technical Training"
+    Tablename="USR_BATCHFOODITEMUPSERT"
+    xmlns="bb_appfx_table"
+    >
+	<Fields>
+		<ForeignKeyField
+			Name="BATCHID"
+			Required="true"
+			ForeignTable="BATCH"
+			OnDelete="CascadeDelete" />
+		<SequenceField
+			Name="SEQUENCE" />
+		<ForeignKeyField
+			Name="PRIMARYRECORDID"
+			ForeignTable="USR_FOODITEM" />
+		<TextField
+			Name="NAME"
+			Length="100"
+			Required="true" />
+		<MemoField
+			Name="DESCRIPTION" />
+		<MoneyField
+			Name="CURRENTCOST" />
+		<NumberField
+			Name="LOWINVENTORYTHRESHOLD"
+			Type="smallint" />
+		<DecimalField
+			Description="The weight of a food item."
+			Name="WEIGHT"
+			Precision="10"
+			Scale="2" />
+	</Fields>
+</TableSpec>

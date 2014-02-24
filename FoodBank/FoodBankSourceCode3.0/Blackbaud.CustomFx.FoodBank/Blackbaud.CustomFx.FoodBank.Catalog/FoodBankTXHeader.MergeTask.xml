@@ -1,0 +1,59 @@
+<MergeTaskSpec
+	xmlns="bb_appfx_mergetask"
+	xmlns:common="bb_appfx_commontypes"
+	ID="23a7f61e-a834-4583-a81e-f215aa25656f"
+	Name="FoodBank TX Header Merge Task"
+	Description="Merege task to merge 2 constituent's food transactions." 
+	Author="Technical Training"
+	RecordType="Food Bank Transaction Header"
+	common:SecurityUIFolder="Food Bank\Transaction"
+	>
+
+	<!-- describe the stored procedure used to merge the data for the given source and target record IDs -->
+	<SpImplementation SpName="USR_USP_MERGETASK_FOODBANKTXHEADER">
+		<CreateProcedureSql>
+			<![CDATA[
+create procedure dbo.USR_USP_MERGETASK_FOODBANKTXHEADER
+(
+	@SOURCEID uniqueidentifier,
+	@TARGETID uniqueidentifier,
+	@CHANGEAGENTID uniqueidentifier
+)
+as
+	set nocount on;
+	
+	-- write sql to handle merging the data for the given source and target IDs
+	
+	update dbo.USR_FOODBANKTXHEADER set
+		FOODBANKID = @TARGETID,
+		CHANGEDBYID = @CHANGEAGENTID,
+		DATECHANGED = getdate()
+	where 
+		FOODBANKID = @SOURCEID
+	
+	update dbo.USR_FOODBANKTXHEADER set
+		CONSTITUENTID = @TARGETID, 
+		CHANGEDBYID = @CHANGEAGENTID,
+		DATECHANGED = getdate()
+	where 
+		CONSTITUENTID = @SOURCEID
+			
+	return 0;
+			]]>
+		</CreateProcedureSql>
+	</SpImplementation>
+
+	<!-- Describe parameters to the SP.  Note that system parameters like @SOURCEID, @TARGETID, and @CHANGEAGENTID need not be listed. -->
+	<!--<MergeTaskFormDefinition>
+		<common:FormMetaData>
+			<common:FormFields>
+				<common:FormField FieldID="PARAMETER1" Caption="Parameter 1" DataType="Boolean"/>
+			</common:FormFields>
+
+			--><!-- indicate the client-side component for the user interface.  In this case, we let the system generate a UI since
+			the field set is very basic --><!--
+			<common:FormUIComponent FormUIComponentType="DefaultUI"/>
+		</common:FormMetaData>
+	</MergeTaskFormDefinition>-->
+	
+</MergeTaskSpec>

@@ -1,0 +1,32 @@
+<TableSpec 
+	xmlns="bb_appfx_table"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="c7e5d512-fc69-4f2b-a66e-60a4c53eb994"
+	Name="Batch Food Bank"
+	Description="Table to store the food bank batch."
+	Author="Technical Training"
+	Tablename="USR_BATCHFOODBANK" 
+	PrimaryKeyAsForeignKeyTablename="BATCHCONSTITUENT">
+
+	<!-- define fields on the table -->
+	<Fields>
+		
+		<MemoField
+			Name="DESCRIPTION"
+			Description="A description for the food bank"
+			/>
+
+		<MemoField
+			Name="MISSIONSTATEMENT"
+			Description="The mission statement for the food bank"
+			/>
+
+		<CodeTableField
+			Name="FOODBANKTYPECODEID"
+			Description="The type of food bank."
+			CodeTable="USR_FOODBANKTYPECODE"
+			/>
+				
+	</Fields>
+	
+</TableSpec>

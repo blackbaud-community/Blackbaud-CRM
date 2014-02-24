@@ -1,0 +1,123 @@
+<EditDataFormTemplateSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="F4986FA8-4E1A-486b-A4E8-84BB7D16C1E6"
+    Name="Food Item Edit Form"
+    Description="Used for editing the given Food Item"
+    Author="Technical Training"
+    RecordType="Food Item"
+    DataFormInstanceID="6F80152D-4BD4-43fa-9F73-14AB44A90954"
+    c:SecurityUIFolder="Constituent\Food Bank\Food Item"
+    OwnerIDMapperID="00000000-0000-0000-0000-000000000000"
+    xmlns="bb_appfx_editdataformtemplate"
+    FormHeader ="Edit Food Item"
+    >
+    <SPDataForm>
+        <LoadImplementation SPName="USR_USP_DATAFORMTEMPLATE_EDITLOAD_FOOD_ITEM3">
+            <c:CreateProcedureSQL>
+<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_EDITLOAD_FOOD_ITEM3
+(
+    @ID uniqueidentifier,
+    @DATALOADED bit = 0 output,
+    @TSLONG bigint = 0 output,
+    @NAME nvarchar(100) = null output,
+    @DESCRIPTION nvarchar(max) = null output,
+    @CURRENTCOST money = null output,
+    @LOWINVENTORYTHRESHOLD smallint = null output, 
+	@WEIGHT Decimal(10,2) = null output
+)
+as
+
+	set nocount on;
+
+	-- be sure to set these, in case the select returns no rows
+	set @DATALOADED = 0
+	set @TSLONG = 0
+
+	-- populate the output parameters, which correspond to fields on the form.  Note that
+	-- we set @DATALOADED = 1 to indicate that the load was successful.  Otherwise, the system
+	-- will display a "no data loaded" message.  Also note that we fetch the TSLONG so that concurrency
+	-- can be considered.
+	select
+		@DATALOADED = 1,
+		@TSLONG = TSLONG,
+        @NAME = NAME, 
+        @DESCRIPTION = DESCRIPTION, 
+        @CURRENTCOST = CURRENTCOST, 
+        @LOWINVENTORYTHRESHOLD = LOWINVENTORYTHRESHOLD,
+		@WEIGHT = WEIGHT
+	from dbo.USR_FOODITEM
+	where ID = @ID
+
+	return 0;
+]]>
+</c:CreateProcedureSQL>
+        </LoadImplementation>
+        <SaveImplementation SPName="USR_USP_DATAFORMTEMPLATE_EDIT_FOOD_ITEM3">
+            <c:CreateProcedureSQL>
+<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_EDIT_FOOD_ITEM3
+(
+	@ID uniqueidentifier,
+	@CHANGEAGENTID uniqueidentifier = null,
+    @NAME nvarchar(100),
+    @DESCRIPTION nvarchar(max),
+    @CURRENTCOST money,
+    @LOWINVENTORYTHRESHOLD smallint,
+	@WEIGHT Decimal(10,2)
+)
+as
+
+	set nocount on;
+
+	if @CHANGEAGENTID is null  
+		exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output
+						
+	begin try
+		-- handle updating the data
+		update dbo.USR_FOODITEM set
+            NAME = @NAME,
+            DESCRIPTION = @DESCRIPTION,
+            CURRENTCOST = @CURRENTCOST,
+            LOWINVENTORYTHRESHOLD = @LOWINVENTORYTHRESHOLD,
+			WEIGHT = @WEIGHT,
+			CHANGEDBYID = @CHANGEAGENTID,
+			DATECHANGED = getdate()
+		where ID = @ID
+	end try
+	begin catch
+		exec dbo.USP_RAISE_ERROR
+		return 1
+	end catch
+
+return 0;
+]]>
+</c:CreateProcedureSQL>
+            <c:ExpectedDBExceptions>
+                <c:Constraints>
+                    <c:Constraint Name="UC_USR_FOODITEM_NAME" Field="NAME" Type="Unique" />
+					          <c:Constraint Name="CK_USR_FOODITEM_NAME" Field="NAME" Type="Required">
+						          <c:CustomErrorMsg>The name field for a food item MUST be unique!!!! </c:CustomErrorMsg> 
+					          </c:Constraint>
+                </c:Constraints>
+            </c:ExpectedDBExceptions>
+        </SaveImplementation>
+    </SPDataForm>
+    <c:FormMetaData FixedDialog="true">
+        <c:FormFields>
+            <c:FormField FieldID="NAME" Required="true" MaxLength="100" Caption="Name" />
+            <c:FormField FieldID="DESCRIPTION" Caption="Description" DataType="String" />
+            <c:FormField FieldID="CURRENTCOST" DataType="Money" Caption="Currentcost" />
+            <c:FormField FieldID="LOWINVENTORYTHRESHOLD" DataType="SmallInt" Caption="Low Inventory Threshold" />
+			<c:FormField FieldID="WEIGHT" DataType="Decimal" Caption="Weight" DefaultValueText="0.00" Description="The weight of a food item." />
+        </c:FormFields>
+
+      <c:WebUIComponent>
+        <c:UIModel AssemblyName="Blackbaud.CustomFx.FoodBank.UIModel.dll" ClassName="Blackbaud.CustomFx.FoodBank.UIModel.FoodItemEditFormUIModel" />
+        <c:WebUI>
+          <c:ExternalResource Url="browser/htmlforms/custom/blackbaud.customfx.foodbank/FoodItemEditForm.html" />
+        </c:WebUI>
+      </c:WebUIComponent>
+
+    </c:FormMetaData>
+</EditDataFormTemplateSpec>

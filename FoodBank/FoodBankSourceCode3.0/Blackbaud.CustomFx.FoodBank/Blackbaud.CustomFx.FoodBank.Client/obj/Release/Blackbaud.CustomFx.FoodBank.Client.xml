@@ -1,0 +1,108 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Blackbaud.CustomFx.FoodBank.Client
+</name>
+</assembly>
+<members>
+<member name="M:Blackbaud.CustomFx.FoodBank.Client.FoodItemAddBatchEventHandler.GetBatchButtons">
+	<summary>
+ Returns a collection of buttons to be added to the batch data entry form toolbar
+ </summary>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.FoodItemAddBatchEventHandler.GetBatchMenus">
+	<summary>
+ Returns a collection of menus to be added to the batch data entry form menu
+ </summary>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.FoodItemAddBatchEventHandler.FoodItemAddBatchEventHandler_ButtonClicked(System.Object,Blackbaud.AppFx.Browser.Batch.BatchButtonEventArgs)">
+	<summary>
+ Occurs when a button is clicked.
+ </summary>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.FoodItemAddBatchEventHandler.FoodItemAddBatchEventHandler_MenuClicked(System.Object,Blackbaud.AppFx.Browser.Batch.BatchMenuEventArgs)">
+	<summary>
+ Occurs when a menu is clicked
+ </summary>
+</member><member name="T:Blackbaud.CustomFx.FoodBank.Client.FoodItemAddBatchEventHandler">
+	<summary>
+ A client-side event handler for batch
+ </summary>
+	<remarks></remarks>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.FoodBankSummaryView.InitControlsFromMetaData">
+	<summary>
+ Peform any necessary UI setup such as form sizing
+ </summary>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.FoodBankSummaryView.LoadControlsFromDataFormItem(Blackbaud.AppFx.XmlTypes.DataForms.DataFormItem)">
+	<summary>
+ Called when the form is loaded
+ </summary>
+	<param name="item">Contains the loaded field values returned from the Load implementation defined by the spec.</param>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.FoodBankSummaryView.BuildDataFormItemFromControls">
+	<summary>
+ Called when the form is saved
+ </summary>
+	<returns>A data form item containing the values from the form to be saved by the Save implementation defined by the spec.</returns>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.FoodBankSummaryView.ValidateAllControlContents">
+	<summary>
+ Called when the Save button is clicked on a dataform.  This is used to provide any custom validation for the form.
+ </summary>
+	<returns>True or false indicating whether or not the form contents are valid.</returns>
+</member><member name="T:Blackbaud.CustomFx.FoodBank.Client.FoodBankSummaryView">
+	<summary>
+ A client-side UI implementation of a DataForm.  This component is referenced by a server-side data form spec and is loaded
+ and saved by implementations defined by the spec.
+ </summary>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check.#ctor">
+	<remarks/>
+</member><member name="E:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check.CheckTextBodyV2Completed">
+	<remarks/>
+</member><member name="E:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check.CheckTextBodyCompleted">
+	<remarks/>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check.CheckTextBodyV2(System.String)">
+	<remarks/>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check.CheckTextBodyV2Async(System.String)">
+	<remarks/>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check.CheckTextBodyV2Async(System.String,System.Object)">
+	<remarks/>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check.CheckTextBody(System.String,System.String)">
+	<remarks/>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check.CheckTextBodyAsync(System.String,System.String)">
+	<remarks/>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check.CheckTextBodyAsync(System.String,System.String,System.Object)">
+	<remarks/>
+</member><member name="M:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check.CancelAsync(System.Object)">
+	<remarks/>
+</member><member name="T:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.check">
+	<remarks/>
+</member><member name="P:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.DocumentSummary.MisspelledWord">
+	<remarks/>
+</member><member name="P:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.DocumentSummary.ver">
+	<remarks/>
+</member><member name="P:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.DocumentSummary.body">
+	<remarks/>
+</member><member name="P:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.DocumentSummary.MisspelledWordCount">
+	<remarks/>
+</member><member name="T:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.DocumentSummary">
+	<remarks/>
+</member><member name="P:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.Words.Suggestions">
+	<remarks/>
+</member><member name="P:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.Words.word">
+	<remarks/>
+</member><member name="P:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.Words.SuggestionCount">
+	<remarks/>
+</member><member name="T:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.Words">
+	<remarks/>
+</member><member name="T:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.CheckTextBodyV2CompletedEventHandler">
+	<remarks/>
+</member><member name="P:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.CheckTextBodyV2CompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.CheckTextBodyV2CompletedEventArgs">
+	<remarks/>
+</member><member name="T:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.CheckTextBodyCompletedEventHandler">
+	<remarks/>
+</member><member name="P:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.CheckTextBodyCompletedEventArgs.Result">
+	<remarks/>
+</member><member name="T:Blackbaud.CustomFx.FoodBank.Client.SpellCheckSvc.CheckTextBodyCompletedEventArgs">
+	<remarks/>
+</member>
+</members>
+</doc>

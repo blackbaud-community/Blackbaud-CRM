@@ -1,0 +1,83 @@
+﻿<DataListSpec 
+    xmlns="bb_appfx_datalist"
+    xmlns:common="bb_appfx_commontypes"
+    ID="772f60b1-9f96-4f34-ba94-a5a4f1a81180"
+    Name="Top Food Item Shortages By BPRun Data List"
+    Description="Top Food Item Shortages By Business Process Run"
+    Author="Technical Training"
+    common:SecurityUIFolder="Constituent\Food Bank\Inventory"
+   
+    >
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_TopFoodItemShortByBPRun">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_DATALIST_TopFoodItemShortByBPRun
+(
+@BUSINESSPROCESSOUTPUTID UniqueIdentifier = NULL
+, @SUMCURRENTINVERTORYSOLDOUT Bit = Null
+)
+                     
+as	
+set nocount on;
+
+DECLARE @OUTPUTTABLENAME  NVARCHAR(100)
+DECLARE @SQLQUERY AS NVARCHAR(500)
+DECLARE @SQLHAVINGCLAUSE as NVARCHAR(100)
+
+SET @SQLHAVINGCLAUSE = ''
+IF @SUMCURRENTINVERTORYSOLDOUT = 1
+BEGIN
+SET @SQLHAVINGCLAUSE = ' HAVING SUM(CURRENTINVENTORY) = 0 '
+END
+
+SELECT  @OUTPUTTABLENAME = TABLENAME
+FROM dbo.BUSINESSPROCESSOUTPUT
+WHERE dbo.BUSINESSPROCESSOUTPUT.ID = @BUSINESSPROCESSOUTPUTID
+
+SET @SQLQUERY = 'SELECT TOP 5 FOODITEMNAME
+, SUM(INVENTORYSHORTAGE) as SUMINVENTORYSHORTAGE
+, SUM(CURRENTINVENTORY) as SUMCURRENTINVENTORY
+FROM ' + @OUTPUTTABLENAME + 
+' GROUP BY FOODITEMNAME ' + 
+@SQLHAVINGCLAUSE +
+' ORDER BY SUMINVENTORYSHORTAGE DESC'
+
+EXECUTE (@SQLQuery)
+			]]>
+		</common:CreateProcedureSQL>
+	</SPDataList>
+
+	<!-- describe the context ID parameter for the SP (if applicable)
+	<Context ContextRecordType="REPLACE_WITH_RECORDTYPE" RecordIDParameter="CONTEXTID"/>-->
+	<!-- describe any parameters (other than the context ID) defined on the SP-->
+	<Parameters>
+		<common:FormMetaData>
+			<common:FormFields>
+        <common:FormField FieldID="BUSINESSPROCESSOUTPUTID" Caption="Low Inventory Snapshot" DataType="Guid" MaxLength="100">
+          <common:SimpleDataList SimpleDataListID="5710af5e-2cef-4014-a9b4-eec1f246b582" BlankValueCaption="Select a Business Process Run" />
+        </common:FormField>
+
+        <common:FormField FieldID="SUMCURRENTINVERTORYSOLDOUT" Caption="Only Display Sold Out Inventory" DataType="Boolean" AllowNullValue="true" />
+			</common:FormFields>
+
+        <common:WebUIComponent>
+            <common:UIModel AssemblyName="Blackbaud.CustomFx.FoodBank.UIModel.dll" ClassName="Blackbaud.CustomFx.FoodBank.UIModel.TopFoodItemShortagesByBPRunDataListUIModel" />
+            <common:WebUI>
+                <common:ExternalResource Url="browser/htmlforms/custom/blackbaud.customfx.foodbank/TopFoodItemShortagesByBPRunDataList.html" />
+            </common:WebUI>                                                                        
+        </common:WebUIComponent>
+		</common:FormMetaData>
+	</Parameters>
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="FOODITEMNAME" Caption="Food Item" DataType="String" />
+			<OutputField FieldID="SUMINVENTORYSHORTAGE" Caption="Shortage" DataType="SmallInt" />
+      <OutputField FieldID="SUMCURRENTINVENTORY" Caption="Current" DataType="SmallInt" />      
+    </OutputFields>
+	</Output>
+
+</DataListSpec>

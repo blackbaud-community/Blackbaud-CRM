@@ -1,0 +1,36 @@
+<PageDefinitionSpec 
+	xmlns="bb_appfx_pagedefinition" 
+    xmlns:common="bb_appfx_commontypes"
+    ID="561f0de5-e66c-4cb2-b4bc-cd5d323fc125"
+    Name="Food Bank Summary Page"
+    Description="Dashboard page for the food bank summary."
+    Author="Technical Training"
+	ContextRecordType="Food Bank"	
+	>
+
+	<!-- Note:  A page can optionally have a view form associated with it as the "Expression form".  While implemented as a view data form,
+	this form has no UI in this context, and is simply used as a way of loading additional information associated with the page.  The fields
+	returned by the expression form can be used as expressions in various properties throughout the page.  To specify an expression form for this
+	page, add the following attribute:		ExpressionDataFormID="<some guid>"-->
+
+	<!-- define how the page header should appear -->
+	<PageHeader Caption="Food Bank Summary" ImageKey="" />
+
+
+	<!-- define the tabs for the page - note that if only one tab is present, then that tab's sections are promoted to the page level (ie., the tab
+	itself isn't shown -->
+	<Tabs>
+		<Tab ID="4809a92d-c441-418a-a857-6df1691aacb4" Caption="Food Bank Summary">
+
+			<Sections>
+				<Section ID="2d42bf21-3630-4b92-b6d2-ad460725b786" Caption="Food Bank Summary">
+					<Dashboard ID="55309cbf-b743-4f57-a9cf-19fe3a765777"></Dashboard>
+					<SectionContext>
+						<common:PageContextID />
+					</SectionContext>
+				</Section>
+			</Sections>
+		</Tab>
+	</Tabs>
+	
+</PageDefinitionSpec>

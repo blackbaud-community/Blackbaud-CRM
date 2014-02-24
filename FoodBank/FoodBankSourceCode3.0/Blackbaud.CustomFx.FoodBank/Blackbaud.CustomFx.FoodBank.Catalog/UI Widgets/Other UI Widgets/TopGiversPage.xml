@@ -1,0 +1,29 @@
+﻿<PageDefinitionSpec 
+    xmlns="bb_appfx_pagedefinition" 
+    xmlns:common="bb_appfx_commontypes"
+    ID="c62ca015-9514-44b5-9ad8-e7d0bc125b58"
+    Name="Top Givers Page"
+    Description="Top Givers Page"
+    Author="Technical Training"
+    >
+	<PageHeader Caption="Top Givers Page" />
+	<Tabs>
+    <Tab Caption="Top Givers Widget" 
+         ID="18063cfd-ee12-473d-a06f-49a51a350041" 
+         Visible="=Globals.isWebshell">
+      <Sections>
+        <Section ID="b9b119ee-c9b3-4170-90ef-4f7b9c440fce" 
+                 Caption="Top Givers" 
+                 HideCaption="true" 
+                 DisplayStyle="InlineBlock">
+          <UIWidget ID="597568b2-99ed-4015-896a-25f8400d33f6" 
+                    ShowBorder="true" 
+                    AutoHeight="true" />
+          <SectionContext>
+            <PageContextID xmlns="bb_appfx_commontypes" />
+          </SectionContext>
+        </Section>
+      </Sections>
+    </Tab>
+  </Tabs>
+</PageDefinitionSpec>

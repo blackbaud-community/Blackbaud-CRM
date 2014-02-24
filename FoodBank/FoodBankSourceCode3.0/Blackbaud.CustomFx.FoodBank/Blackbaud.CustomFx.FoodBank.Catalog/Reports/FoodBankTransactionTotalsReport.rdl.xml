@@ -1,0 +1,43 @@
+﻿<ReportSpec 
+	xmlns="bb_appfx_report"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="d0d55376-82cb-4176-8268-35910164175f" 
+	Name="Food Bank Transaction Totals Report"
+	Description="Displays totals for food bank item transactions"
+	Author="Technical Training"
+	>
+
+	<RDLFileName>FoodBankTransactionTotalsReport.rdl</RDLFileName>
+	<Folder>Sample Reports/Food Bank Reports</Folder>
+	
+	<DataRetrieval>
+		<CreateSQL ObjectName="dbo.USR_USP_REPORT_FOODBANKTRANSACTIONTOTALS" ObjectType="SQLStoredProc">
+			<![CDATA[
+        create procedure dbo.USR_USP_REPORT_FOODBANKTRANSACTIONTOTALS (@TRANSACTIONTYPE nvarchar(10))
+        
+        as
+
+          select
+            c.[KEYNAME] as [FOODBANK],
+            f.[DESCRIPTION],
+            fh.[FOODBANKTXTYPE] as [TRANSACTIONTYPE],
+            fi.[NAME] as [FOODITEM],
+            sum(ft.[FOODITEMAMOUNT]) as [TOTALFOODITEMAMOUNT],
+            sum(ft.[QUANTITY]) as [TOTALFOODITEMQUANTITY]
+          from dbo.[USR_FOODBANK] f
+          left join dbo.[CONSTITUENT] c on c.[ID] = f.[CONSTITUENTID]
+          inner join dbo.[USR_FOODBANKTXHEADER] fh on fh.[FOODBANKID] = f.[ID]
+          left join dbo.[USR_FOODBANKTXDETAIL] ft on ft.[FOODBANKTXHEADERID] = fh.[ID]
+          left join dbo.[USR_FOODITEM] fi on fi.[ID] = ft.[FOODITEMID]
+          where fh.[FOODBANKTXTYPE] = @TRANSACTIONTYPE or @TRANSACTIONTYPE is null
+          group by
+            c.[KEYNAME],
+            f.[DESCRIPTION],
+            fh.[FOODBANKTXTYPE],
+            fi.[NAME]
+			]]>
+		</CreateSQL>
+    
+	</DataRetrieval>
+
+</ReportSpec>

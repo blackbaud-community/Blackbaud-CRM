@@ -1,0 +1,38 @@
+﻿<SQLStoredProcedureSpec
+	xmlns="bb_appfx_sqlstoredprocedure"
+	xmlns:common="bb_appfx_commontypes"
+	Name="USR_USP_FOODBANK_BATCHEXTVALIDATE"
+	ID="001a0977-b446-445b-8e80-9103c6e3e575"
+	Description="USR_USP_FOODBANK_BATCHEXTVALIDATE"
+	Author="Technical Training"
+	SPName="USR_USP_FOODBANK_BATCHEXTVALIDATE"
+	GrantServiceRolePermission="false">
+  <CreateProcedureSQL>
+    <![CDATA[
+			create procedure dbo.USR_USP_FOODBANK_BATCHEXTVALIDATE(
+				 @CONSTITUENTID uniqueidentifier
+        ,@FOODBANKTYPECODEID uniqueidentifier = null) as
+				set nocount on;
+								
+				DECLARE @ISORG as bit = 0
+  
+        SELECT @ISORG = C.ISORGANIZATION
+        FROM dbo.CONSTITUENT AS C
+	      WHERE C.ID = @CONSTITUENTID; 
+  
+ 	      IF @ISORG = 0 
+        BEGIN
+          raiserror('Constituent is not an organization', 13, 1)
+					return 1;
+        END
+        
+        IF @FOODBANKTYPECODEID IS NULL 
+        BEGIN
+          raiserror('Food Bank Type Code is required', 13, 1)
+					return 1;
+        END
+        
+				return 0;]]>
+  </CreateProcedureSQL>
+</SQLStoredProcedureSpec>
+

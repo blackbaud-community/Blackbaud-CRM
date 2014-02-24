@@ -1,0 +1,41 @@
+﻿<RecordOperationSpec
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	ID="e248f994-31d3-433d-b53d-1daf01199d02"
+	Name="Inventory Process Business: Delete"
+	Description="Deletes the parameter set for a business process.  Used on the Parameter Set Page and the business process instance status page."
+	Author="Technical Training"
+	RecordType="Food Bank"
+	OperationType="Delete"
+	common:SecurityUIFolder="Constituent\Food Bank\Inventory"
+	xmlns:common="bb_appfx_commontypes"
+	xmlns="bb_appfx_recordoperation">
+	<SPRecord>
+		<SPOperationImplementation SPName="USR_USP_USR_INVENTORYPROCESS_DELETE">
+			<common:CreateProcedureSQL>
+				<![CDATA[					
+create procedure dbo.USR_USP_USR_INVENTORYPROCESS_DELETE
+(
+	@ID uniqueidentifier,
+	@CHANGEAGENTID uniqueidentifier
+)
+as
+	set nocount on;
+	
+	begin try
+		exec dbo.USP_USR_INVENTORYPROCESS_DELETEBYID_WITHCHANGEAGENTID @ID, @CHANGEAGENTID;
+		return 0;
+	end try
+	
+	begin catch
+		exec dbo.USP_RAISE_ERROR;
+		return 1;
+	end catch
+				]]>
+			</common:CreateProcedureSQL>
+		</SPOperationImplementation>
+	</SPRecord>
+	<Prompt>
+		<StandardPrompt Text="Are you sure that you want to delete this inventory process business process?" />
+	</Prompt>
+</RecordOperationSpec>

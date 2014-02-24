@@ -1,0 +1,25 @@
+<QueryViewSpec 
+    xmlns:common="bb_appfx_commontypes"
+    ID="6ed0a52b-3133-4bfd-b0ec-47ca6a25c51c"
+    Name="Food Item Upsert Batch Exception Report Query"
+    Description="View used for output for the Food Item Upsert batch exception report."
+    Author="Blackbaud Product Development"
+    IsBuiltIn="true"
+    PrimaryKeyField="ID"
+    RecordType="Food Item"
+    IsRoot="true"
+    common:SecurityUIFolder="Constituent\Food Bank\Food Item"
+    xmlns="bb_appfx_queryview"
+    >
+	<ViewImplementation ViewName="V_QUERY_FOOD ITEM UPSERTEXCEPTIONREPORT">
+		<ViewSQL><![CDATA[select
+    USR_FOODITEM.[ID]
+from
+dbo.USR_FOODITEM;]]></ViewSQL>
+	</ViewImplementation>
+	<Output>
+		<OutputFields>
+			<OutputField Name="ID" Caption="System record ID" Category="System Fields" />
+		</OutputFields>
+	</Output>
+</QueryViewSpec>

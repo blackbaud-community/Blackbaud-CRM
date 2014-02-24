@@ -1,0 +1,52 @@
+<BatchTypeSpec 
+    xmlns:common="bb_appfx_commontypes"
+    ID="32520977-027a-4e09-932b-4ab505a07102"
+    Name="Food Bank Transaction Add Batch"
+    Description="Batch type for adding food bank transaction header records."
+    Author="Technical Training"
+    BaseTableName="USR_BATCHFOODBANKTRANSACTIONADD"
+    Category="Food Bank Transaction Header"
+    xmlns="bb_appfx_batchtype" AllowExport="false">
+  
+	<common:DependencyList>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" 
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAddBatch.Add.xml" />
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" 
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAddBatch.Edit.xml" />
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" 
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAddBatchDelete.RecordOperation.xml" />
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" 
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBankTransactionAddBatchCommit.Add.xml" />
+	</common:DependencyList>
+  
+	<AddRowDataFormTemplate CatalogItemID="d7519e16-3fed-4856-8a5d-03533edc6950" />
+  <EditRowDataFormTemplate CatalogItemID="62d9fa65-355e-40e8-a342-379437eefc51" />
+  <CommitRowDataForms>
+		<CommitRowAddDataFormTemplate CatalogItemID="52756e23-7858-49a5-88d9-094786952af4" />
+	</CommitRowDataForms>
+	
+  <BatchDeleteRowRecordOperation CatalogItemID="71c993c3-7c63-4cca-9aaa-fb02e1b97bc7" />
+  
+  <RowContextWindow Caption="Food Bank"
+                   ImageKey="CATALOG:Blackbaud.CustomFx.FoodBank.Catalog,Blackbaud.CustomFx.FoodBank.Catalog.bread-1.png"
+                   DockLocation="Bottom"
+                   ViewDataFormTemplateID="965337a3-9ce2-459f-90ca-61abb9949cd5"
+                   EditDataFormTemplateID="48815bdc-71b0-47b8-af7a-cf695b3f614b"
+                   ContextFieldID="PRIMARYCONTEXTRECORDID"
+                   PageID="2ca4f7de-41d0-4131-8c1b-5a532385794a"
+                   RecordType="Batch Food Bank Transaction Add"
+                   MenuCaption="&amp;Food Bank"
+                   CaptionResourceKey="$$constituent_window"
+                   PageContextFieldID=""
+                    />
+
+
+  
+  <WebEventHandlers>
+       <BatchEventHandler AssemblyName="Blackbaud.CustomFx.FoodBank.UIModel.dll" 
+                          ClassName="Blackbaud.CustomFx.FoodBank.UIModel.FoodBankTransactionAddBatchHandler"/>
+    
+  </WebEventHandlers>
+  
+  
+</BatchTypeSpec>

@@ -1,0 +1,85 @@
+<DataListSpec 
+    xmlns="bb_appfx_datalist"
+    xmlns:common="bb_appfx_commontypes"
+    ID="0ef415cd-05ff-47d1-b8b8-c52c74fbae09"
+    Name="Food Bank Top Shortages UI Widget Data List"
+    Description="Retrieves the top 5 food banks that have the largest shortages of food.  Used to populate UI Widget"
+    Author="Technical Training"
+    common:SecurityUIFolder="Constituent\Food Bank\Inventory"
+    >
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_TopFoodBankShortagesByBPRun">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+create procedure dbo.USR_USP_DATALIST_TopFoodBankShortagesByBPRun
+(
+@BUSINESSPROCESSOUTPUTID UniqueIdentifier = NULL
+)
+                     
+as	
+set nocount on;
+
+DECLARE @OUTPUTTABLENAME  NVARCHAR(100)
+DECLARE @SQLQUERY AS NVARCHAR(500)
+
+
+
+SELECT  @OUTPUTTABLENAME = TABLENAME
+FROM dbo.BUSINESSPROCESSOUTPUT
+WHERE dbo.BUSINESSPROCESSOUTPUT.ID = @BUSINESSPROCESSOUTPUTID
+
+/*
+  Select TOP 5
+ID
+, NAME
+, SUM(INVENTORYSHORTAGE) as SUMINVENTORYSHORTAGE
+from USR_INVENTORYPROCESS_086a193d_d19c_4adc_b362_bb557d4f0b48
+GROUP BY ID, NAME
+ORDER BY SUMINVENTORYSHORTAGE DESC
+*/  
+
+SET @SQLQUERY = 'SELECT TOP 5
+ID
+, NAME
+, SUM(INVENTORYSHORTAGE) as SUMINVENTORYSHORTAGE
+from ' + @OUTPUTTABLENAME + 
+' GROUP BY ID, NAME ' + 
+' ORDER BY SUMINVENTORYSHORTAGE DESC'
+
+EXECUTE (@SQLQuery)
+
+
+			]]>
+		</common:CreateProcedureSQL>
+	</SPDataList>
+
+	<!-- describe any parameters (other than the context ID) defined on the SP -->
+	<Parameters>
+		<common:FormMetaData>
+			<common:FormFields>
+        <common:FormField FieldID="BUSINESSPROCESSOUTPUTID" Caption="Low Inventory Snapshot" DataType="Guid" MaxLength="100">
+          <common:SimpleDataList SimpleDataListID="5710af5e-2cef-4014-a9b4-eec1f246b582" BlankValueCaption="Select a Business Process Run" />
+        </common:FormField>
+			</common:FormFields>
+
+        <common:WebUIComponent>
+            <common:UIModel AssemblyName="Blackbaud.CustomFx.FoodBank.UIModel.dll" ClassName="Blackbaud.CustomFx.FoodBank.UIModel.FoodBankTopShortagesUIWidgetDataListUIModel" />
+            <common:WebUI>
+                <common:ExternalResource Url="browser/htmlforms/custom/blackbaud.customfx.foodbank/FoodBankTopShortagesUIWidgetDataList.html" />
+            </common:WebUI>
+        </common:WebUIComponent>
+		</common:FormMetaData>
+	</Parameters>
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="ID" Caption="ID" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="NAME" Caption="Food Bank" DataType="String" />
+			<OutputField FieldID="SUMINVENTORYSHORTAGE" Caption="Shortage" DataType="SmallInt" />
+			
+		</OutputFields>
+	</Output>
+
+</DataListSpec>

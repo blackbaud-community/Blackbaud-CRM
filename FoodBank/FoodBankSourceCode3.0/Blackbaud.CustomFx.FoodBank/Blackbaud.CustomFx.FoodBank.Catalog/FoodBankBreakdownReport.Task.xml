@@ -1,0 +1,19 @@
+﻿<TaskSpec
+	xmlns="bb_appfx_task"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="e6a38845-e8e9-49be-9b6f-247f1ab31b99"
+	Name="Food bank breakdown"
+	Description="Displays the Food Bank Breakdown Report"
+  Author="Technical Training"
+  FunctionalAreaID="2b32333c-5cd7-4e54-a3d3-a41b382cdfa9"
+  Sequence="74"
+  ImageKey="catalog:Blackbaud.AppFx.Membership.Catalog.dll,Blackbaud.AppFx.Membership.Catalog.memberships_32.png"
+  Folder="Food Bank reports"
+  FolderImageKey="catalog:Blackbaud.AppFx.Membership.Catalog.dll,Blackbaud.AppFx.Membership.Catalog.reports_memberships_32.png"
+  FolderTaskGroup="Reports"
+  SmallImageKey="RES:reportspec"
+	>
+
+	<common:ShowPage PageID="da4eab88-402f-409d-a717-3efaaa63e9c7" />
+
+</TaskSpec>

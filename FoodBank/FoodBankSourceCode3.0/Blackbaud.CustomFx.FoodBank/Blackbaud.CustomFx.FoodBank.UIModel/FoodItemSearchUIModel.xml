@@ -1,0 +1,9 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>FoodItem.Search.xml</SpecFileName>
+  <Namespace></Namespace>
+  <HtmlInfo GenerateHtml="true">
+    <HtmlFile>FoodItemSearch.html</HtmlFile>
+    <HtmlFolder>htmlforms\custom\blackbaud.customfx.foodbank\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

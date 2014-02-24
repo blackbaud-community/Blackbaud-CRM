@@ -1,0 +1,55 @@
+<CustomUIModelMetadata 
+    xmlns="bb_appfx_customuimodelmetadata"
+    xmlns:common="bb_appfx_commontypes"
+    ID="0e85ce69-54e4-473f-8fad-df2f85c91711"
+    Name="FBTXBatchVsCurInvReconcileCustomUIModel"
+    Description="REPLACE_WITH_DESCRIPTION"
+    Author="Technical Training"
+    FormHeader="Batch Versus Current Inventory Impact"
+    >
+
+	<FormMetaData xmlns="bb_appfx_commontypes">
+    <FormFields>
+      <FormField FieldID="BATCHID" Caption="Batch ID" DataType="Guid" Hidden="true" />
+      <FormField FieldID="FOODBANKID" Caption="Food Bank" DataType="Guid">
+        <SimpleDataList SimpleDataListID="a8736d9e-912b-4b87-97b4-d53a01984e5c">
+          <Params>
+            <Param ID="BATCHTXCONTEXTID">
+              <!--<common:Value>Form!ContextID</common:Value>-->
+              <Value>Fields!BATCHID</Value>
+            </Param>
+          </Params>
+        </SimpleDataList>
+      </FormField>
+      <FormField FieldID="FOODITEMS" DataType="XML" Caption="Food Items">
+        <Collection>
+          <Fields>
+            <FormField FieldID="FOODBANKNAME" Caption="Food Bank" DataType="String" ReadOnly="true"  Hidden="true"/>
+            <FormField FieldID="BATCHTXFOODITEMNAME" Caption="Food Item" DataType="String" ReadOnly="true"  MaxLength="100"/>    
+            <FormField FieldID="CURRENTPRODINV" Caption="Actual" DataType="Integer" ReadOnly="true" />
+            <FormField FieldID="BATCHTXINV" Caption="Batch Adjustment" DataType="Integer" />
+            <FormField FieldID="POTENTIALRECONCILEDPRODINV" Caption="Adjusted Actual" DataType="Integer" ReadOnly="true" />
+          </Fields>
+        </Collection>
+      </FormField>
+		  
+     </FormFields>
+    
+        <WebUIComponent>
+            <UIModel AssemblyName="Blackbaud.CustomFx.FoodBank.UIModel.dll" ClassName="Blackbaud.CustomFx.FoodBank.UIModel.FBTXBatchReconcileCustomUIModel" />
+            <WebUI>
+                <ExternalResource Url="browser/htmlforms/FBTXBatchVsCurInvReconcileCustomUIModel.html" />
+            </WebUI>
+        </WebUIComponent>
+    
+    <!--<UIFields>
+      <FormField FieldID="INSTRUCTIONS" Required="false" Caption="Instructions:  Select a food bank from the batch to calculate the batch's potential impact to the current inventory." DataType="String" />
+    </UIFields>
+    
+    <UIActions>
+      <UIAction ActionID="CALCULATE" Caption="Calculate" />  
+    </UIActions>-->
+    
+	</FormMetaData>
+
+</CustomUIModelMetadata>

@@ -1,0 +1,107 @@
+<AddDataFormTemplateSpec 
+    xmlns:common="bb_appfx_commontypes"
+    ID="96d20428-a73d-44a7-ac74-44a75bfada37"
+    Name="Food Item Add Batch Row Commit Add Form"
+    Description="Adds a food item record to the system from a given batch."
+    Author="Technical Training"
+    RecordType="Food Item"
+    DataFormInstanceID="4b79233b-cbb3-4ab8-a78f-01f25a11b322"
+    common:SecurityUIFolder="Constituent\Food Bank\Food Item\Batch"
+    SecurityUIDisplayFeature="false"
+    xmlns="bb_appfx_adddataformtemplate"
+    >
+	<common:DependencyList>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" 
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.USR_USP_DATAFORMTEMPLATE_ADD_FOOD_ITEMBATCH.xml" />
+	</common:DependencyList>
+	<SPDataForm>
+		<SaveImplementation SPName="USR_USP_DATAFORMTEMPLATE_ADD_BATCHFOODITEMADDBATCHCOMMIT">
+			<common:CreateProcedureSQL>
+        <![CDATA[
+CREATE procedure dbo.USR_USP_DATAFORMTEMPLATE_ADD_BATCHFOODITEMADDBATCHCOMMIT
+(	
+  @ID uniqueidentifier = null output,
+	@VALIDATEONLY bit = 0,
+	@CHANGEAGENTID uniqueidentifier,
+	@NAME nvarchar(100) = '',
+	@DESCRIPTION nvarchar(max) = '',
+	@CURRENTCOST money = 0.00,
+	@LOWINVENTORYTHRESHOLD smallint = 0,
+	@WEIGHT decimal(10,2) = 0.00, 
+  @WEIGHTREQUIRED bit = 0
+  )
+as
+set nocount on;
+declare @CURRENTDATE datetime;
+if @ID is null
+	set @ID = newid();
+if @CHANGEAGENTID is null
+	exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output;
+set @CURRENTDATE = getdate();
+
+begin try
+	DECLARE @ERRORMSG nvarchar(100)
+	
+  IF @VALIDATEONLY = 1 
+  BEGIN
+	  IF (@NAME = @DESCRIPTION) or (LEN(@DESCRIPTION) = 0)
+	  BEGIN
+	    SET @ERRORMSG = 'The description is not descriptive and @VALIDATEONLY = ' + 
+		  CONVERT(nvarchar(1),@VALIDATEONLY)
+		  RAISERROR (@ERRORMSG, 13, 1)
+	  END
+	  IF EXISTS(Select NAME FROM USR_FOODITEM WHERE NAME = @NAME)
+	  BEGIN
+	   SET @ERRORMSG = 'The Name "' + @NAME + '" is currently being used' +
+	    ' in the food item table and @VALIDATEONLY = ' + 
+		  CONVERT(nvarchar(1),@VALIDATEONLY)
+		  RAISERROR (@ERRORMSG, 13, 1)
+	  END
+    IF  (@WEIGHTREQUIRED = 1 AND @WEIGHT = 0.00)
+	  BEGIN
+	    SET @ERRORMSG = 'Weight must be greater than 0. See batch template Food Item Validation tab within Configure Options.'
+		  RAISERROR (@ERRORMSG, 13, 1)
+	  END
+   
+    
+  END
+  ELSE
+  BEGIN
+	  exec dbo.USR_USP_DATAFORMTEMPLATE_ADD_FOOD_ITEMBATCH @ID = @ID output, @CHANGEAGENTID = @CHANGEAGENTID, @NAME = @NAME, @DESCRIPTION = @DESCRIPTION, @CURRENTCOST = @CURRENTCOST, @LOWINVENTORYTHRESHOLD = @LOWINVENTORYTHRESHOLD, @WEIGHT = @WEIGHT;
+  END
+end try
+
+begin catch
+	exec.dbo.USP_RAISE_ERROR;
+	return 1;
+end catch
+return 0;
+
+
+]]></common:CreateProcedureSQL>
+			<common:ExpectedDBExceptions>
+				<common:Constraints>
+					<common:Constraint Name="UC_USR_FOODITEM_NAME" Field="NAME" Type="Unique" />
+					<common:Constraint Name="CK_USR_FOODITEM_NAME" Field="NAME" Type="Required" />
+				</common:Constraints>
+			</common:ExpectedDBExceptions>
+		</SaveImplementation>
+	</SPDataForm>
+  
+	<common:FormMetaData>
+		<common:FormFields>
+			<common:FormField FieldID="VALIDATEONLY" DataType="Boolean" Caption="Validate only" />
+			<common:FormField FieldID="NAME" Required="true" MaxLength="100" Caption="Name" />
+      <common:FormField FieldID="DESCRIPTION" Caption="Description" DefaultValueText="" />
+			<common:FormField FieldID="CURRENTCOST" Required="true" DataType="Money" Caption="Current Cost" DefaultValueText="0.00" />
+			<common:FormField FieldID="LOWINVENTORYTHRESHOLD" DataType="SmallInt" Caption="Low Inventory Threshold" DefaultValueText="0" />
+			<common:FormField FieldID="WEIGHT" DataType="Decimal" Caption="Weight" Description="The weight of a food item." 
+                        Precision="10" Scale="2" DefaultValueText="0.00" />
+
+      <common:FormField FieldID="WEIGHTREQUIRED" DataType="Boolean" Caption="Weight Required" Description="Check this box if you want to make the user enter a weight."
+                         DefaultValueText="0" Hidden="true"/>
+
+      
+    </common:FormFields>
+	</common:FormMetaData>
+</AddDataFormTemplateSpec>

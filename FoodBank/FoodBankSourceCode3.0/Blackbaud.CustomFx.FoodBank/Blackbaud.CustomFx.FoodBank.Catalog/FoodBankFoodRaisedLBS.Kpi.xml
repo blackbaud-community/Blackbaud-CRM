@@ -1,0 +1,105 @@
+<KpiSpec
+	xmlns="bb_appfx_kpi"
+	xmlns:common="bb_appfx_commontypes"
+	ID="01CC7507-C0F0-411a-9E8E-A9EA396D183F"
+	Name="Total Food Weight for a Food Bank"
+	Description="Calculates the total food weight for a food bank."
+	Author="Technical Training"
+	GoalType="Number"
+	UIFolder="Constituent\Food Items Raised"
+	common:SecurityUIFolder="Constituent\Food Bank" 
+	ContextRecordIDParameter="FOODBANKID" 
+	ContextRecordType="Food Bank">
+
+	<common:DependencyList>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" 
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodItem.SimpleList.xml"/>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" 
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.FoodBank.Search.xml"/>
+	</common:DependencyList>
+	
+	<SpImplementation>
+    
+		<KpiValueProcedure SpName="USR_USP_KPI_CONSTITUENT_FOODBANKLBS">
+	
+      <CreateProcedureSql>
+        
+				<![CDATA[
+create procedure dbo.USR_USP_KPI_CONSTITUENT_FOODBANKLBS(
+	@VALUE decimal(20,4) output, 
+	@ASOFDATE datetime,
+	@FOODBANKID uniqueidentifier,
+	@TXTYPE tinyint = 1,
+	@FOODITEMID uniqueidentifier = null
+)
+as
+	set nocount on;
+	
+	select 
+		@VALUE = COALESCE(SUM(dbo.USR_FOODITEM.WEIGHT * dbo.USR_FOODBANKTXDETAIL.QUANTITY) , 0 )
+	from
+		dbo.USR_FOODBANKTXDETAIL
+	INNER JOIN
+		dbo.USR_FOODBANKTXHEADER on USR_FOODBANKTXDETAIL.FOODBANKTXHEADERID = USR_FOODBANKTXHEADER.ID
+	INNER JOIN 
+		USR_FOODITEM on USR_FOODBANKTXDETAIL.FOODITEMID = USR_FOODITEM.ID
+	where
+		USR_FOODBANKTXHEADER.FOODBANKID = @FOODBANKID 
+		and USR_FOODBANKTXHEADER.FOODBANKTXTYPECODE = @TXTYPE
+		and (@FOODITEMID is null or USR_FOODBANKTXDETAIL.FOODITEMID = @FOODITEMID)
+		and USR_FOODBANKTXHEADER.TXDATE <= @ASOFDATE
+
+				]]>
+			</CreateProcedureSql>
+		</KpiValueProcedure>
+    
+    <GoalValueProcedure SpName="USR_USP_KPI_CONSTITUENT_FOODBANK_GOAL">
+      <CreateProcedureSql>
+        <![CDATA[
+      create procedure dbo.USR_USP_KPI_CONSTITUENT_FOODBANK_GOAL
+      (
+      @VALUE decimal(20,4) output, 
+	    @FOODBANKID uniqueidentifier,
+	    @TXTYPE tinyint = 1,
+	    @FOODITEMID uniqueidentifier = null
+      )
+      as
+      set nocount on;  
+      select @value = 5 * 20;
+        ]]>
+      </CreateProcedureSql>
+    </GoalValueProcedure>
+   
+	</SpImplementation>
+
+	<KpiFormDefinition>
+		<common:FormMetaData>
+			<common:FormFields>
+				<common:FormField FieldID="FOODBANKID" Caption="Food bank" DataType="Guid" Required="true">
+					<common:SearchList SearchListID="3eceea4c-cf42-4938-9cf1-c7c77ebc7dc9" EnableQuickFind="true">
+						
+					</common:SearchList>
+				</common:FormField>
+				<common:FormField FieldID="TXTYPE" Caption="Transaction Type" DefaultValueText="0" DataType="TinyInt" Required="true" >
+					<common:ValueList>
+						<common:Items>
+							<common:Item>
+								<common:Value>0</common:Value>
+									<common:Label>Receive</common:Label>
+								</common:Item>
+							<common:Item>
+								<common:Value>1</common:Value>
+									<common:Label>Distribute</common:Label>
+								</common:Item>
+							</common:Items>
+					</common:ValueList>
+				</common:FormField>
+				<common:FormField FieldID="FOODITEMID" Caption="Food item" DataType="Guid">
+					<common:SimpleDataList SimpleDataListID="bd0f0cc1-cc60-42e2-b592-f000b4fdfbf4" />
+				</common:FormField>
+			</common:FormFields>
+      
+		</common:FormMetaData>
+    
+	</KpiFormDefinition>
+</KpiSpec>

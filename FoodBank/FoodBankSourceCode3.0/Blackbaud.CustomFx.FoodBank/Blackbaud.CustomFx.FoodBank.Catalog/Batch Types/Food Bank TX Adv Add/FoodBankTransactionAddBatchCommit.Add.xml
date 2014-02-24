@@ -1,0 +1,104 @@
+<AddDataFormTemplateSpec 
+    xmlns:common="bb_appfx_commontypes"
+    ID="52756e23-7858-49a5-88d9-094786952af4"
+    Name="Food Bank Transaction Add Batch Row Commit Add Form"
+    Description="Adds a food bank transaction header record to the system from a given batch."
+    Author="Technical Training"
+    RecordType="Food Bank Transaction Header"
+    DataFormInstanceID="086c785d-655c-48ea-84cc-0761fa81321d"
+    common:SecurityUIFolder="Constituent\Food Bank"
+    SecurityUIDisplayFeature="false"
+    xmlns="bb_appfx_adddataformtemplate"
+    >
+	<common:DependencyList>
+		<common:Dependency CatalogAssembly="Blackbaud.CustomFx.FoodBank.Catalog.dll" 
+                       CatalogItem="Blackbaud.CustomFx.FoodBank.Catalog.CopyOfFoodBankTXHeaderAdvanced.Add.xml" />
+	</common:DependencyList>
+	<SPDataForm>
+		<SaveImplementation SPName="USR_USP_DATAFORMTEMPLATE_ADD_BATCHFOODBANKTRANSACTIONADDBATCHCOMMIT">
+			<common:CreateProcedureSQL>
+        <![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_ADD_BATCHFOODBANKTRANSACTIONADDBATCHCOMMIT
+(
+	@ID uniqueidentifier = null output,
+	@VALIDATEONLY bit = 0,
+	@CHANGEAGENTID uniqueidentifier,
+	@PRIMARYCONTEXTRECORDID uniqueidentifier,
+	@CONSTITUENTID uniqueidentifier = null,
+	@FOODBANKTXTYPECODE tinyint = 0,
+	@TXDATE datetime = null,
+	@RECEIPTPRINTED bit = 0,
+	@FOODITEMS xml = null
+)
+as
+set nocount on;
+
+declare @CURRENTDATE datetime;
+
+if @ID is null
+	set @ID = newid();
+
+if @CHANGEAGENTID is null
+	exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output;
+
+set @CURRENTDATE = getdate();
+
+begin try
+
+	exec dbo.USR_USP_DATAFORMTEMPLATE_ADD_FOOD_BANK_TRANSACTION_HEADER2COPY @ID = @ID output, @CHANGEAGENTID = @CHANGEAGENTID, @FOODBANKID = @PRIMARYCONTEXTRECORDID, @CONSTITUENTID = @CONSTITUENTID, @FOODBANKTXTYPECODE = @FOODBANKTXTYPECODE, @TXDATE = @TXDATE, @RECEIPTPRINTED = @RECEIPTPRINTED, @FOODITEMS = @FOODITEMS;
+
+end try
+begin catch
+	exec.dbo.USP_RAISE_ERROR;
+	return 1;
+end catch
+
+return 0;
+
+]]></common:CreateProcedureSQL>
+			<common:ExpectedDBExceptions>
+				<common:Constraints>
+					<common:Constraint Name="FK_USR_FOODBANKTXHEADER_CONSTITUENTID" Field="CONSTITUENTID" Type="ForeignKey" />
+				</common:Constraints>
+			</common:ExpectedDBExceptions>
+		</SaveImplementation>
+	</SPDataForm>
+	<common:FormMetaData>
+		<common:FormFields>
+			<common:FormField FieldID="VALIDATEONLY" DataType="Boolean" Caption="Validate only" />
+			<common:FormField FieldID="PRIMARYCONTEXTRECORDID" DataType="Guid" Caption="Food Bank" Required="true">
+				<common:SearchList SearchListID="3eceea4c-cf42-4938-9cf1-c7c77ebc7dc9" EnableQuickFind="true" />
+			</common:FormField>
+			<common:FormField FieldID="CONSTITUENTID" DataType="Guid" Required="true" Caption="Constituent" Description="The food bank either receives food donations from this constituent or distributes food to this constituent.">
+				<common:SearchList SearchListID="23c5c603-d7d8-4106-aecc-65392b563887" EnableQuickFind="true" />
+			</common:FormField>
+			<common:FormField FieldID="FOODBANKTXTYPECODE" DataType="TinyInt" Required="true" Caption="Transaction Type" Description="Enter Receive if the food bank is receiving a donation from the constituent.  Enter Distribute if the food bank is distributing food to the constituent in need." DefaultValueText="0">
+				<common:ValueList>
+					<common:Items>
+						<common:Item>
+							<common:Value>0</common:Value>
+							<common:Label>Receive</common:Label>
+						</common:Item>
+						<common:Item>
+							<common:Value>1</common:Value>
+							<common:Label>Distribute</common:Label>
+						</common:Item>
+					</common:Items>
+				</common:ValueList>
+			</common:FormField>
+			<common:FormField FieldID="TXDATE" DataType="Date" Required="true" Caption="Transaction Date" />
+			<common:FormField FieldID="RECEIPTPRINTED" DataType="Boolean" Caption="Receipt Printed" DefaultValueText="0" />
+			<common:FormField FieldID="FOODITEMS" DataType="XML" Caption="Food Items">
+				<common:Collection>
+					<common:Fields>
+						<common:FormField FieldID="FOODITEMID" DataType="Guid" Caption="Food item">
+							<common:SimpleDataList SimpleDataListID="bd0f0cc1-cc60-42e2-b592-f000b4fdfbf4" />
+						</common:FormField>
+						<common:FormField FieldID="FOODITEMAMOUNT" DataType="Money" Caption="Amount" />
+						<common:FormField FieldID="QUANTITY" DataType="Integer" Caption="Quantity" />
+					</common:Fields>
+				</common:Collection>
+			</common:FormField>
+		</common:FormFields>
+	</common:FormMetaData>
+</AddDataFormTemplateSpec>

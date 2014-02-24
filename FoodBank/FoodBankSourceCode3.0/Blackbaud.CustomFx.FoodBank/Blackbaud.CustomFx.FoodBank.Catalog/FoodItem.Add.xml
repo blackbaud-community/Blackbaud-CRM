@@ -1,0 +1,107 @@
+<AddDataFormTemplateSpec 
+    xmlns:c="bb_appfx_commontypes"
+    ID="ee2cb812-cc6b-41c3-8165-59585f04a2ba"
+    Name="Food Item Add Form"
+    Description="Used for adding a new Food Item"
+    Author="Technical Trainings"
+    RecordType="Food Item"
+    DataFormInstanceID="b911e219-42f2-4b64-9f02-d9e2ff899799"
+    c:SecurityUIFolder="Constituent\Food Bank\Food Item"
+    xmlns="bb_appfx_adddataformtemplate"
+    FormHeader="Add a Food Item"
+    >
+    <SPDataForm>
+        <SaveImplementation SPName="USR_USP_DATAFORMTEMPLATE_ADD_FOOD_ITEM">
+            <c:CreateProcedureSQL>
+<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_ADD_FOOD_ITEM
+(
+    @ID uniqueidentifier = null output,
+    @CHANGEAGENTID uniqueidentifier = null,
+    @NAME nvarchar(100),
+    @DESCRIPTION nvarchar(max) = '',
+    @CURRENTCOST money = 0.00,
+    @LOWINVENTORYTHRESHOLD smallint = 0, 
+	@WEIGHT Decimal(10,2) = 0.00
+)
+as
+
+set nocount on;
+
+if @ID is null
+    set @ID = newid()
+
+if @CHANGEAGENTID is null  
+    exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output
+
+declare @CURRENTDATE datetime
+set @CURRENTDATE = getdate()
+
+begin try
+	-- handle inserting the data
+	insert into dbo.USR_FOODITEM
+		(ID, NAME, DESCRIPTION, CURRENTCOST, LOWINVENTORYTHRESHOLD, WEIGHT, 
+		ADDEDBYID, CHANGEDBYID, DATEADDED, DATECHANGED)
+    values
+		(@ID, @NAME, @DESCRIPTION, @CURRENTCOST, @LOWINVENTORYTHRESHOLD, @WEIGHT, 
+		@CHANGEAGENTID, @CHANGEAGENTID, @CURRENTDATE, @CURRENTDATE)
+end try
+
+begin catch
+    exec dbo.USP_RAISE_ERROR
+    return 1
+end catch
+
+return 0				
+
+]]>
+            </c:CreateProcedureSQL>
+			
+            <c:ExpectedDBExceptions>
+                <c:Constraints>
+                  <c:Constraint Name="UC_USR_FOODITEM_NAME" Field="NAME" Type="Unique" />
+                  <c:Constraint Name="CK_USR_FOODITEM_NAME" Field="NAME" Type="Required" />
+                  
+                </c:Constraints>
+              
+              
+            </c:ExpectedDBExceptions>
+			
+        </SaveImplementation>
+    </SPDataForm>
+
+	<!-- describe the context ID for this form (if applicable), which corresponds to a parameter in the SP. -->
+	<!--<Context ContextRecordType="REPLACE_WITH_RECORDTYPE" RecordIDParameter="CONTEXTID"/>-->
+
+	<c:FormMetaData FixedDialog="true">
+        <c:FormFields>
+          <c:FormField FieldID="NAME" Required="true" MaxLength="100" Caption="Name"  DataType="String" />
+          <c:FormField FieldID="DESCRIPTION" Caption="Description" DataType="String" >
+      
+          </c:FormField>
+          <c:FormField FieldID="CURRENTCOST" DataType="Money" Caption="Current Cost" />
+			    <c:FormField FieldID="LOWINVENTORYTHRESHOLD" DataType="SmallInt" Caption="Low Inventory Threshold" />
+			    <c:FormField FieldID="WEIGHT" DataType="Decimal" Caption="Weight" DefaultValueText="0.00" 
+                       Description="The weight of a food item." />
+          
+          
+        </c:FormFields>
+
+    <c:WebUIComponent>
+      <c:UIModel AssemblyName="Blackbaud.CustomFx.FoodBank.UIModel.dll"
+                 ClassName="Blackbaud.CustomFx.FoodBank.UIModel.FoodItemAddFormUIModel" />
+      <c:WebUI>
+        <c:ExternalResource Url="browser/htmlforms/custom/blackbaud.customfx.foodbank/FoodItemAddForm.html" />
+      </c:WebUI>
+    </c:WebUIComponent>
+    <c:FieldGroups>
+      <c:FieldGroup ID="General" Caption="General Stuff">
+        <c:Fields>
+          <c:Field>NAME</c:Field>
+          <c:Field>DESCRIPTION</c:Field>
+        </c:Fields>
+      </c:FieldGroup>
+      
+    </c:FieldGroups>
+  </c:FormMetaData>
+</AddDataFormTemplateSpec>

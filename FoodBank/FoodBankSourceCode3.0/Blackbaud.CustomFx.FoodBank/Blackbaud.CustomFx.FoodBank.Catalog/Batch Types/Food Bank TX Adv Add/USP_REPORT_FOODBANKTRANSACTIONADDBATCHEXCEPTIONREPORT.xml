@@ -1,0 +1,28 @@
+<SQLStoredProcedureSpec 
+    xmlns:common="bb_appfx_commontypes"
+    ID="e2ad0c00-5537-4110-bfe8-e5596edfb8c8"
+    Name="USP_REPORT_FOODBANKTRANSACTIONADDBATCHEXCEPTIONREPORT"
+    Description="Returns the data necessary for the food bank transaction add batch report."
+    SPName="USP_REPORT_FOODBANKTRANSACTIONADDBATCHEXCEPTIONREPORT"
+    xmlns="bb_appfx_sqlstoredprocedure"
+    >
+	<CreateProcedureSQL><![CDATA[create procedure dbo.USP_REPORT_FOODBANKTRANSACTIONADDBATCHEXCEPTIONREPORT
+(
+   @BATCHID
+) with execute as owner
+as
+begin
+   set nocount on;
+   declare @TABLENAME nvarchar(128) = dbo.UFN_BATCH_GETREPORTTABLENAME(@BATCHID, 1);
+   -- TODO: Modify this select statement to include important fields in the exception report.
+   declare @SELECTFROMBATCHTABLESQL nvarchar(1024) = 
+       N'set nocount on;
+       select
+           ' + @TABLENAME + N'.[ID],
+           ' + @TABLENAME + N'.[REASON]
+       from
+           dbo.' + @TABLENAME + N';';
+   exec sp_executesql @SELECTFROMBATCHTABLESQL;
+end
+]]></CreateProcedureSQL>
+</SQLStoredProcedureSpec>

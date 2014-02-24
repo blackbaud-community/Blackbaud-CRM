@@ -1,0 +1,52 @@
+﻿<SQLStoredProcedureSpec
+	xmlns="bb_appfx_sqlstoredprocedure"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="cb1860a5-11e2-4ebf-a9cb-b8329483c828"
+	Name="USR_USP_DATAFORMTEMPLATE_EDITLOAD_FOOD_ITEMUPSERTBATCH"
+	Description="USR_USP_DATAFORMTEMPLATE_EDITLOAD_FOOD_ITEMUPSERTBATCH"
+	Author="Technical Training"
+	SPName="USR_USP_DATAFORMTEMPLATE_EDITLOAD_FOOD_ITEMUPSERTBATCH"
+	>
+
+	<CreateProcedureSQL>
+		<![CDATA[
+create procedure dbo.USR_USP_DATAFORMTEMPLATE_EDITLOAD_FOOD_ITEMUPSERTBATCH
+(
+    @ID uniqueidentifier,
+    @DATALOADED bit = 0 output,
+    @TSLONG bigint = 0 output,
+    @NAME nvarchar(100) = null output,
+    @DESCRIPTION nvarchar(max) = null output,
+    @CURRENTCOST money = null output,
+    @LOWINVENTORYTHRESHOLD smallint = null output, 
+	@WEIGHT Decimal(10,2) = null output
+)
+as
+
+	set nocount on;
+
+	-- be sure to set these, in case the select returns no rows
+	set @DATALOADED = 0
+	set @TSLONG = 0
+
+	-- populate the output parameters, which correspond to fields on the form.  Note that
+	-- we set @DATALOADED = 1 to indicate that the load was successful.  Otherwise, the system
+	-- will display a "no data loaded" message.  Also note that we fetch the TSLONG so that concurrency
+	-- can be considered.
+	select
+		@DATALOADED = 1,
+		@TSLONG = TSLONG,
+        @NAME = NAME, 
+        @DESCRIPTION = DESCRIPTION, 
+        @CURRENTCOST = CURRENTCOST, 
+        @LOWINVENTORYTHRESHOLD = LOWINVENTORYTHRESHOLD,
+		@WEIGHT = WEIGHT
+	from dbo.USR_FOODITEM
+	where ID = @ID
+
+	return 0;
+
+		]]>
+	</CreateProcedureSQL>
+
+</SQLStoredProcedureSpec>

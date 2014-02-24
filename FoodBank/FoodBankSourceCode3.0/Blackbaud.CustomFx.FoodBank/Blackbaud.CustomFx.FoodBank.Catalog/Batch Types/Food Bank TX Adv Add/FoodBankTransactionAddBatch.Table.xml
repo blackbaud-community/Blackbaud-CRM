@@ -1,0 +1,56 @@
+<TableSpec 
+    xmlns:common="bb_appfx_commontypes"
+    ID="6b4507d0-9f80-4348-9f88-62b9d57b72f6"
+    Name="Batch Food Bank Transaction Add"
+    Description="Stores food bank transaction add batch information."
+     Author="Technical Training"
+    Tablename="USR_BATCHFOODBANKTRANSACTIONADD"
+    IsBuiltIn="false"
+    IsCustomizable="true"
+    xmlns="bb_appfx_table"
+    >
+	<Fields>
+		<ForeignKeyField
+			Name="BATCHID"
+			Required="true"
+			ForeignTable="BATCH"
+			OnDelete="CascadeDelete" />
+		<SequenceField
+			Name="SEQUENCE" />
+		<ForeignKeyField
+			Name="PRIMARYCONTEXTRECORDID"
+			ForeignTable="USR_FOODBANK" />
+		<ForeignKeyField
+			Description="The food bank either receives food donations from this constituent or distributes food to this constituent."
+			Name="CONSTITUENTID"
+			Required="true"
+			ForeignTable="CONSTITUENT" />
+		<EnumField
+			Description="Enter Receive if the food bank is receiving a donation from the constituent.  Enter Distribute if the food bank is distributing food to the constituent in need."
+			Name="FOODBANKTXTYPECODE"
+			DefaultValue="0">
+			<EnumValues>
+				<EnumValue
+					ID="0"
+					Translation="Receive" />
+				<EnumValue
+					ID="1"
+					Translation="Distribute" />
+			</EnumValues>
+		</EnumField>
+		<DateField
+			Name="TXDATE"
+			Required="true"
+			IncludeTime="false" />
+		<BooleanField
+			Name="RECEIPTPRINTED" />
+	</Fields>
+
+  <Indexes>
+    <Index>
+      <IndexFields>
+        <IndexField Name="CONSTITUENTID" Direction="ASC"/>
+      </IndexFields>
+    </Index>
+  </Indexes>
+</TableSpec>

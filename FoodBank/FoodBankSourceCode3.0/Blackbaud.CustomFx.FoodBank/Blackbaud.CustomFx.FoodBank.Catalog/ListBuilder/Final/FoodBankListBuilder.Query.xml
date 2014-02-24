@@ -1,0 +1,137 @@
+﻿<QueryViewSpec 
+  xmlns="bb_appfx_queryview" 
+  xmlns:common="bb_appfx_commontypes" 
+  ID="9CD7E7F8-50C3-4F35-B784-7C6C2B70EC77" 
+  Name="Food Bank TX List Builder Query" 
+  Description="Returns transactions for each food bank.       
+  Used on the FoodBankWidgetDashboard.Page.xml.       
+  Page name Food Banks with ID of 753229b2-9549-41ce-8058-027e9b5e9230" 
+  Author="Technical Training" 
+  IsRoot="false" 
+  PrimaryKeyField="FOODBANKTXDETAILID" 
+  RecordType="Food Bank Transaction Detail" 
+  common:SecurityUIFolder="Constituent\Food Bank\Food Bank Transaction Header\Food Bank Transaction Detail" 
+  AllowAttributeExtension="false">
+  <TVFImplementation FunctionName="USR_UFN_QUERY_FOODBANKTXDETAIL_LISTBUILDER">
+    <CreateFunctionSQL>
+
+      create function dbo.USR_UFN_QUERY_FOODBANKTXDETAIL_LISTBUILDER(@FOODBANKID uniqueidentifier = null)
+      returns table
+      as
+      return
+      SELECT
+      USR_FOODBANK.CONSTITUENTID AS FBCONSTITUENTID
+      , USR_FOODBANKTXHEADER.ID as FOODBANKTXHEADERID
+      , USR_FOODBANKTXDETAIL.ID as FOODBANKTXDETAILID
+      , CONSTITUENT.NAME AS FBCONSTITUENTNAME
+      --, USR_FOODBANK.FOODBANKTYPECODEID
+      , USR_FOODBANKTYPECODE.DESCRIPTION AS FOODBANKTYPE
+      , USR_FOODBANKTXHEADER.CONSTITUENTID AS TXCONSTITUENTID
+      , CONSTITUENT_1.NAME AS TXCONSTITUENTNAME
+      , USR_FOODBANKTXHEADER.FOODBANKTXTYPE
+      , USR_FOODBANKTXHEADER.TXDATE
+      , USR_FOODBANKTXHEADER.RECEIPTPRINTED
+      , USR_FOODBANKTXHEADER.DATEADDED AS TXDATEADDED
+      , USR_FOODBANKTXHEADER.DATECHANGED AS TXDATECHANGED
+      --, USR_FOODBANKTXDETAIL.FOODITEMID
+      , USR_FOODITEM.NAME as FOODITEMNAME
+
+      , USR_FOODBANKTXDETAIL.FOODITEMAMOUNT
+      , USR_FOODBANKTXDETAIL.LINEAMOUNT
+      , USR_FOODBANKTXDETAIL.QUANTITY
+      , USR_FOODITEM.CURRENTCOST
+      , USR_FOODITEM.LOWINVENTORYTHRESHOLD
+      , USR_FOODITEM.WEIGHT
+      FROM         USR_FOODBANK INNER JOIN
+      USR_FOODBANKTXHEADER ON USR_FOODBANK.ID = USR_FOODBANKTXHEADER.FOODBANKID INNER JOIN
+      USR_FOODBANKTXDETAIL ON USR_FOODBANKTXHEADER.ID = USR_FOODBANKTXDETAIL.FOODBANKTXHEADERID INNER JOIN
+      USR_FOODBANKTYPECODE ON USR_FOODBANK.FOODBANKTYPECODEID = USR_FOODBANKTYPECODE.ID INNER JOIN
+      USR_FOODITEM ON USR_FOODBANKTXDETAIL.FOODITEMID = USR_FOODITEM.ID INNER JOIN
+      CONSTITUENT ON USR_FOODBANK.CONSTITUENTID = CONSTITUENT.ID INNER JOIN
+      CONSTITUENT AS CONSTITUENT_1 ON USR_FOODBANKTXHEADER.CONSTITUENTID = CONSTITUENT_1.ID
+      WHERE (@FOODBANKID is null or USR_FOODBANK.CONSTITUENTID = @FOODBANKID);
+
+    </CreateFunctionSQL>
+    <Parameters>
+      <common:FormMetaData>
+        <common:FormFields>
+          <common:FormField FieldID="FOODBANKID" Caption="Food Bank" Required="false" DataType="Guid">
+            <common:SearchList SearchListID="3eceea4c-cf42-4938-9cf1-c7c77ebc7dc9" EnableQuickFind="true" />
+          </common:FormField>
+        </common:FormFields>
+      </common:FormMetaData>
+    </Parameters>
+  </TVFImplementation>
+  <Output>
+    <OutputFields>
+      <OutputField Name="FBCONSTITUENTID" IsHidden="true" DataType="Guid" />
+      <OutputField Name="FOODBANKTXHEADERID" Caption="FOODBANKTXHEADERID" DataType="Guid" IsHidden="true" />
+      <OutputField Name="FOODBANKTXDETAILID" Caption="FOODBANKTXDETAILID" DataType="Guid" IsHidden="true" />
+      <OutputField Name="FBCONSTITUENTNAME" Caption="Food Bank" DataType="String" />
+      <OutputField Name="FOODBANKTYPE" Caption="Food Bank Type">
+        <LookupInfo>
+          <CodeTable CodeTableName="USR_FOODBANKTYPECODE" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="TXCONSTITUENTID" Caption="TX Constituent ID" IsHidden="true" DataType="Guid" />
+      <OutputField Name="TXCONSTITUENTNAME" Caption="TX Constituent" DataType="String" />
+      <OutputField Name="FOODBANKTXTYPE" Caption="TX Type">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Receive" />
+              <common:TranslationListOption Value="Distribute" />
+            </common:Options>
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="TXDATE" DataType="Date" Caption="TX Date" />
+      <OutputField Name="RECEIPTPRINTED" DataType="Boolean" Caption="Receipt?" />
+      <OutputField Name="TXDATEADDED" DataType="Date" Caption="Tx Date Added" />
+      <OutputField Name="TXDATECHANGED" DataType="Date" Caption="Tx Date Changed" />
+      <OutputField Name="FOODITEMNAME" Caption="Food Item">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="bd0f0cc1-cc60-42e2-b592-f000b4fdfbf4" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="FOODITEMAMOUNT" Caption="TX Detail Food Item Amt" DataType="Money" />
+      <OutputField Name="LINEAMOUNT" Caption="TX Detail Line Amt" DataType="Money" />
+      <OutputField Name="QUANTITY" Caption="TX Detail Qty" DataType="SmallInt" />
+      <OutputField Name="CURRENTCOST" Caption="Food Item Current Cost" DataType="Money" />
+      <OutputField Name="LOWINVENTORYTHRESHOLD" Caption="Low Inv Threshold" DataType="SmallInt" />
+      <OutputField Name="WEIGHT" Caption="Weight" DataType="Decimal" />
+    </OutputFields>
+  </Output>
+  <ListBuilder>
+    
+    <Columns>
+      
+      <Column Name="FBCONSTITUENTNAME" IsDefaultColumn="true">
+        
+        <CompositeColumn Caption="">
+          <OutputFields>
+           
+            <OutputField Name=""/>
+          </OutputFields>
+        </CompositeColumn>
+      </Column>
+      <Column Name="FOODBANKTYPE" IsDefaultColumn="true" />
+      <Column Name="TXCONSTITUENTNAME" IsDefaultColumn="true" />
+      <Column Name="FOODBANKTXTYPE" IsDefaultColumn="true" />
+      <Column Name="TXDATE" IsDefaultColumn="true" />
+      <Column Name="RECEIPTPRINTED" IsDefaultColumn="true" />
+      <Column Name="TXDATEADDED" IsDefaultColumn="false" />
+      <Column Name="TXDATECHANGED" IsDefaultColumn="false" />
+      <Column Name="FOODITEMNAME" IsDefaultColumn="true" />
+      <Column Name="FOODITEMAMOUNT" IsDefaultColumn="true" />
+      <Column Name="LINEAMOUNT" IsDefaultColumn="true" />
+      <Column Name="QUANTITY" IsDefaultColumn="true" />
+      <Column Name="CURRENTCOST" IsDefaultColumn="true" />
+      <Column Name="LOWINVENTORYTHRESHOLD" IsDefaultColumn="false" />
+      <Column Name="WEIGHT" IsDefaultColumn="false" />
+    </Columns>
+    
+   
+    
+  </ListBuilder>
+</QueryViewSpec>

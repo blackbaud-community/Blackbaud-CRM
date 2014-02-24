@@ -1,0 +1,33 @@
+<RecordOperationSpec 
+    xmlns:common="bb_appfx_commontypes"
+    ID="71c993c3-7c63-4cca-9aaa-fb02e1b97bc7"
+    Name="Food Bank Transaction Add Batch Row: Delete"
+    Description="This deletion handles the deletion rules for deleting a food bank transaction add batch row."
+    Author="Technical Training"
+    RecordType="Batch Food Bank Transaction Add"            
+    OperationType="Delete"
+    common:SecurityUIFolder="Constituent\Food Bank"
+    xmlns="bb_appfx_recordoperation"
+    >
+	<SPRecord>
+		<SPOperationImplementation SPName="USR_USP_BATCHFOODBANKTRANSACTIONADD_DELETE">
+			<common:CreateProcedureSQL>
+        <![CDATA[
+	create procedure dbo.USR_USP_BATCHFOODBANKTRANSACTIONADD_DELETE
+	(
+		@ID uniqueidentifier,
+		@CHANGEAGENTID uniqueidentifier
+	)
+	as
+		set nocount on;
+
+		exec USP_USR_BATCHFOODBANKTRANSACTIONADD_DELETEBYID_WITHCHANGEAGENTID @ID, @CHANGEAGENTID;
+
+		return 0;
+]]></common:CreateProcedureSQL>
+		</SPOperationImplementation>
+	</SPRecord>
+	<Prompt>
+		<StandardPrompt Text="Are you sure you want to delete this food bank transaction add batch row?" />
+	</Prompt>
+</RecordOperationSpec>

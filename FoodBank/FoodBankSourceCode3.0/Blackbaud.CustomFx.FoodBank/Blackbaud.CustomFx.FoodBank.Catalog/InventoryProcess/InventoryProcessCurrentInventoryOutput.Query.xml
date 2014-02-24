@@ -1,0 +1,51 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="d0bf4a31-7c2d-458c-954c-e0c03594343c"
+	Name="Inventory Process Current Inventory Output Query"
+	Description="Query view output format for the current food bank inventory."
+	Author="Technical Training"
+	IsRoot="false"
+	RecordType="Food Bank"
+	PrimaryKeyField="ID"
+	common:SecurityUIFolder="Constituent\Food Bank\Inventory">
+
+	<!-- Gives this output format a metatag of "Inventory".  See the Business Process spec -->
+	<common:MetaTags Inventory="1" />
+	<ViewImplementation ViewName="USR_V_INVENTORYPROCESSOUTPUT_CURRENTINVENTORY">
+		<ViewSQL>
+			<![CDATA[
+select C.ID, C.NAME, FI.NAME as FOODITEMNAME,
+	sum(case 
+		when FBTH.FOODBANKTXTYPECODE = 0 then FBTD.QUANTITY
+		else FBTD.QUANTITY * -1
+	end) as FOODITEMCOUNT
+from 
+	dbo.CONSTITUENT C
+join
+	dbo.USR_FOODBANKTXHEADER FBTH on C.ID = FBTH.FOODBANKID
+join
+	dbo.USR_FOODBANKTXDETAIL FBTD on FBTH.ID = FBTD.FOODBANKTXHEADERID
+join
+	dbo.USR_FOODITEM FI on FBTD.FOODITEMID = FI.ID
+group by C.ID, C.NAME, FI.NAME			
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+	
+	<Output>
+		<OutputFields>
+			<OutputField Name="ID" Caption="System record ID" DataType="Guid" IsHidden="true" />
+			<OutputField Name="NAME" Caption="Food bank" DataType="String" />
+			<OutputField Name="FOODITEMNAME" Caption="Food item" DataType="String" />
+			<OutputField Name="FOODITEMCOUNT" Caption="Item count" DataType="Integer" />
+		</OutputFields>
+	</Output>
+
+	<!--This defines how the output format joins with the business process.-->
+		<BusinessProcessOutput BusinessProcessID="a28d4f17-53fe-48d9-85bc-37e12884dc00" 
+                         Caption="Current Inventory Output">
+		<JoinField>ID</JoinField>
+	</BusinessProcessOutput>
+</QueryViewSpec>
+
