@@ -43,6 +43,8 @@ Bootstrap is built to work best in the latest desktop and mobile browsers, meani
 	
 	Ex:  $password = 'Password';
 
+**hardcoding your username and password into your PHP application is a terrible idea in practice. The cookbook is just for testing/example purposes**
+
 **$database** - *the database to use.  See function getClientAppInfo() within helperfunctions.php*
 	
 	Ex:  $database = 'BBInfinity';
