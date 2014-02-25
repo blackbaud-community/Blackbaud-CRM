@@ -2,7 +2,8 @@
 
 The API cookbook samples demonstrate how to call individual features (ex: Contact Information Address List) via the Blackbaud CRM SOAP Web Service (AppFxWebService.asmx).  The samples utilize twitter bootstrap 2.3.2 which provide a sleek, intuitive, and responsive front-end framework. 
 
-Each sample typically takes an ID (Primary Key) value of a certain Record Type (Constituent, Address, etc.) in either an html input (See the Constituent ID input in the screen shot below)...
+###Providing a Primary Key Guid for the Record Type ID###
+Each sample typically takes an ID (Primary Key) value of a certain Record Type (Constituent, Address, etc.) in either an html input...
 
 ![AddressSample](http://blackbaud-community.github.io/Blackbaud-CRM/images/CookbookAddressList.png)
 
