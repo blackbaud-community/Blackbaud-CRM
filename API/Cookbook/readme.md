@@ -2,6 +2,8 @@
 
 The API cookbook samples demonstrate how to call individual features (ex: Phone Add Form) via the Blackbaud CRM SOAP Web Service (AppFxWebService.asmx).  
 
+![AddressSample](http://blackbaud-community.github.io/Blackbaud-CRM/images/CookbookAddressList.png)
+
 *Technologies*
 
 The following technologies, langages, and libraries are used:
@@ -26,7 +28,7 @@ Within helperfunctions.php you will need to provide the correct values for the f
 
 2) $userName - Domain\User credentials to access the web service using basic authentication (See getSoapClient() function within helperfunctions.php)
 
-	Ex: $userName = 'Domain\User Name';
+    Ex: $userName = 'Domain\User Name';
 
 
 3)  $password - domain user password credentials to access the web service using basic authentication (See getSoapClient() function within helperfunctions.php)
