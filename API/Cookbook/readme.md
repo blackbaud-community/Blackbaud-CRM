@@ -1,6 +1,6 @@
 *Overview*
 
-The API cookbook samples demonstrate how to call individual features (ex: Phone Add Form) via the Blackbaud CRM SOAP Web Service (AppFxWebService.asmx).  
+The API cookbook samples demonstrate how to call individual features (ex: Contact Information Address List) via the Blackbaud CRM SOAP Web Service (AppFxWebService.asmx).  The samples utilize twitter bootstrap 2.3.2 which provide a sleek, intuitive, and responsive front-end framework. 
 
 ![AddressSample](http://blackbaud-community.github.io/Blackbaud-CRM/images/CookbookAddressList.png)
 
