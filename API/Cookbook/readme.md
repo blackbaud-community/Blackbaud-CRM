@@ -4,7 +4,7 @@ The API cookbook samples demonstrate how to call individual features (ex: Contac
 
 Each sample typically takes an ID (Primary Key) value of a certain Record Type (Constituent, Address, etc.) in either an html input or query string.
 
-Ex:  http://localhost:800/AddressList.php?ConstituentID=0030D1BA-4A49-44AB-A44C-F9E294CDE8C0
+	Ex: http://localhost:800/AddressList.php?ConstituentID=0030D1BA-4A49-44AB-A44C-F9E294CDE8C0
 
 ![AddressSample](http://blackbaud-community.github.io/Blackbaud-CRM/images/CookbookAddressList.png)
 
