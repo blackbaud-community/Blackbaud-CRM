@@ -9,7 +9,7 @@ The following technologies, langages, and libraries are used:
 1. [PHP](http://www.php.net/)
 2. [jQuery 1.8.3](http://jquery.com/)
 3. [Bootstrap 2.3.2](http://getbootstrap.com/2.3.2/)
-4. [Bootsrap date time picker](http://tarruda.github.io/bootstrap-datetimepicker/)
+4. [Bootstrap date time picker](http://tarruda.github.io/bootstrap-datetimepicker/)
 
 *About Bootstrap*
 
