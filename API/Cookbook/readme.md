@@ -25,28 +25,28 @@ Bootstrap is built to work best in the latest desktop and mobile browsers, meani
 
 ##Prerequisites##
 
-1. You will need an instance of Blackbaud CRM.  Here are some [installation instructions](https://www.blackbaud.com/files/support/infinityinstaller/infinity-installation.htm) if you want to do a local install.
-2. You will need domain/user name and password credentials.  These credentials must be associated with an application user within Blackbaud CRM.
-3. The application user must have permission to use the feature(s) that the cookbook recipe is interacting with.
-4. Within helperfunctions.php you will need to provide the correct values for the following variables:
+1. You will need to [Install and Configure PHP](http://www.php.net/manual/en/install.php.)
+2. You will need an instance of Blackbaud CRM.  Here are some [installation instructions](https://www.blackbaud.com/files/support/infinityinstaller/infinity-installation.htm) if you want to do a local install.
+2. You will need domain/user name and password credentials.  These credentials must be associated with an application user within Blackbaud CRM.  The application user must have permission to use the feature(s) that the cookbook recipe is interacting with. See [Authentication and Authorization](https://www.blackbaud.com/files/support/guides/infinitydevguide/Subsystems/inwebapi-developer-help/Content/InfinityWebAPI/coAuthenticationAndAuthorization.htm).
+4. Within **helperfunctions.php** you will need to provide the correct values for the following variables:
 
-$wsdl - the url of the BBEC web service wsdl document (See getSoapClient() function within helperfunctions.php)
+**$wsdl** - *url to the BBEC web service end point wsdl document. See [Locating the Endpoint](https://www.blackbaud.com/files/support/guides/infinitydevguide/Subsystems/inwebapi-developer-help/Content/LocatingAppFxWebServiceEndpoint.htm). See getSoapClient() function within helperfunctions.php.*
 
 	Ex: $wsdl = 'http://localhost/bbappfx/appfxwebservice.asmx?wsdl';
 
-$userName - Domain\User credentials to access the web service using basic authentication (See getSoapClient() function within helperfunctions.php)
+**$userName** - *Domain\User credentials to access the web service using basic authentication.  See [Authentication and Authorization](https://www.blackbaud.com/files/support/guides/infinitydevguide/Subsystems/inwebapi-developer-help/Content/InfinityWebAPI/coAuthenticationAndAuthorization.htm) See getSoapClient() function within helperfunctions.php.*
 
 	Ex: $userName = 'Domain\User Name';
 
-$password - domain user password credentials to access the web service using basic authentication (See getSoapClient() function within helperfunctions.php)
+**$password** - *domain user password credentials to access the web service using basic authentication (See getSoapClient() function within helperfunctions.php*
 	
 	Ex:  $password = 'Password';
 
-$database - the database to use  (see function getClientAppInfo() within helperfunctions.php)
+**$database** - *the database to use.  See function getClientAppInfo() within helperfunctions.php*
 	
 	Ex:  $database = 'BBInfinity';
 
-###Related Resources###
+##Related Resources##
 * [API Overview](https://www.blackbaud.com/files/support/guides/infinitydevguide/Subsystems/inwebapi-developer-help/Content/InfinityWebAPI/coAPIOverview.htm)
 * [AppFxWebService.asmx](https://www.blackbaud.com/files/support/guides/infinitydevguide/Subsystems/inwebapi-developer-help/Content/InfinityWebAPI/coAppFxWebService.asmx.htm)
 * [Locating the Endpoint](https://www.blackbaud.com/files/support/guides/infinitydevguide/Subsystems/inwebapi-developer-help/Content/LocatingAppFxWebServiceEndpoint.htm)
