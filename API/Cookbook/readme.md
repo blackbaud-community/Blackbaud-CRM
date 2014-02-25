@@ -25,21 +25,18 @@ Bootstrap is built to work best in the latest desktop and mobile browsers, meani
 
 Within helperfunctions.php you will need to provide the correct values for the following variables:
 
-1) $wsdl - the url of the BBEC web service wsdl document (See getSoapClient() function within helperfunctions.php)
+1. $wsdl - the url of the BBEC web service wsdl document (See getSoapClient() function within helperfunctions.php)
 
     Ex:  $wsdl = 'http://localhost/bbappfx/appfxwebservice.asmx?wsdl';
 
-
-2) $userName - Domain\User credentials to access the web service using basic authentication (See getSoapClient() function within helperfunctions.php)
+2. $userName - Domain\User credentials to access the web service using basic authentication (See getSoapClient() function within helperfunctions.php)
 
     Ex: $userName = 'Domain\User Name';
 
-
-3)  $password - domain user password credentials to access the web service using basic authentication (See getSoapClient() function within helperfunctions.php)
+3. $password - domain user password credentials to access the web service using basic authentication (See getSoapClient() function within helperfunctions.php)
 	
     Ex:  $password = 'Password';
 
-
-4)  $database - the database to use  (see function getClientAppInfo() within helperfunctions.php)
+4. $database - the database to use  (see function getClientAppInfo() within helperfunctions.php)
 	
     Ex:  $database = 'BBInfinity';
