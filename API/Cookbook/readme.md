@@ -26,7 +26,7 @@ Bootstrap is built to work best in the latest desktop and mobile browsers, meani
 
 ##Prerequisites##
 
-1. You will need to [Install and Configure PHP](http://www.php.net/manual/en/install.php.)
+1. You will need to [Install and Configure PHP](http://www.php.net/manual/en/install.php).
 2. You will need an instance of Blackbaud CRM.  Here are some [installation instructions](https://www.blackbaud.com/files/support/infinityinstaller/infinity-installation.htm) if you want to do a local install.
 2. You will need domain/user name and password credentials.  These credentials must be associated with an application user within Blackbaud CRM.  The application user must have permission to use the feature(s) that the cookbook recipe is interacting with. See [Authentication and Authorization](https://www.blackbaud.com/files/support/guides/infinitydevguide/Subsystems/inwebapi-developer-help/Content/InfinityWebAPI/coAuthenticationAndAuthorization.htm).
 4. Within **helperfunctions.php** you will need to provide the correct values for the following variables:
