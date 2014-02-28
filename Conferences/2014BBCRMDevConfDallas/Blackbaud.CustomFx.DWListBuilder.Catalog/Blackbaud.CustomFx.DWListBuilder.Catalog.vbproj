@@ -83,10 +83,17 @@
     <EmbeddedResource Include="BBDW.ConstituentRevenue.ListBuilder.Query.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="BBDW.ConstituentRevenue.ListBuilderPage.Task.xml" />
+    <EmbeddedResource Include="BBDW.ConstituentRevenue.ListBuilderPage.Task.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListBuilderWithFilter\BBDW.ConstituentRevenue.ListBuilderWithFilter.Page.xml" />
     <EmbeddedResource Include="ListBuilderWithFilter\BBDW.ConstituentRevenue.ListBuilderWithFilter.Query.xml" />
     <EmbeddedResource Include="ListBuilderWithFilter\BBDW.ConstituentRevenue.ListBuilderWithFilterPage.Task.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ListBuilderWithAction\DWListBuilder.Page.xml" />
+    <Content Include="ListBuilderWithAction\DWListBuilder.Query.xml" />
+    <Content Include="ListBuilderWithAction\DWListBuilder.Task.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
