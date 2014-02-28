@@ -80,7 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BBDW.ConstituentRevenue.ListBuilder.Page.xml" />
-    <EmbeddedResource Include="BBDW.ConstituentRevenue.ListBuilder.Query.xml" />
+    <EmbeddedResource Include="BBDW.ConstituentRevenue.ListBuilder.Query.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="BBDW.ConstituentRevenue.ListBuilderPage.Task.xml" />
     <EmbeddedResource Include="ListBuilderWithFilter\BBDW.ConstituentRevenue.ListBuilderWithFilter.Page.xml" />
     <EmbeddedResource Include="ListBuilderWithFilter\BBDW.ConstituentRevenue.ListBuilderWithFilter.Query.xml" />
