@@ -1,0 +1,19 @@
+﻿<PageDefinitionSpec xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  ID="79A9C39D-60C4-45B6-8396-A36D206C6A8B"
+  Name="BBDW List Builder Page (Custom)"
+  Description="Page displays a list builder that pulls data from the DW."
+  Author="Technical Training"
+  xmlns="bb_appfx_pagedefinition">
+  <PageHeader Caption="Revenue List Builder from Data Warehouse" />
+  <Tabs>
+    <Tab
+      Caption="DW List Builder" ID="877C9563-6876-48D1-9664-8F06C1D42678">
+      <Sections>
+        <Section ID="6F4EF472-E8A0-45BE-9FFC-38D3E80D7509" Caption="Constituents with Revenue">
+          <ListBuilder QueryViewID="b4f5e2b8-72a2-4932-930c-a6858cc357ca" ItemsPerPage="25">
+          </ListBuilder>
+        </Section>
+      </Sections>
+    </Tab>
+  </Tabs>
+</PageDefinitionSpec>
