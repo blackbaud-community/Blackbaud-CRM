@@ -81,7 +81,7 @@
     <EmbeddedResource Include="TopDonorsReport\TopDonorsReport.rdl" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SustainedGivingDashboard\UnpaidInstallments.Datalist.xml">
+    <EmbeddedResource Include="SustainedGivingDashboard\SustainedGiving.UnpaidInstallments.Datalist.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
@@ -94,7 +94,7 @@
     <EmbeddedResource Include="SustainedGivingDashboard\SustainedGivingDashbaord.Task.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SustainedGivingDashboard\UnpaidInstallments.Widget.xml">
+    <EmbeddedResource Include="SustainedGivingDashboard\SustainedGiving.UnpaidInstallments.Widget.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
@@ -108,6 +108,11 @@
     <EmbeddedResource Include="SustainedGivingDashboard\SustainedGiving.Upgrades.Widget.xml" />
     <EmbeddedResource Include="SustainedGivingDashboard\SustainedGiving.RevenueChannel.Datalist.xml" />
     <EmbeddedResource Include="SustainedGivingDashboard\SustainedGiving.RevenueChannel.Widget.xml" />
+    <EmbeddedResource Include="SustainedGivingDashboard\SustainedGiving.TopDonors.Datalist.xml" />
+    <EmbeddedResource Include="SustainedGivingDashboard\SustainedGiving.TopDonors.Widget.xml" />
+    <EmbeddedResource Include="SustainedGivingDashboard\SustainedGivingRevenue.Widget.xml" />
+    <EmbeddedResource Include="SustainedGivingDashboard\SustainedGiving.NewDonors.Datalist.xml" />
+    <EmbeddedResource Include="SustainedGivingDashboard\SustainedGiving.NewDonors.Widget.xml" />
     <Content Include="SustainedGivingDashboard\SustainedGivingSummary.ViewForm.xml" />
     <Content Include="SustainedGivingDashboard\SustainedGivingSummary.Widget.xml" />
     <EmbeddedResource Include="TopDonorsReport\TopDonorsReport.Package.xml" />
@@ -121,7 +126,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SustainedGivingDashboard\SustainedGivingParameters.Widget.xml" />
-    <Content Include="SustainedGivingDashboard\SustainedGivingRevenue.Datalist.xml" />
+    <EmbeddedResource Include="SustainedGivingDashboard\SustainedGivingRevenue.Datalist.xml" />
     <EmbeddedResource Include="SustainedGivingDashboard\SustainedGiving.DelinquentDonors.Datalist.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>

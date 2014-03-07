@@ -13,7 +13,7 @@
 	page, add the following attribute:		ExpressionDataFormID="<some guid>"-->
 
 	<!-- define how the page header should appear -->
-	<PageHeader Caption="Top Donors Report" ImageKey="REPLACE_WITH_IMAGEKEY" />
+	<PageHeader Caption="Top Donors Report" ImageKey="res:reports" />
 
 	<!-- define the tabs for the page - note that if only one tab is present, then that tab's sections are promoted to the page level (ie., the tab
 	itself isn't shown -->

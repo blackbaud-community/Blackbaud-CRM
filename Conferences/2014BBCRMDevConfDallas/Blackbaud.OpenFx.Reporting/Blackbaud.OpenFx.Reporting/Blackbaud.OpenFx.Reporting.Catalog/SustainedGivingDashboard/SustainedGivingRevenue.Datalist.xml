@@ -15,41 +15,105 @@
 			<![CDATA[
 create procedure BBDW.USR_USP_DATALIST_SUSTAINEDGIVINGREVENUE
 (
-	@CONTEXTID uniqueidentifier
+  @STARTDATE datetime = null, 
+  @ENDDATE datetime = null
 )
 as
 	set nocount on;
 
-	select ID,
-		   FIELD1,
-		   FIELD2,
-		   FIELD3
-	from dbo.TABLE1
-	where CONTEXTID = @CONTEXTID
+declare @DATERANGE int
+set @DATERANGE = datediff(d,@STARTDATE, @ENDDATE);
+
+if @DATERANGE > 700 or @DATERANGE is null
+
+--Do Year
+  begin
+
+    select
+      d.[CALENDARYEAR] as [DATEFIELD],
+      sum(rgi.[RECURRINGGIFTINSTALLMENTPAYMENTAMOUNT]) as [AMOUNT]
+    from BBDW.[FACT_RECURRINGGIFTINSTALLMENTPAYMENT] rgi
+    inner join BBDW.[FACT_FINANCIALTRANSACTION] ft on rgi.[FINANCIALTRANSACTIONFACTID] = ft.[FINANCIALTRANSACTIONFACTID]
+    inner join BBDW.[DIM_DATE] d on ft.[FINANCIALTRANSACTIONDATEDIMID] = d.[DATEDIMID]
+    and (@STARTDATE is null or ft.[FINANCIALTRANSACTIONDATE] > @STARTDATE)
+    and (@ENDDATE is null or ft.[FINANCIALTRANSACTIONDATE] < @ENDDATE)
+    group by d.[CALENDARYEAR]
+    order by d.[CALENDARYEAR];
+
+  end
+
+if @DATERANGE between 200 and 700
+
+--Do Month
+  begin
+
+    select
+      d.[CALENDARMONTHYEARNAME] as [DATEFIELD],
+      sum(rgi.[RECURRINGGIFTINSTALLMENTPAYMENTAMOUNT]) as [AMOUNT]
+    from BBDW.[FACT_RECURRINGGIFTINSTALLMENTPAYMENT] rgi
+    inner join BBDW.[FACT_FINANCIALTRANSACTION] ft on rgi.[FINANCIALTRANSACTIONFACTID] = ft.[FINANCIALTRANSACTIONFACTID]
+    inner join BBDW.[DIM_DATE] d on ft.[FINANCIALTRANSACTIONDATEDIMID] = d.[DATEDIMID]
+    and (@STARTDATE is null or ft.[FINANCIALTRANSACTIONDATE] > @STARTDATE)
+    and (@ENDDATE is null or ft.[FINANCIALTRANSACTIONDATE] < @ENDDATE)
+    group by d.[CALENDARMONTHYEARNAME], d.[CALENDARYEARMONTH]
+    order by d.[CALENDARYEARMONTH];
+
+  end
+
+
+if @DATERANGE between 32 and 200
+
+--Do Week
+  begin
+
+    select
+      d.[CALENDARWEEKYEARNAME] as [DATEFIELD],
+      sum(rgi.[RECURRINGGIFTINSTALLMENTPAYMENTAMOUNT]) as [AMOUNT]
+    from BBDW.[FACT_RECURRINGGIFTINSTALLMENTPAYMENT] rgi
+    inner join BBDW.[FACT_FINANCIALTRANSACTION] ft on rgi.[FINANCIALTRANSACTIONFACTID] = ft.[FINANCIALTRANSACTIONFACTID]
+    inner join BBDW.[DIM_DATE] d on ft.[FINANCIALTRANSACTIONDATEDIMID] = d.[DATEDIMID]
+    and (@STARTDATE is null or ft.[FINANCIALTRANSACTIONDATE] > @STARTDATE)
+    and (@ENDDATE is null or ft.[FINANCIALTRANSACTIONDATE] < @ENDDATE)
+    group by d.[CALENDARYEAR], d.[CALENDARWEEK], d.[CALENDARWEEKYEARNAME]
+    order by d.[CALENDARYEAR], d.[CALENDARWEEK];
+
+  end
+
+if @DATERANGE < 32
+
+--Do Day
+  begin
+
+    select
+      d.[ACTUALDATESTRINGMDY] as [DATEFIELD],
+      sum(rgi.[RECURRINGGIFTINSTALLMENTPAYMENTAMOUNT]) as [AMOUNT]
+    from BBDW.[FACT_RECURRINGGIFTINSTALLMENTPAYMENT] rgi
+    inner join BBDW.[FACT_FINANCIALTRANSACTION] ft on rgi.[FINANCIALTRANSACTIONFACTID] = ft.[FINANCIALTRANSACTIONFACTID]
+    inner join BBDW.[DIM_DATE] d on ft.[FINANCIALTRANSACTIONDATEDIMID] = d.[DATEDIMID]
+    and (@STARTDATE is null or ft.[FINANCIALTRANSACTIONDATE] > @STARTDATE)
+    and (@ENDDATE is null or ft.[FINANCIALTRANSACTIONDATE] < @ENDDATE)
+    group by d.[ACTUALDATESTRINGMDY], d.[ACTUALDATE]
+    order by d.[ACTUALDATE];
+
+  end
 			]]>
 		</c:CreateProcedureSQL>
 	</SPDataList>
 
-	<!-- describe the context ID parameter for the SP (if applicable)-->
-	<Context ContextRecordType="REPLACE_WITH_RECORDTYPE" RecordIDParameter="CONTEXTID"/>
+  <Parameters>
+    <c:FormMetaData>
+      <c:FormFields>
+        <c:FormField FieldID="STARTDATE" Caption="Start date" DataType="Date"/>
+        <c:FormField FieldID="ENDDATE" Caption="End date" DataType="Date"/>
+      </c:FormFields>
+    </c:FormMetaData>
+  </Parameters>
 
-	<!-- describe any parameters (other than the context ID) defined on the SP
-	<Parameters>
-		<FormMetaData xmlns="bb_appfx_commontypes">
-			<FormFields>
-				<FormField FieldID="PARAMETER1" Caption="Paramter1" DataType="REPLACE_WITH_DATATYPE"/>
-			</FormFields>
-		</FormMetaData>
-	</Parameters>-->
-
-	<!-- define the output fields in the list -->
-	<Output>
-		<OutputFields>
-			<OutputField FieldID="ID" Caption="ID" DataType="Guid" IsHidden="true" />
-			<OutputField FieldID="FIELD1" Caption="REPLACE_WITH_CAPTION" DataType="REPLACE_WITH_DATATYPE" />
-			<OutputField FieldID="FIELD2" Caption="REPLACE_WITH_CAPTION" DataType="REPLACE_WITH_DATATYPE" />
-			<OutputField FieldID="FIELD3" Caption="REPLACE_WITH_CAPTION" DataType="REPLACE_WITH_DATATYPE" />
-		</OutputFields>
-	</Output>
+  <Output>
+    <OutputFields>
+      <OutputField FieldID="DATEFIELD" Caption="Date field" DataType="String" />
+      <OutputField FieldID="AMOUNT" Caption="Total Missed Payments" DataType="Money" />
+    </OutputFields>
+  </Output>
 
 </DataListSpec>

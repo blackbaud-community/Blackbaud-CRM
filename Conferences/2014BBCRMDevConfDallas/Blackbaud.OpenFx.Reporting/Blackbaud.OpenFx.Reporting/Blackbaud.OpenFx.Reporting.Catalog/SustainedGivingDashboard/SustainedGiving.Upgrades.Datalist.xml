@@ -13,7 +13,11 @@
 	<SPDataList SPName="USR_USP_DATALIST_SUSTAINEDGIVINGUPGRADES" SPSchema="BBDW">
 		<c:CreateProcedureSQL>
 			<![CDATA[
-create procedure BBDW.USR_USP_DATALIST_SUSTAINEDGIVINGUPGRADES (@STARTDATE datetime = null, @ENDDATE datetime = null)
+create procedure BBDW.USR_USP_DATALIST_SUSTAINEDGIVINGUPGRADES 
+(
+  @STARTDATE datetime = null, 
+  @ENDDATE datetime = null
+)
 
 as
 	set nocount on;

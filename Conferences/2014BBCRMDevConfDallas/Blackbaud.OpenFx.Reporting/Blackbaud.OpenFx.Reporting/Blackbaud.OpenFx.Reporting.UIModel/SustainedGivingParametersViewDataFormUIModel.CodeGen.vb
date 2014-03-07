@@ -12,7 +12,7 @@ Option Infer On
 ' </auto-generated>
 '------------------------------------------------------------------------------
 ''' <summary>
-''' Represents the UI model for the 'Missed Recurring Gifts Parameters View Data Form' data form
+''' Represents the UI model for the 'Sustained Giving Dashboard Parameters View Data Form' data form
 ''' </summary>
 <Global.Blackbaud.AppFx.UIModeling.Core.DataFormUIModelMetadata(Global.Blackbaud.AppFx.UIModeling.Core.DataFormMode.View, "f9240de4-1e56-4baf-b620-6552d10b6379", "d26508bf-789f-43b8-aff6-91517a2ae507", "")>
 Partial Public Class [SustainedGivingParametersViewDataFormUIModel]
@@ -69,7 +69,6 @@ Partial Public Class [SustainedGivingParametersViewDataFormUIModel]
         '
         _revenueamount.Name = "REVENUEAMOUNT"
         _revenueamount.Caption = "Revenue Amount"
-        _revenueamount.Visible = False
         _revenueamount.DBReadOnly = True
         Me.Fields.Add(_revenueamount)
         '

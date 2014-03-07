@@ -1,0 +1,29 @@
+﻿<UIWidgetSpec
+	xmlns="bb_appfx_uiwidget"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="17e00d05-b679-4d4e-8e7f-5bad0fdfe101" 
+	Name="Sustained Giving Top Donors Widget"
+	Description="REPLACE_WITH_DESCRIPTION." 
+	Author="Blackbaud Product Development"
+	Title="Sustained Giving Top Donors"
+	>
+    
+    <DataSource>
+        <DataList ID="1045aab1-4b17-423e-bc52-820f345458dd">
+            <RenderStyle>
+                <List>
+                  <LinkActions>
+                    <LinkAction LinkFieldID="FULLNAME">
+                      <ShowPage PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f">
+                        <ActionContext>
+                          <DataListField>ID</DataListField>
+                        </ActionContext>
+                      </ShowPage>
+                    </LinkAction>
+                  </LinkActions>
+                </List>
+            </RenderStyle>
+        </DataList>
+    </DataSource>
+	
+</UIWidgetSpec>

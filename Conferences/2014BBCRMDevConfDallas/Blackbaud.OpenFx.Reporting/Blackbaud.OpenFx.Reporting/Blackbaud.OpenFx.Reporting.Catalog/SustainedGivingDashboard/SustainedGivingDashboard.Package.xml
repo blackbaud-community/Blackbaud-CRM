@@ -2,8 +2,8 @@
     xmlns="bb_appfx_package"
     xmlns:common="bb_appfx_commontypes"
     ID="bb99c772-17e8-4163-9a5c-95e4bd342712"
-    Name="Missed Recurring Gifts Package"
-    Description="A package defining specs related to missed recurring gifts records"
+    Name="Sustained Giving Dashboard Package"
+    Description="A package defining specs related to the Sustained Giving Dashboard"
     Author="Blackbaud Product Development"
     >
 
@@ -58,16 +58,20 @@
 	
 	<common:DependencyList>
         <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.DelinquentDonors.Datalist.xml" />
-        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.UnpaidInstallments.Datalist.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.UnpaidInstallments.Datalist.xml" />
         <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGivingParameters.ViewForm.xml" />
-        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.UnpaidInstallments.Widget.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.UnpaidInstallments.Widget.xml" />
         <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGivingParameters.Widget.xml" />
-        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGivingSummary.ViewForm.xml" />
-        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGivingSummary.Widget.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.TopDonors.Datalist.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.TopDonors.Widget.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.NewDonors.Datalist.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.NewDonors.Widget.xml" />
         <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.RevenueChannel.Datalist.xml" />
         <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.RevenueChannel.Widget.xml" />
         <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.Upgrades.Datalist.xml" />
         <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGiving.Upgrades.Widget.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGivingRevenue.Datalist.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGivingRevenue.Widget.xml" />
         <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGivingDashboard.Page.xml" />
         <common:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.SustainedGivingDashbaord.Task.xml" />
     </common:DependencyList>

@@ -1,0 +1,27 @@
+﻿<UIWidgetSpec
+	xmlns="bb_appfx_uiwidget"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="6c7dd987-f534-4406-a62d-5f36dffbf45e" 
+	Name="Sustained Giving New Donors UI Widget"
+	Description="REPLACE_WITH_DESCRIPTION." 
+	Author="Blackbaud Product Development"
+	Title="Sustained Giving New Donors"
+	>
+    
+    <DataSource>
+        <DataList ID="578f555a-0692-46ce-993d-f3820c85c7de">
+            <RenderStyle>
+                <Chart CategoryFieldID="DATE" ChartType="Area">
+                    <ChartSeries>
+                        <Series Color="Violet" ValueFieldID="CONSTITUENTS">
+                            <ToolTip>
+                                <ShowValue />
+                            </ToolTip>
+                        </Series>
+                    </ChartSeries>
+                </Chart>
+            </RenderStyle>
+        </DataList>
+    </DataSource>
+
+</UIWidgetSpec>

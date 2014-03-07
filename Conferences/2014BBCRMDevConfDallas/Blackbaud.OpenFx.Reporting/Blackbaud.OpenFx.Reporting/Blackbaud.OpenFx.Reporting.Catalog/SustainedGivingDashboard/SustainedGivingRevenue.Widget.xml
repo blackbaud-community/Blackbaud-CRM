@@ -1,0 +1,27 @@
+﻿<UIWidgetSpec
+	xmlns="bb_appfx_uiwidget"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="73a917ec-1f89-448b-a639-e4dc4c50f907" 
+	Name="Sustained Giving Revenue UI Widget"
+	Description="REPLACE_WITH_DESCRIPTION." 
+	Author="Blackbaud Product Development"
+	Title="Sustained Giving Revenue"
+	>
+    
+    <DataSource>
+        <DataList ID="f6fd1d37-4e2f-4cc4-9cf0-c13926d0ee40">
+            <RenderStyle>
+                <Chart CategoryFieldID="DATEFIELD" ChartType="Bar">
+                    <ChartSeries>
+                        <Series Color="Green" ValueFieldID="AMOUNT">
+                            <ToolTip>
+                                <ShowValue />
+                            </ToolTip>
+                        </Series>
+                    </ChartSeries>
+                </Chart>
+            </RenderStyle>
+        </DataList>
+    </DataSource>
+
+</UIWidgetSpec>

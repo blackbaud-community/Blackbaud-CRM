@@ -107,9 +107,10 @@ and (@ENDDATE is null or ft.[FINANCIALTRANSACTIONDATE] < @ENDDATE)
     </WebUIComponent>
 
     <UIFields>
-			<FormField FieldID="STARTDATE" Caption="Start date" DataType="Date" />
-			<FormField FieldID="ENDDATE" Caption="End date" DataType="Date" />
+      <FormField FieldID="STARTDATE" Caption="Start date" DataType="Date" />
+      <FormField FieldID="ENDDATE" Caption="End date" DataType="Date" />
     </UIFields>
+    
 	</FormMetaData>
 
 </ViewDataFormTemplateSpec>

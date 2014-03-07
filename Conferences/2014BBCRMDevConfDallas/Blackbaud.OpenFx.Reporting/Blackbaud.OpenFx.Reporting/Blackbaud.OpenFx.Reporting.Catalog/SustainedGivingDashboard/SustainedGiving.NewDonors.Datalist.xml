@@ -1,0 +1,69 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="578f555a-0692-46ce-993d-f3820c85c7de" 
+	Name="Sustained Giving New Donors Data List"
+	Description="A data list showing sustained giving records." 
+	Author="Blackbaud Product Development"
+	c:SecurityUIFolder="Sustained Giving"
+  MartKey="BBDW"
+	>
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_SUSTAINEDGIVING_NEWDONORS" SPSchema="BBDW">
+		<c:CreateProcedureSQL>
+			<![CDATA[
+create procedure BBDW.USR_USP_DATALIST_SUSTAINEDGIVING_NEWDONORS
+(
+  @STARTDATE datetime = null, 
+  @ENDDATE datetime = null
+)
+as
+	set nocount on;
+
+select
+[DATE],
+count([CONSTITUENTDIMID]) as [CONSTITUENTS]
+from
+
+(select
+  ft.[CONSTITUENTDIMID],
+  min(ft.[FINANCIALTRANSACTIONDATE]) as [DATE]
+from BBDW.[FACT_INSTALLMENTPAYMENT] ip
+inner join BBDW.[FACT_FINANCIALTRANSACTION] ft on ip.[FINANCIALTRANSACTIONFACTID] = ft.[FINANCIALTRANSACTIONFACTID]
+where (@STARTDATE is null or ft.[FINANCIALTRANSACTIONDATE] > @STARTDATE)
+and (@ENDDATE is null or ft.[FINANCIALTRANSACTIONDATE] < @ENDDATE)
+group by ft.[CONSTITUENTDIMID]
+
+except
+
+select
+  ft.[CONSTITUENTDIMID],
+  '7/4/1776' as [DATE]
+from BBDW.[FACT_INSTALLMENTPAYMENT] ip
+inner join BBDW.[FACT_FINANCIALTRANSACTION] ft on ip.[FINANCIALTRANSACTIONFACTID] = ft.[FINANCIALTRANSACTIONFACTID]
+where (ft.[FINANCIALTRANSACTIONDATE] < @STARTDATE)
+) as [NEWDONORS]
+group by [DATE]
+			]]>
+		</c:CreateProcedureSQL>
+	</SPDataList>
+
+  <Parameters>
+    <c:FormMetaData>
+      <c:FormFields>
+        <c:FormField FieldID="STARTDATE" Caption="Start date" DataType="Date"/>
+        <c:FormField FieldID="ENDDATE" Caption="End date" DataType="Date"/>
+      </c:FormFields>
+    </c:FormMetaData>
+  </Parameters>
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="DATE" Caption="Date" DataType="Date" />
+			<OutputField FieldID="CONSTITUENTS" Caption="New donors" DataType="Integer" />
+		</OutputFields>
+	</Output>
+
+</DataListSpec>

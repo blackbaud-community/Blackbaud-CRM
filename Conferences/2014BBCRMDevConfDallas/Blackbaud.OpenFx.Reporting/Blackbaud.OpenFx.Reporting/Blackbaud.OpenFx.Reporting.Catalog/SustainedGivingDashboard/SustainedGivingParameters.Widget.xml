@@ -2,10 +2,10 @@
 	xmlns="bb_appfx_uiwidget"
 	xmlns:c="bb_appfx_commontypes" 
 	ID="a308db71-28fc-4baa-81f0-e1ef221c1599" 
-	Name="Missed Recurring Gifts Parameter UI Widget"
+	Name="Sustained Giving Dashboard Parameter UI Widget"
 	Description="REPLACE_WITH_DESCRIPTION." 
 	Author="Blackbaud Product Development"
-	Title="Missed Recurring Gifts"
+	Title="Sustained Giving Summary"
 	>
     
     <DataSource>
