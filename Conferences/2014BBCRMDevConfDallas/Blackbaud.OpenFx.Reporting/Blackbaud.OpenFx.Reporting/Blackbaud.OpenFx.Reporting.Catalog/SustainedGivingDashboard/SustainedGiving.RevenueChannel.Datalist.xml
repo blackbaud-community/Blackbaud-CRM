@@ -1,0 +1,54 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="b958d172-8cd7-4f3b-8fcc-bfdf5d9a1a27" 
+	Name="Sustained Giving Revenue Channel Data List"
+	Description="A data list showing sustained giving records." 
+	Author="Blackbaud Product Development"
+	c:SecurityUIFolder="Sustained Giving"
+  MartKey="BBDW"
+	>
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_SUSTAINEDGIVING_REVENUECHANNEL" SPSchema="BBDW">
+		<c:CreateProcedureSQL>
+			<![CDATA[
+create procedure BBDW.USR_USP_DATALIST_SUSTAINEDGIVING_REVENUECHANNEL
+(
+	@STARTDATE datetime,
+  @ENDDATE datetime
+)
+as
+	set nocount on;
+
+select
+  rc.[REVENUECHANNELDESCRIPTION] as [CHANNEL],
+  sum(ip.[INSTALLMENTPAYMENTAMOUNT]) as [TOTALREVENUE]
+from BBDW.[FACT_INSTALLMENTPAYMENT] ip
+inner join BBDW.[FACT_FINANCIALTRANSACTION] ft on ip.[FINANCIALTRANSACTIONFACTID] = ft.[FINANCIALTRANSACTIONFACTID]
+inner join BBDW.[DIM_REVENUECHANNEL] rc on ft.[REVENUECHANNELDIMID] = rc.[REVENUECHANNELDIMID]
+where (@STARTDATE is null or ft.[FINANCIALTRANSACTIONDATE] > @STARTDATE)
+and (@ENDDATE is null or ft.[FINANCIALTRANSACTIONDATE] < @ENDDATE)
+group by rc.[REVENUECHANNELDESCRIPTION]
+			]]>
+		</c:CreateProcedureSQL>
+	</SPDataList>
+
+  <Parameters>
+    <c:FormMetaData>
+      <c:FormFields>
+        <c:FormField FieldID="STARTDATE" Caption="Start date" DataType="Date"/>
+        <c:FormField FieldID="ENDDATE" Caption="End date" DataType="Date"/>
+      </c:FormFields>
+    </c:FormMetaData>
+  </Parameters>
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="CHANNEL" Caption="Channel" DataType="String" />
+			<OutputField FieldID="TOTALREVENUE" Caption="Revenue" DataType="Money" />
+		</OutputFields>
+	</Output>
+
+</DataListSpec>

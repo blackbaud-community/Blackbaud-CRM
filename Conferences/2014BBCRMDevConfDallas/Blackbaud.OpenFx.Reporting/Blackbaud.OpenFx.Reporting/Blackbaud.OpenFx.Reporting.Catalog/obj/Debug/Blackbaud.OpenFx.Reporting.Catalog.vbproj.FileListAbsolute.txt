@@ -1,0 +1,25 @@
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\Blackbaud.OpenFx.Reporting.Catalog.dll
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\Blackbaud.OpenFx.Reporting.Catalog.pdb
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\Blackbaud.OpenFx.Reporting.Catalog.dll.CodeAnalysisLog.xml
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\Blackbaud.OpenFx.Reporting.Catalog.dll.lastcodeanalysissucceeded
+c:\users\ronfr\documents\visual studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.Catalog\obj\Debug\Blackbaud.OpenFx.Reporting.Catalog.vbprojResolveAssemblyReference.cache
+c:\users\ronfr\documents\visual studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.Catalog\obj\Debug\Blackbaud.OpenFx.Reporting.Catalog.dll
+c:\users\ronfr\documents\visual studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.Catalog\obj\Debug\Blackbaud.OpenFx.Reporting.Catalog.pdb
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\custom\Blackbaud.OpenFx.Reporting.Catalog.dll
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\custom\Blackbaud.OpenFx.Reporting.Catalog.pdb
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\custom\Blackbaud.OpenFx.Reporting.Catalog.dll.CodeAnalysisLog.xml
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\custom\Blackbaud.OpenFx.Reporting.Catalog.dll.lastcodeanalysissucceeded
+C:\bin\Blackbaud.OpenFx.Reporting.Catalog.dll
+C:\bin\Blackbaud.OpenFx.Reporting.Catalog.pdb
+C:\Users\RonFr.000\Documents\Visual Studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.Catalog\obj\Debug\Blackbaud.OpenFx.Reporting.Catalog.vbprojResolveAssemblyReference.cache
+C:\Users\RonFr.000\Documents\Visual Studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.Catalog\obj\Debug\Blackbaud.OpenFx.Reporting.Catalog.dll
+C:\Users\RonFr.000\Documents\Visual Studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.Catalog\obj\Debug\Blackbaud.OpenFx.Reporting.Catalog.pdb
+C:\Dev\CRM_Integration\Blackbaud.AppFx.Server\Deploy\bin\custom\Blackbaud.OpenFx.Reporting.Catalog.dll
+C:\Dev\CRM_Integration\Blackbaud.AppFx.Server\Deploy\bin\custom\Blackbaud.OpenFx.Reporting.Catalog.pdb
+C:\Dev\CRM_Integration\Blackbaud.AppFx.Server\Deploy\bin\custom\Blackbaud.OpenFx.Reporting.Catalog.dll.CodeAnalysisLog.xml
+C:\Dev\CRM_Integration\Blackbaud.AppFx.Server\Deploy\bin\custom\Blackbaud.OpenFx.Reporting.Catalog.dll.lastcodeanalysissucceeded
+C:\Users\RonFr\bin\Blackbaud.OpenFx.Reporting.Catalog.dll
+C:\Users\RonFr\bin\Blackbaud.OpenFx.Reporting.Catalog.pdb
+C:\Users\RonFr\Documents\GitHub\Blackbaud-CRM\Conferences\2014BBCRMDevConfDallas\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.Catalog\obj\Debug\Blackbaud.OpenFx.Reporting.Catalog.vbprojResolveAssemblyReference.cache
+C:\Users\RonFr\Documents\GitHub\Blackbaud-CRM\Conferences\2014BBCRMDevConfDallas\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.Catalog\obj\Debug\Blackbaud.OpenFx.Reporting.Catalog.dll
+C:\Users\RonFr\Documents\GitHub\Blackbaud-CRM\Conferences\2014BBCRMDevConfDallas\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.Catalog\obj\Debug\Blackbaud.OpenFx.Reporting.Catalog.pdb

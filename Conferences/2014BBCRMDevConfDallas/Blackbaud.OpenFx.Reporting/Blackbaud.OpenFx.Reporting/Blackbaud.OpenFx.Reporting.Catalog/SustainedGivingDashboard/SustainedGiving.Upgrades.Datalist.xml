@@ -1,0 +1,82 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="897c0146-9cba-4e84-9990-47426b0d9d5c" 
+	Name="Sustained Giving Data List"
+	Description="A data list showing sustained giving records." 
+	Author="Blackbaud Product Development"
+	c:SecurityUIFolder="Sustained Giving"
+  MartKey="BBDW"
+	>
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_SUSTAINEDGIVINGUPGRADES" SPSchema="BBDW">
+		<c:CreateProcedureSQL>
+			<![CDATA[
+create procedure BBDW.USR_USP_DATALIST_SUSTAINEDGIVINGUPGRADES (@STARTDATE datetime = null, @ENDDATE datetime = null)
+
+as
+	set nocount on;
+
+with [FIRSTGIFTS] as 
+(select
+  ft.[CONSTITUENTDIMID],
+  ft.[AMOUNT],
+  ft.[FINANCIALTRANSACTIONDATE],
+  row_number() over (partition by [CONSTITUENTDIMID] order by ft.[FINANCIALTRANSACTIONDATE] asc) as [ROW]
+from BBDW.[FACT_INSTALLMENTPAYMENT] ip
+inner join BBDW.[FACT_FINANCIALTRANSACTION] ft on ip.[FINANCIALTRANSACTIONFACTID] = ft.[FINANCIALTRANSACTIONFACTID]
+where (@STARTDATE is null or ft.[FINANCIALTRANSACTIONDATE] > @STARTDATE)
+and (@ENDDATE is null or ft.[FINANCIALTRANSACTIONDATE] < @ENDDATE)
+
+),
+
+[LASTGIFTS] as 
+(select
+  ft.[CONSTITUENTDIMID],
+  ft.[AMOUNT],
+  ft.[FINANCIALTRANSACTIONDATE],
+  row_number() over (partition by [CONSTITUENTDIMID] order by ft.[FINANCIALTRANSACTIONDATE] desc) as [ROW]
+from BBDW.[FACT_INSTALLMENTPAYMENT] ip
+inner join BBDW.[FACT_FINANCIALTRANSACTION] ft on ip.[FINANCIALTRANSACTIONFACTID] = ft.[FINANCIALTRANSACTIONFACTID]
+where (@STARTDATE is null or ft.[FINANCIALTRANSACTIONDATE] > @STARTDATE)
+and (@ENDDATE is null or ft.[FINANCIALTRANSACTIONDATE] < @ENDDATE)
+)
+
+select
+  c.[CONSTITUENTSYSTEMID] as [ID],
+  c.[FULLNAME],
+  fg.[AMOUNT] as [ORIGINALAMOUNT],
+  lg.[AMOUNT] as [UPGRADEDAMOUNT]
+from [FIRSTGIFTS] fg
+inner join [LASTGIFTS] lg on fg.[CONSTITUENTDIMID] = lg.[CONSTITUENTDIMID]
+left join BBDW.[DIM_CONSTITUENT] c on c.[CONSTITUENTDIMID] = fg.[CONSTITUENTDIMID]
+where fg.[ROW] = 1 and lg.[ROW] = 1
+and fg.[FINANCIALTRANSACTIONDATE] <> lg.[FINANCIALTRANSACTIONDATE]
+and lg.[AMOUNT] > fg.[AMOUNT]
+
+			]]>
+		</c:CreateProcedureSQL>
+	</SPDataList>
+
+
+  <Parameters>
+    <c:FormMetaData>
+      <c:FormFields>
+        <c:FormField FieldID="STARTDATE" Caption="Start date" DataType="Date"/>
+        <c:FormField FieldID="ENDDATE" Caption="End date" DataType="Date"/>
+      </c:FormFields>
+    </c:FormMetaData>
+  </Parameters>
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+      <OutputField FieldID="ID" Caption="ID" DataType="Guid" IsHidden="true"/>
+			<OutputField FieldID="FULLNAME" Caption="Name" DataType="String" />
+			<OutputField FieldID="ORIGINALAMOUNT" Caption="Original amount" DataType="Money" />
+			<OutputField FieldID="UPGRADEDAMOUNT" Caption="Upgraded amount" DataType="Money" />
+		</OutputFields>
+	</Output>
+
+</DataListSpec>

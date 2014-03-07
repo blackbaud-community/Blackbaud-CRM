@@ -1,0 +1,31 @@
+﻿<UIWidgetSpec
+	xmlns="bb_appfx_uiwidget"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="a308db71-28fc-4baa-81f0-e1ef221c1599" 
+	Name="Missed Recurring Gifts Parameter UI Widget"
+	Description="REPLACE_WITH_DESCRIPTION." 
+	Author="Blackbaud Product Development"
+	Title="Missed Recurring Gifts"
+	>
+    
+    <DataSource>
+      <DataForm ID="d26508bf-789f-43b8-aff6-91517a2ae507">
+        <SettingsOptions>
+          <SettingsFields>
+            <SettingsField FieldID="DATETYPE"/>
+            <SettingsField FieldID="STARTDATE"/>
+            <SettingsField FieldID="ENDDATE"/>
+          </SettingsFields>
+          <SaveSettingsTriggers>
+            <TriggerFields>
+              <TriggerField FieldID="DATETYPE"/>
+              <TriggerField FieldID="STARTDATE"/>
+              <TriggerField FieldID="ENDDATE"/>
+            </TriggerFields>
+          </SaveSettingsTriggers>
+        </SettingsOptions>
+      </DataForm>
+	</DataSource>
+
+	
+</UIWidgetSpec>

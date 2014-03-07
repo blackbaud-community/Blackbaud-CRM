@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Blackbaud.OpenFx.Reporting.Catalog", "Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.Catalog\Blackbaud.OpenFx.Reporting.Catalog.vbproj", "{D033ED74-C664-495C-A9BC-EB6783F23579}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Blackbaud.OpenFx.Reporting.UIModel", "Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.UIModel\Blackbaud.OpenFx.Reporting.UIModel.vbproj", "{05A62E58-41C4-4D05-9EDC-4E5E83C0E52E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D033ED74-C664-495C-A9BC-EB6783F23579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D033ED74-C664-495C-A9BC-EB6783F23579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D033ED74-C664-495C-A9BC-EB6783F23579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D033ED74-C664-495C-A9BC-EB6783F23579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05A62E58-41C4-4D05-9EDC-4E5E83C0E52E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05A62E58-41C4-4D05-9EDC-4E5E83C0E52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05A62E58-41C4-4D05-9EDC-4E5E83C0E52E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05A62E58-41C4-4D05-9EDC-4E5E83C0E52E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,29 @@
+﻿<UIWidgetSpec
+	xmlns="bb_appfx_uiwidget"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="24fce34d-3a3d-4c3f-8391-c7e59bb64b6f" 
+	Name="Sustained Giving Upgrades UI Widget"
+	Description="REPLACE_WITH_DESCRIPTION." 
+	Author="Blackbaud Product Development"
+	Title="Sustained Giving Upgrades"
+	>
+    
+    <DataSource>
+        <DataList ID="897c0146-9cba-4e84-9990-47426b0d9d5c">
+            <RenderStyle>
+                <List>
+                    <LinkActions>
+                        <LinkAction LinkFieldID="FULLNAME">
+                            <ShowPage PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f">
+                                <ActionContext>
+                                    <DataListField>ID</DataListField>
+                                </ActionContext>
+                            </ShowPage>
+                        </LinkAction>
+                    </LinkActions>
+                </List>
+            </RenderStyle>
+        </DataList>
+    </DataSource>
+	
+</UIWidgetSpec>

@@ -1,0 +1,17 @@
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\Blackbaud.OpenFx.Reporting.UIModel.dll
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\Blackbaud.OpenFx.Reporting.UIModel.pdb
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\Blackbaud.OpenFx.Reporting.UIModel.dll.CodeAnalysisLog.xml
+C:\Dev\Firebird\Blackbaud.AppFx.Server\Deploy\bin\Blackbaud.OpenFx.Reporting.UIModel.dll.lastcodeanalysissucceeded
+c:\users\ronfr\documents\visual studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.UIModel\obj\Debug\Blackbaud.OpenFx.Reporting.UIModel.vbprojResolveAssemblyReference.cache
+c:\users\ronfr\documents\visual studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.UIModel\obj\Debug\Blackbaud.OpenFx.Reporting.UIModel.dll
+c:\users\ronfr\documents\visual studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.UIModel\obj\Debug\Blackbaud.OpenFx.Reporting.UIModel.pdb
+C:\Users\RonFr.000\Documents\Visual Studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.UIModel\obj\Debug\Blackbaud.OpenFx.Reporting.UIModel.vbprojResolveAssemblyReference.cache
+C:\Users\RonFr.000\Documents\Visual Studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.UIModel\obj\Debug\Blackbaud.OpenFx.Reporting.UIModel.dll
+C:\Users\RonFr.000\Documents\Visual Studio 2010\Projects\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.UIModel\obj\Debug\Blackbaud.OpenFx.Reporting.UIModel.pdb
+C:\bin\Blackbaud.OpenFx.Reporting.UIModel.dll
+C:\bin\Blackbaud.OpenFx.Reporting.UIModel.pdb
+C:\Users\RonFr\bin\Blackbaud.OpenFx.Reporting.UIModel.dll
+C:\Users\RonFr\bin\Blackbaud.OpenFx.Reporting.UIModel.pdb
+C:\Users\RonFr\Documents\GitHub\Blackbaud-CRM\Conferences\2014BBCRMDevConfDallas\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.UIModel\obj\Debug\Blackbaud.OpenFx.Reporting.UIModel.vbprojResolveAssemblyReference.cache
+C:\Users\RonFr\Documents\GitHub\Blackbaud-CRM\Conferences\2014BBCRMDevConfDallas\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.UIModel\obj\Debug\Blackbaud.OpenFx.Reporting.UIModel.dll
+C:\Users\RonFr\Documents\GitHub\Blackbaud-CRM\Conferences\2014BBCRMDevConfDallas\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting\Blackbaud.OpenFx.Reporting.UIModel\obj\Debug\Blackbaud.OpenFx.Reporting.UIModel.pdb

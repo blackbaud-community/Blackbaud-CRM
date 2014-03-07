@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>SustainedGivingParameters.ViewForm.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>SustainedGivingParametersViewDataFormUIModel</ClassName>
+  <HtmlInfo GenerateHtml="true">
+    <HtmlFile>SustainedGivingParametersViewDataForm.html</HtmlFile>
+    <HtmlFolder>htmlforms\custom\blackbaud.openfx.reporting\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

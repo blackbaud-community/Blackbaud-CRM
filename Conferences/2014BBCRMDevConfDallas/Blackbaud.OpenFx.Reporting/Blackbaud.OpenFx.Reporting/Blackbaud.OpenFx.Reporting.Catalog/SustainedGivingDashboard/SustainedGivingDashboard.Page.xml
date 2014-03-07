@@ -1,0 +1,132 @@
+﻿<PageDefinitionSpec 
+    xmlns="bb_appfx_pagedefinition" 
+    xmlns:common="bb_appfx_commontypes"
+    ID="d59f3522-2925-4820-96d6-1218d0c564ae"
+    Name="Sustained giving dashboard"
+    Description="A page for displaying information about sustained giving"
+    Author="Blackbaud Product Development"
+    >
+
+	<!-- Note:  A page can optionally have a view form associated with it as the "Expression form".  While implemented as a view data form,
+	this form has no UI in this context, and is simply used as a way of loading additional information associated with the page.  The fields
+	returned by the expression form can be used as expressions in various properties throughout the page.  To specify an expression form for this
+	page, add the following attribute:		ExpressionDataFormID="<some guid>"-->
+
+	<!-- define how the page header should appear -->
+	<PageHeader Caption="Sustained Giving Dashboard" ImageKey="catalog:Blackbaud.AppFx.Fundraising.Catalog.dll,Blackbaud.AppFx.Fundraising.Catalog.recurringgift.png" />
+
+  
+	<!-- define the tabs for the page - note that if only one tab is present, then that tab's sections are promoted to the page level (ie., the tab
+	itself isn't shown -->
+	<Tabs>
+		<Tab ID="a5a2b897-160d-4a1d-8dfc-e8ab23de898b" Caption="Tab caption">
+
+			<!-- define the sections for this tab -->
+			<Sections>
+        <Section ID="CCC8C85A-18F6-4F50-90BA-1092E3741548" HideCaption="true">
+          <UIWidget ID="a308db71-28fc-4baa-81f0-e1ef221c1599" AutoHeight="true"/>
+        </Section>
+        <Section ID="d53db723-57b4-4373-9f85-0c497a97130c" DisplayStyle="Inline" Caption="Sustained Giving Summary">
+          <UIWidget ID="4ab9828a-89e2-433b-ac1e-8bfdd6e55212" AutoHeight="true">
+            <ParameterSection ID="CCC8C85A-18F6-4F50-90BA-1092E3741548" HideOwnFilters="true">
+              <FieldMappings>
+                <FieldMapping>
+                  <ParameterField>STARTDATE</ParameterField>
+                  <DestinationField>STARTDATE</DestinationField>
+                </FieldMapping>
+                <FieldMapping>
+                  <ParameterField>ENDDATE</ParameterField>
+                  <DestinationField>ENDDATE</DestinationField>
+                </FieldMapping>
+              </FieldMappings>
+            </ParameterSection>
+          </UIWidget>
+        </Section>
+        <Section ID="A539F063-6800-4E2F-9661-D92EDD07FDC5" Caption="Value of Unpaid Installments" DisplayStyle="Inline">
+          <UIWidget ID="606ddd04-66ef-4474-b72b-417ff2946906">
+            <ParameterSection ID="CCC8C85A-18F6-4F50-90BA-1092E3741548" HideOwnFilters="true">
+              <FieldMappings>
+                <FieldMapping>
+                  <ParameterField>STARTDATE</ParameterField>
+                  <DestinationField>STARTDATE</DestinationField>
+                </FieldMapping>
+                <FieldMapping>
+                  <ParameterField>ENDDATE</ParameterField>
+                  <DestinationField>ENDDATE</DestinationField>
+                </FieldMapping>
+              </FieldMappings>
+            </ParameterSection>
+          </UIWidget>
+        </Section>
+        <Section ID="d9dfeedd-fc86-4d77-882f-d52837e91623" Caption="Revenue by Channel" DisplayStyle="Inline">
+          <UIWidget ID="61f1aaa1-d60e-404c-b6f7-51ebf95c68ce">
+            <ParameterSection ID="CCC8C85A-18F6-4F50-90BA-1092E3741548" HideOwnFilters="true">
+              <FieldMappings>
+                <FieldMapping>
+                  <ParameterField>STARTDATE</ParameterField>
+                  <DestinationField>STARTDATE</DestinationField>
+                </FieldMapping>
+                <FieldMapping>
+                  <ParameterField>ENDDATE</ParameterField>
+                  <DestinationField>ENDDATE</DestinationField>
+                </FieldMapping>
+              </FieldMappings>
+            </ParameterSection>
+          </UIWidget>
+        </Section>
+        <Section ID="6bfe202b-d915-4982-b72e-5fd1babf9f2f" Caption="Upgrades" DisplayStyle="Inline">
+          <UIWidget ID="24fce34d-3a3d-4c3f-8391-c7e59bb64b6f">
+            <ParameterSection ID="CCC8C85A-18F6-4F50-90BA-1092E3741548" HideOwnFilters="true">
+              <FieldMappings>
+                <FieldMapping>
+                  <ParameterField>STARTDATE</ParameterField>
+                  <DestinationField>STARTDATE</DestinationField>
+                </FieldMapping>
+                <FieldMapping>
+                  <ParameterField>ENDDATE</ParameterField>
+                  <DestinationField>ENDDATE</DestinationField>
+                </FieldMapping>
+              </FieldMappings>
+            </ParameterSection>
+          </UIWidget>
+        </Section>
+        <Section ID="0FB603F5-B7CD-4BB4-8187-02CCF343C19A" Caption="Top Delinquent Donors">
+          <DataList ID="d6f1ca6f-d2e9-475f-b234-e0fe67360ab4">
+            <RenderStyle>
+              <StandardView/>
+            </RenderStyle>
+            <ParameterSection ID="CCC8C85A-18F6-4F50-90BA-1092E3741548" HideOwnFilters="true">
+              <FieldMappings>
+                <FieldMapping>
+                  <ParameterField>STARTDATE</ParameterField>
+                  <DestinationField>STARTDATE</DestinationField>
+                </FieldMapping>
+                <FieldMapping>
+                  <ParameterField>ENDDATE</ParameterField>
+                  <DestinationField>ENDDATE</DestinationField>
+                </FieldMapping>
+              </FieldMappings>
+            </ParameterSection>
+          </DataList>
+          <Actions>
+            <Action ID="9F553E54-F030-44A2-A5A2-C82A67AD783F" Caption="Go to constituent" LinkFieldID="FULLNAME" DefaultAction="true">
+              <common:ShowPage PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f">
+                <common:ActionContext>
+                  <common:SectionField>CONSTITUENTSYSTEMID</common:SectionField>
+                </common:ActionContext>
+              </common:ShowPage>
+            </Action>
+            <Action ID="F7690C8B-CC64-4F0A-899F-67BA6ADD3E0B" Caption="Go to revenue" LinkFieldID="FINANCIALTRANSACTIONDATE" DefaultAction="true">
+              <common:ShowPage PageID="387f861b-6c03-486c-9ff5-9cc5bb7a5275">
+                <common:ActionContext>
+                  <common:SectionField>FINANCIALTRANSACTIONSYSTEMID</common:SectionField>
+                </common:ActionContext>
+              </common:ShowPage>
+            </Action>
+          </Actions>
+        </Section>
+			</Sections>
+		</Tab>
+	</Tabs>
+
+</PageDefinitionSpec>

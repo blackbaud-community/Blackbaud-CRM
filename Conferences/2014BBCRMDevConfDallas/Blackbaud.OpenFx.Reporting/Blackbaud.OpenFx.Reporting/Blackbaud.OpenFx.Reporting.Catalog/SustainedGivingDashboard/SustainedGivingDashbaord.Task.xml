@@ -1,0 +1,17 @@
+﻿<TaskSpec
+	xmlns="bb_appfx_task"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="14a6aa45-bd98-4a6c-985e-fb9bdd3f5cbb"
+	Name="Sustained giving dashboard"
+	Description="Demo page with some dashboardy stuff"
+	Author="Blackbaud Product Development"
+	FunctionalAreaID="60D6FD25-1110-430E-A739-4C4062325758"
+	Sequence="50"
+	ImageKey="catalog:Blackbaud.AppFx.Fundraising.Catalog.dll,Blackbaud.AppFx.Fundraising.Catalog.recurringgift.png"
+  TaskGroup="Developer Conference Demo"
+	>
+
+	<!-- indicate what this task should do (navigate to a page, show a form, etc. -->
+	<common:ShowPage PageID="d59f3522-2925-4820-96d6-1218d0c564ae"/>
+
+</TaskSpec>

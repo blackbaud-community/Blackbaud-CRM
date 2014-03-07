@@ -1,0 +1,27 @@
+﻿<UIWidgetSpec
+	xmlns="bb_appfx_uiwidget"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="61f1aaa1-d60e-404c-b6f7-51ebf95c68ce" 
+	Name="Sustained Giving Revenue Channel UI Widget"
+	Description="REPLACE_WITH_DESCRIPTION." 
+	Author="Blackbaud Product Development"
+	Title="Sustained Giving by Revenue Channel"
+	>
+    
+    <DataSource>
+        <DataList ID="b958d172-8cd7-4f3b-8fcc-bfdf5d9a1a27">
+            <RenderStyle>
+                <Chart CategoryFieldID="CHANNEL" ChartType="Pie" ShowLegend="true">
+                    <ChartSeries>
+                        <Series Color="Blue" ValueFieldID="TOTALREVENUE">
+                            <ToolTip>
+                                <ShowValue />
+                            </ToolTip>
+                        </Series>
+                    </ChartSeries>
+                </Chart>
+            </RenderStyle>
+        </DataList>
+    </DataSource>
+
+</UIWidgetSpec>

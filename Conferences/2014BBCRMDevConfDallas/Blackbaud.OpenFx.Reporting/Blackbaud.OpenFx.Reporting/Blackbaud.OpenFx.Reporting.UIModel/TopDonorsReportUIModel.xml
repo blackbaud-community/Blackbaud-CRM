@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>TopDonorsReport.Report.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>TopDonorsReportUIModel</ClassName>
+  <HtmlInfo GenerateHtml="true">
+    <HtmlFile>TopDonorsReport.html</HtmlFile>
+    <HtmlFolder>htmlforms\custom\blackbaud.openfx.reporting\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

@@ -1,0 +1,78 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="d6f1ca6f-d2e9-475f-b234-e0fe67360ab4" 
+	Name="Top Delinquent Recurring Gifts Data List"
+	Description="A data list showing top delinquent recurring gifts records." 
+	Author="Blackbaud Product Development"
+	c:SecurityUIFolder="Top Delinquent Recurring Gifts"
+  MartKey="BBDW"
+	>
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_TOPDELINQUENTRECURRINGGIFTS" SPSchema="BBDW">
+		<c:CreateProcedureSQL>
+			<![CDATA[
+create procedure BBDW.[USR_USP_DATALIST_TOPDELINQUENTRECURRINGGIFTS]
+(
+	@STARTDATE datetime,
+  @ENDDATE datetime
+)
+as
+	set nocount on;
+
+select
+  c.[CONSTITUENTSYSTEMID],
+  c.[FULLNAME],
+  rs.[FREQUENCY],
+  ft.[FINANCIALTRANSACTIONSYSTEMID],
+  ft.[FINANCIALTRANSACTIONDATE],
+  count(rgi.[RECURRINGGIFTINSTALLMENTFACTID]) as [NUMBEROFMISSEDINSTALLMENTS],
+  sum(rgi.[RECURRINGGIFTINSTALLMENTAMOUNT]) as [TOTALMISSEDINSTALLMENTAMOUNT]
+from BBDW.[FACT_RECURRINGGIFTINSTALLMENT] rgi
+inner join BBDW.[DIM_REVENUESCHEDULE] rs on rgi.[REVENUESCHEDULEDIMID] = rs.[REVENUESCHEDULEDIMID]
+inner join BBDW.[DIM_DATE] d on rgi.[RECURRINGGIFTINSTALLMENTDATEDIMID] = d.[DATEDIMID] 
+inner join BBDW.[FACT_FINANCIALTRANSACTION] ft on rgi.[FINANCIALTRANSACTIONFACTID] = ft.[FINANCIALTRANSACTIONFACTID]
+inner join BBDW.[DIM_CONSTITUENT] c on ft.[CONSTITUENTDIMID] = c.[CONSTITUENTDIMID]
+
+where rgi.[ISMISSEDINSTALLMENT] = 1
+and (@STARTDATE is null or rgi.[RECURRINGGIFTINSTALLMENTDATE] > @STARTDATE)
+and (@ENDDATE is null or rgi.[RECURRINGGIFTINSTALLMENTDATE] < @ENDDATE)
+
+group by
+  c.[CONSTITUENTSYSTEMID],
+  c.[FULLNAME],
+  rs.[FREQUENCY],
+  ft.[FINANCIALTRANSACTIONSYSTEMID],
+  ft.[FINANCIALTRANSACTIONDATE]
+
+order by 
+  sum(rgi.[RECURRINGGIFTINSTALLMENTAMOUNT]) desc,
+  count(rgi.[RECURRINGGIFTINSTALLMENTFACTID]) desc
+			]]>
+		</c:CreateProcedureSQL>
+	</SPDataList>
+
+  <Parameters>
+    <c:FormMetaData>
+      <c:FormFields>
+        <c:FormField FieldID="STARTDATE" Caption="Start date" DataType="Date"/>
+        <c:FormField FieldID="ENDDATE" Caption="End date" DataType="Date"/>
+      </c:FormFields>
+    </c:FormMetaData>
+  </Parameters>
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="CONSTITUENTSYSTEMID" Caption="Constituent ID" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="FULLNAME" Caption="Name" DataType="String" />
+			<OutputField FieldID="FREQUENCY" Caption="Frequency" DataType="String" />
+			<OutputField FieldID="FINANCIALTRANSACTIONSYSTEMID" Caption="Financial transaction ID" DataType="Guid" IsHidden="true"/>
+			<OutputField FieldID="FINANCIALTRANSACTIONDATE" Caption="Recurring gift date" DataType="Date" />
+			<OutputField FieldID="NUMBEROFMISSEDINSTALLMENTS" Caption="Number of missed installments" DataType="Integer" />
+			<OutputField FieldID="TOTALMISSEDINSTALLMENTAMOUNT" Caption="Total value of missed installments" DataType="Money" />
+		</OutputFields>
+	</Output>
+
+</DataListSpec>

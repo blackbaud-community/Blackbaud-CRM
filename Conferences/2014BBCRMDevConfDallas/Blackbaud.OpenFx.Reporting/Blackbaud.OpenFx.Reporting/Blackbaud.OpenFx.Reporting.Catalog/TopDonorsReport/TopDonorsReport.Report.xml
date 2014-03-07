@@ -1,0 +1,107 @@
+﻿<ReportSpec 
+    xmlns="bb_appfx_report"
+    xmlns:c="bb_appfx_commontypes"
+    ID="e35bf73a-283b-4f38-8798-4c15a2588524"
+    Name="Top Donors Report"
+    Description="A report showing the top donors"
+    Author="Blackbaud Product Development"
+    MartKey="BBDW"
+    >
+
+	<RDLFileName>TopDonorsReport.rdl</RDLFileName>
+	<Folder>Custom Reports/Fundraising</Folder>
+	
+	<DataRetrieval>
+		<CreateSQL ObjectName="BBDW.USR_USP_REPORT_TOPDONORSREPORT" ObjectType="SQLStoredProc">
+			<![CDATA[
+create procedure BBDW.[USR_USP_REPORT_TOPDONORSREPORT]
+(
+  @STARTDATE datetime,
+  @ENDDATE datetime
+)
+as
+
+  select
+    c.[FULLNAME],
+    c.[CONSTITUENTLOOKUPID],
+    c.[PRIMARYADDRESS],
+    c.[PRIMARYADDRESSCITY],
+    c.[PRIMARYADDRESSSTATEABBREVIATION],
+    c.[PRIMARYADDRESSPOSTCODE],
+    'http://www.blackbaud.com/CONSTITUENTID?CONSTITUENTID=' + CONVERT(nvarchar(36), c.[CONSTITUENTSYSTEMID]) as [CONSTITUENTDRILLTHROUGH],
+    isnull(sum(r.[REVENUEAPPLICATIONAMOUNT]), 0) as [TOTALREVENUEAMOUNT]
+  from BBDW.[DIM_CONSTITUENT] c
+  left join BBDW.[FACT_REVENUE] r on c.[CONSTITUENTDIMID] = r.[CONSTITUENTDIMID]
+  where (@STARTDATE is null or r.[REVENUEDATE] > @STARTDATE)
+  and (@ENDDATE is null or r.[REVENUEDATE] < @ENDDATE)
+  group by
+  c.[FULLNAME],
+  c.[CONSTITUENTLOOKUPID],
+  c.[CONSTITUENTSYSTEMID],
+  c.[PRIMARYADDRESS],
+  c.[PRIMARYADDRESSCITY],
+  c.[PRIMARYADDRESSSTATEABBREVIATION],
+  c.[PRIMARYADDRESSPOSTCODE]
+  order by sum(r.[REVENUEAPPLICATIONAMOUNT]) desc
+			]]>
+		</CreateSQL>
+	</DataRetrieval>
+
+  <c:FormMetaData>
+    <c:FormFields>
+      <c:FormField FieldID="STARTDATE" Caption="Start Date" DataType="Date" />
+      <c:FormField FieldID="ENDDATE" Caption="End Date" DataType="Date" />
+      <c:FormField FieldID="DATETYPE" Caption="Date" DataType="TinyInt" Required="true" DefaultValueText="1">
+        <c:ValueList>
+          <c:Items>
+            <c:Item>
+              <c:Value>0</c:Value>
+              <c:Label>Specific Date</c:Label>
+            </c:Item>
+            <c:Item>
+              <c:Value>1</c:Value>
+              <c:Label>All Dates</c:Label>
+            </c:Item>
+            <c:Item>
+              <c:Value>7</c:Value>
+              <c:Label>This Year</c:Label>
+            </c:Item>
+            <c:Item>
+              <c:Value>13</c:Value>
+              <c:Label>Last Year</c:Label>
+            </c:Item>
+            <c:Item>
+              <c:Value>12</c:Value>
+              <c:Label>Last Month</c:Label>
+            </c:Item>
+            <c:Item>
+              <c:Value>6</c:Value>
+              <c:Label>This Month</c:Label>
+            </c:Item>
+            <c:Item>
+              <c:Value>45</c:Value>
+              <c:Label>Last Quarter</c:Label>
+            </c:Item>
+            <c:Item>
+              <c:Value>43</c:Value>
+              <c:Label>This Quarter</c:Label>
+            </c:Item>
+          </c:Items>
+        </c:ValueList>
+      </c:FormField>
+
+    </c:FormFields>
+
+        <c:WebUIComponent>
+            <c:UIModel AssemblyName="Blackbaud.OpenFx.Reporting.UIModel.dll" ClassName="Blackbaud.OpenFx.Reporting.UIModel.TopDonorsReportUIModel" />
+            <c:WebUI>
+                <c:ExternalResource Url="browser/htmlforms/custom/blackbaud.openfx.reporting/TopDonorsReport.html" />
+            </c:WebUI>
+        </c:WebUIComponent>
+  </c:FormMetaData>	
+
+  <DataSource>
+    <DataSourceRelativePath>Blackbaud OLAP Reports/Blackbaud OLAP SQL data source</DataSourceRelativePath>
+  </DataSource>
+
+</ReportSpec>

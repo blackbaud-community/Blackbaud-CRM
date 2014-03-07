@@ -1,0 +1,17 @@
+﻿<TaskSpec
+	xmlns="bb_appfx_task"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="42017e45-123a-468e-ac6a-46be2852320e"
+	Name="Top donors report"
+	Description="Displays a report listing top donors"
+	Author="Blackbaud Product Development"
+	FunctionalAreaID="60d6fd25-1110-430e-a739-4c4062325758"
+	Sequence="115"
+	ImageKey="RES:reportspec"
+  TaskGroup="Developer Conference Demo"
+	>
+
+	<!-- indicate what this task should do (navigate to a page, show a form, etc. -->
+	<c:ShowPage PageID="1707b7eb-b3df-47af-90f4-4372513e4b41" />
+
+</TaskSpec>

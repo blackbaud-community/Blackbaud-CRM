@@ -1,0 +1,65 @@
+<PackageSpec 
+    xmlns="bb_appfx_package"
+    xmlns:c="bb_appfx_commontypes"
+    ID="aa873379-7d14-41bf-8dde-fbad93b54108"
+    Name="Top Donors Report Package"
+    Description="A package defining specs related to top donors report records"
+    Author="Blackbaud Product Development"
+    >
+
+	<!-- Note:  the order of the items listed here is important.  For example, you won't be able to load a data form that references 
+	a table that hasn't been loaded, etc.  In general, the following order is recommended:
+	
+		(functions and procedures first)
+		SQLFunctionSpec
+		SQLStoredProcedureSpec
+		TranslationFunctionSpec
+
+		(tables next)
+		CodeTableSpec
+		TableSpec
+		SQLViewSpec
+
+		(features next)
+		SimpleDataListSpec		
+		SearchListSpec
+		RecordOperationSpec
+		DataListSpec
+		
+		(forms next)
+		AddDataFormTemplateSpec
+		EditDataFormTemplateSpec
+		ViewDataFormTemplateSpec		
+
+		(more feature types)
+		BatchTypeSpec
+		BusinessProcessSpec
+		CalendarSpec
+		FlashDashSpec
+		GlobalChangeSpec
+		IDMapperSpec
+		KpiSpec
+		MapEntitySpec
+		MergeConfiguration
+		MergeTaskSpec
+		QueryViewSpec
+		ReportSpec
+		RelationshipMapSpec
+		SmartFieldSpec
+		SmartQuerySpec
+		WorkflowInboxSpec
+		WorkflowSpec
+		
+		(functional areas, pages, and tasks last)
+		PageDefinitionSpec
+		FunctionalAreaSpec
+		TaskSpec	
+	-->
+	
+	<c:DependencyList>
+        <c:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.TopDonorsReport.Report.xml" />
+        <c:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.TopDonorsReport.Page.xml" />
+        <c:Dependency CatalogAssembly="Blackbaud.OpenFx.Reporting.Catalog.dll" CatalogItem="Blackbaud.OpenFx.Reporting.Catalog.TopDonorsReport.Task.xml" />
+    </c:DependencyList>
+
+</PackageSpec>

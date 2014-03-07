@@ -1,0 +1,55 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="f6fd1d37-4e2f-4cc4-9cf0-c13926d0ee40" 
+	Name="Sustained Giving Revenue Data List"
+	Description="A data list showing sustained giving revenue records." 
+	Author="Blackbaud Product Development"
+	c:SecurityUIFolder="Sustained Giving Dashboard"
+  MartKey="BBDW"
+	>
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_SUSTAINEDGIVINGREVENUE" SPSchema="BBDW">
+		<c:CreateProcedureSQL>
+			<![CDATA[
+create procedure BBDW.USR_USP_DATALIST_SUSTAINEDGIVINGREVENUE
+(
+	@CONTEXTID uniqueidentifier
+)
+as
+	set nocount on;
+
+	select ID,
+		   FIELD1,
+		   FIELD2,
+		   FIELD3
+	from dbo.TABLE1
+	where CONTEXTID = @CONTEXTID
+			]]>
+		</c:CreateProcedureSQL>
+	</SPDataList>
+
+	<!-- describe the context ID parameter for the SP (if applicable)-->
+	<Context ContextRecordType="REPLACE_WITH_RECORDTYPE" RecordIDParameter="CONTEXTID"/>
+
+	<!-- describe any parameters (other than the context ID) defined on the SP
+	<Parameters>
+		<FormMetaData xmlns="bb_appfx_commontypes">
+			<FormFields>
+				<FormField FieldID="PARAMETER1" Caption="Paramter1" DataType="REPLACE_WITH_DATATYPE"/>
+			</FormFields>
+		</FormMetaData>
+	</Parameters>-->
+
+	<!-- define the output fields in the list -->
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="ID" Caption="ID" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="FIELD1" Caption="REPLACE_WITH_CAPTION" DataType="REPLACE_WITH_DATATYPE" />
+			<OutputField FieldID="FIELD2" Caption="REPLACE_WITH_CAPTION" DataType="REPLACE_WITH_DATATYPE" />
+			<OutputField FieldID="FIELD3" Caption="REPLACE_WITH_CAPTION" DataType="REPLACE_WITH_DATATYPE" />
+		</OutputFields>
+	</Output>
+
+</DataListSpec>

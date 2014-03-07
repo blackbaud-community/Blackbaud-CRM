@@ -1,0 +1,116 @@
+﻿<DataListSpec 
+	xmlns="bb_appfx_datalist"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="de6c6bd6-3060-4b64-91b9-bba56ceda34f" 
+	Name="Missed Recurring Gifts Data List"
+	Description="A data list showing missed recurring gifts." 
+	Author="Blackbaud Product Development"
+	common:SecurityUIFolder="Missed Recurring Gifts"
+  MartKey="BBDW"
+	>
+
+	<!-- define the SP that returns the data for the datalist -->
+	<SPDataList SPName="USR_USP_DATALIST_UNPAIDINSTALLMENTS" SPSchema="BBDW">
+		<common:CreateProcedureSQL>
+			<![CDATA[
+create procedure BBDW.[USR_USP_DATALIST_UNPAIDINSTALLMENTS] (@STARTDATE datetime = null, @ENDDATE datetime = null)
+
+as
+	set nocount on;
+
+declare @DATERANGE int
+set @DATERANGE = datediff(d,@STARTDATE, @ENDDATE);
+
+if @DATERANGE > 700 or @DATERANGE is null
+
+--Do Year
+  begin
+
+    select
+      d.[CALENDARYEAR] as [DATEFIELD],
+      sum(rgi.[RECURRINGGIFTINSTALLMENTAMOUNT]) as [AMOUNT]
+    from BBDW.[FACT_RECURRINGGIFTINSTALLMENT] rgi
+    inner join BBDW.[DIM_DATE] d on rgi.[RECURRINGGIFTINSTALLMENTDATEDIMID] = d.[DATEDIMID]
+    where rgi.[ISMISSEDINSTALLMENT] = 1
+    and (@STARTDATE is null or rgi.[RECURRINGGIFTINSTALLMENTDATE] > @STARTDATE)
+    and (@ENDDATE is null or rgi.[RECURRINGGIFTINSTALLMENTDATE] < @ENDDATE)
+    group by d.[CALENDARYEAR]
+    order by d.[CALENDARYEAR];
+
+  end
+
+if @DATERANGE between 200 and 700
+
+--Do Month
+  begin
+
+    select
+      d.[CALENDARMONTHYEARNAME] as [DATEFIELD],
+      sum(rgi.[RECURRINGGIFTINSTALLMENTAMOUNT]) as [AMOUNT]
+    from BBDW.[FACT_RECURRINGGIFTINSTALLMENT] rgi
+    inner join BBDW.[DIM_DATE] d on rgi.[RECURRINGGIFTINSTALLMENTDATEDIMID] = d.[DATEDIMID]
+    where rgi.[ISMISSEDINSTALLMENT] = 1
+    and (@STARTDATE is null or rgi.[RECURRINGGIFTINSTALLMENTDATE] > @STARTDATE)
+    and (@ENDDATE is null or rgi.[RECURRINGGIFTINSTALLMENTDATE] < @ENDDATE)
+    group by d.[CALENDARMONTHYEARNAME], d.[CALENDARYEARMONTH]
+    order by d.[CALENDARYEARMONTH];
+
+  end
+
+
+if @DATERANGE between 32 and 200
+
+--Do Week
+  begin
+
+    select
+      d.[CALENDARWEEKYEARNAME] as [DATEFIELD],
+      sum(rgi.[RECURRINGGIFTINSTALLMENTAMOUNT]) as [AMOUNT]
+    from BBDW.[FACT_RECURRINGGIFTINSTALLMENT] rgi
+    inner join BBDW.[DIM_DATE] d on rgi.[RECURRINGGIFTINSTALLMENTDATEDIMID] = d.[DATEDIMID]
+    where rgi.[ISMISSEDINSTALLMENT] = 1
+    and (@STARTDATE is null or rgi.[RECURRINGGIFTINSTALLMENTDATE] > @STARTDATE)
+    and (@ENDDATE is null or rgi.[RECURRINGGIFTINSTALLMENTDATE] < @ENDDATE)
+    group by d.[CALENDARYEAR], d.[CALENDARWEEK], d.[CALENDARWEEKYEARNAME]
+    order by d.[CALENDARYEAR], d.[CALENDARWEEK];
+
+  end
+
+if @DATERANGE < 32
+
+--Do Day
+  begin
+
+    select
+      d.[ACTUALDATESTRINGMDY] as [DATEFIELD],
+      sum(rgi.[RECURRINGGIFTINSTALLMENTAMOUNT]) as [AMOUNT]
+    from BBDW.[FACT_RECURRINGGIFTINSTALLMENT] rgi
+    inner join BBDW.[DIM_DATE] d on rgi.[RECURRINGGIFTINSTALLMENTDATEDIMID] = d.[DATEDIMID]
+    where rgi.[ISMISSEDINSTALLMENT] = 1
+    and (@STARTDATE is null or rgi.[RECURRINGGIFTINSTALLMENTDATE] > @STARTDATE)
+    and (@ENDDATE is null or rgi.[RECURRINGGIFTINSTALLMENTDATE] < @ENDDATE)
+    group by d.[ACTUALDATESTRINGMDY], d.[ACTUALDATE]
+    order by d.[ACTUALDATE];
+
+  end
+			]]>
+		</common:CreateProcedureSQL>
+	</SPDataList>
+
+  <Parameters>
+    <common:FormMetaData>
+      <common:FormFields>
+        <common:FormField FieldID="STARTDATE" Caption="Start date" DataType="Date"/>
+        <common:FormField FieldID="ENDDATE" Caption="End date" DataType="Date"/>
+      </common:FormFields>
+    </common:FormMetaData>
+  </Parameters>
+
+	<Output>
+		<OutputFields>
+			<OutputField FieldID="DATEFIELD" Caption="Date field" DataType="String" />
+      <OutputField FieldID="AMOUNT" Caption="Total Missed Payments" DataType="Money" />
+    </OutputFields>
+	</Output>
+
+</DataListSpec>

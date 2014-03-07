@@ -1,0 +1,44 @@
+﻿<PageDefinitionSpec 
+    xmlns="bb_appfx_pagedefinition" 
+    xmlns:c="bb_appfx_commontypes"
+    ID="1707b7eb-b3df-47af-90f4-4372513e4b41"
+    Name="Top Donors Report Page"
+    Description="A page for displaying information about top donors report records"
+    Author="Blackbaud Product Development"
+    >
+
+	<!-- Note:  A page can optionally have a view form associated with it as the "Expression form".  While implemented as a view data form,
+	this form has no UI in this context, and is simply used as a way of loading additional information associated with the page.  The fields
+	returned by the expression form can be used as expressions in various properties throughout the page.  To specify an expression form for this
+	page, add the following attribute:		ExpressionDataFormID="<some guid>"-->
+
+	<!-- define how the page header should appear -->
+	<PageHeader Caption="Top Donors Report" ImageKey="REPLACE_WITH_IMAGEKEY" />
+
+	<!-- define the tabs for the page - note that if only one tab is present, then that tab's sections are promoted to the page level (ie., the tab
+	itself isn't shown -->
+	<Tabs>
+		<Tab ID="ad961b6f-d80c-4667-81f5-b4322ae4428c" Caption="Tab caption">
+
+			<!-- define the sections for this tab -->
+			<Sections>
+				<Section ID="099df458-72e9-4e34-a450-1af106cfc199" Caption="Section caption">
+          <Report ID="e35bf73a-283b-4f38-8798-4c15a2588524" AutoLoad="false"/>
+
+					<!-- define the section-level actions -->
+					<Actions>
+						<Action ID="bed4b118-6270-4946-b8b4-a77891bb146c" Caption="" LinkFieldID="CONSTITUENTID">
+              <c:ShowPage PageID="88159265-2b7e-4c7b-82a2-119d01ecd40f" TabID="00000000-0000-0000-0000-000000000000">
+                <c:ActionContext>
+                  <c:SectionField>CONSTITUENTID</c:SectionField>
+                </c:ActionContext>
+              </c:ShowPage>
+						</Action>
+					</Actions>
+					
+				</Section>
+			</Sections>
+		</Tab>
+	</Tabs>
+
+</PageDefinitionSpec>

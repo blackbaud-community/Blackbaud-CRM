@@ -1,0 +1,35 @@
+﻿<UIWidgetSpec
+	xmlns="bb_appfx_uiwidget"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="606ddd04-66ef-4474-b72b-417ff2946906" 
+	Name="Unpaid installments UI Widget"
+	Description="Displays a summary of unpaid installments by date" 
+	Author="Blackbaud Product Development"
+	Title="Unpad installments"
+	>
+    
+    <DataSource>
+        <DataList ID="de6c6bd6-3060-4b64-91b9-bba56ceda34f">
+            <RenderStyle ShowFilters="true">
+                <Chart CategoryFieldID="DATEFIELD" ChartType="Line" ShowLegend="false">
+                    <ChartSeries>
+                        <Series Color="Blue" ValueFieldID="AMOUNT">
+                            <ToolTip>
+                                <ShowValue />
+                            </ToolTip>
+                        </Series>
+                    </ChartSeries>
+                </Chart>
+            </RenderStyle>
+          <FilterOptions>
+            <ReloadTriggers>
+              <TriggerFields>
+                <TriggerField FieldID="STARTDATE"/>
+                <TriggerField FieldID="ENDDATE"/>
+              </TriggerFields>
+            </ReloadTriggers>
+          </FilterOptions>
+        </DataList>
+    </DataSource>
+
+</UIWidgetSpec>
