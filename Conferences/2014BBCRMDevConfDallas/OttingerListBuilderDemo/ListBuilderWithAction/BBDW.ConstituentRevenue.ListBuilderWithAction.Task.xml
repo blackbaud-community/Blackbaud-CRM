@@ -2,7 +2,7 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     ID="2505e900-f6ae-4e4c-bed3-5a5ce187388f"
-    Name="Open Constituent Revenue List Builder Page"
+    Name="Constituent Rev LB with Action (BBDW) (Custom) Task"
     Description="Open Constituent Revenue List Builder Page (Custom)"
     Author="BLACKBAUD\TripOt"
     FunctionalAreaID="00050ce8-8abb-4a86-b9af-70a035ce0582"

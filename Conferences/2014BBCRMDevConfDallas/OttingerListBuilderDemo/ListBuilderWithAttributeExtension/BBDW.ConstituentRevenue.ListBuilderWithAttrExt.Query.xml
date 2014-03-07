@@ -1,54 +1,83 @@
 ﻿<QueryViewSpec
 	xmlns="bb_appfx_queryview"
 	xmlns:common="bb_appfx_commontypes" 
-	ID="3f5cf088-fb7a-4026-b3af-2512298bb62a"
-	Name="DW List Builder Query"
-	Description="A view defined for querying on d w list builder records"
+	ID="E14FA933-558E-41C1-B644-8DFE0483CCBA"
+	Name="Constituent Rev LB with Attr Ext (BBDW) (Custom)"
+	Description="Constituent Revenue List Builder with Attr Ext (BBDW) (Custom)"
 	Author="Technical Training"
 	RecordType="CONSTITUENT"
 	common:SecurityUIFolder="Constituent\Query"
   MartKey="BBDW"
+  IsRoot="false"
+  PrimaryKeyField="CONSTITUENTSYSTEMID"
+  EnforceRecordAccessSecurity="true"
+  AllowAttributeExtension="true"
 	>
 
-  <TVFImplementation FunctionName="USR_UFN_CONSTITUENTREVENUE_DWLISTBUILDER1">
+  <!--
+  Attribute Extensibility (*Code Table Attributes Only*)
+  There are a few pieces that need to be set up for this to work:
+    
+  1. The spec should have AllowAttributeExtension=”true”
+  2. The spec should have an <Extensibility> element defined that specifies the table name to join to, 
+      the record type and the join field
+  3. The SQL should contain a /*#EXTENSION*/ comment where the subquery for 
+      the extension will be appended to the SQL
+  4. You must have some Attribute Categories defined in the BB CRM application database (OLTP) database.
+     Navigate to Administration > Attribute Categories
+  5. When adding or editing an attribute category, the attribute category must have the 
+     “Make available in lists” option checked.  Add attribute category data into the BBCRM application database. 
+  -->
+
+  <Extensibility>
+    <Tables>
+      <Table Name="C">
+        <AttributeExtension AttributeRecordType="Constituent" JoinField="CONSTITUENTSYSTEMID" />
+      </Table>
+    </Tables>
+  </Extensibility>
+
+
+  <TVFImplementation FunctionName="USR_UFN_CONSTITUENTREVENUE_DWLISTBUILDER_ATTR_EXT" FunctionSchema="BBDW">
     <CreateFunctionSQL>
-      CREATE FUNCTION dbo.USR_UFN_CONSTITUENTREVENUE_DWLISTBUILDER1(@CONSTITUENTID uniqueidentifier)
+      CREATE FUNCTION BBDW.USR_UFN_CONSTITUENTREVENUE_DWLISTBUILDER_ATTR_EXT()
       RETURNS TABLE
       AS
       RETURN
       SELECT
 
-      BBDW.DIM_CONSTITUENT.CONSTITUENTDIMID
-      , BBDW.DIM_CONSTITUENT.CONSTITUENTSYSTEMID
-      , BBDW.DIM_CONSTITUENT.CONSTITUENTLOOKUPID
-      , BBDW.DIM_CONSTITUENT.FIRSTNAME
-      , BBDW.DIM_CONSTITUENT.KEYNAME
-      , BBDW.DIM_CONSTITUENT.PRIMARYADDRESS
-      , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSCITY
-      , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSSTATE
-      , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSPOSTCODE
+      C.CONSTITUENTDIMID
+      , C.CONSTITUENTSYSTEMID
+      , C.CONSTITUENTLOOKUPID
+      , C.FIRSTNAME
+      , C.KEYNAME
+      , C.PRIMARYADDRESS
+      , C.PRIMARYADDRESSCITY
+      ,C.PRIMARYADDRESSSTATE
+      , C.PRIMARYADDRESSPOSTCODE
       , SUM(BBDW.FACT_REVENUE.REVENUEAPPLICATIONAMOUNT) AS TOTALGIVEN
+      /*#EXTENSION*/
       FROM BBDW.FACT_REVENUE
-      INNER JOIN
-      BBDW.DIM_CONSTITUENT ON BBDW.FACT_REVENUE.CONSTITUENTDIMID
-      = BBDW.DIM_CONSTITUENT.CONSTITUENTDIMID
 
-      WHERE (@CONSTITUENTID is null
-      or BBDW.DIM_CONSTITUENT.CONSTITUENTSYSTEMID = @CONSTITUENTID)
+      INNER JOIN
+      BBDW.DIM_CONSTITUENT C ON BBDW.FACT_REVENUE.CONSTITUENTDIMID
+      = C.CONSTITUENTDIMID
+
+     
 
 
       GROUP BY
-      BBDW.DIM_CONSTITUENT.CONSTITUENTDIMID
-      , BBDW.DIM_CONSTITUENT.CONSTITUENTSYSTEMID
-      , BBDW.DIM_CONSTITUENT.CONSTITUENTLOOKUPID
-      , BBDW.DIM_CONSTITUENT.FIRSTNAME
-      , BBDW.DIM_CONSTITUENT.KEYNAME
-      , BBDW.DIM_CONSTITUENT.PRIMARYADDRESS
-      , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSCITY
-      , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSSTATE
-      , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSPOSTCODE
+      C.CONSTITUENTDIMID
+      , C.CONSTITUENTSYSTEMID
+      , C.CONSTITUENTLOOKUPID
+      , C.FIRSTNAME
+      , C.KEYNAME
+      , C.PRIMARYADDRESS
+      , C.PRIMARYADDRESSCITY
+      , C.PRIMARYADDRESSSTATE
+      , C.PRIMARYADDRESSPOSTCODE
     </CreateFunctionSQL>
-    <Parameters>
+    <!--<Parameters>
       <common:FormMetaData>
         <common:FormFields>
           <common:FormField FieldID="CONSTITUENTID" Caption="Constituent" DataType="Guid">
@@ -56,7 +85,7 @@
           </common:FormField>
         </common:FormFields>
       </common:FormMetaData>
-    </Parameters>
+    </Parameters>-->
   </TVFImplementation>
 
 		

@@ -1,6 +1,6 @@
 ﻿<PageDefinitionSpec xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   ID="79A9C39D-60C4-45B6-8396-A36D206C6A8B"
-  Name="BBDW List Builder Page (Custom)"
+  Name="Constituent Rev LB Page (BBDW) (Custom)"
   Description="Page displays a list builder that pulls data from the DW."
   Author="Technical Training"
   xmlns="bb_appfx_pagedefinition">
