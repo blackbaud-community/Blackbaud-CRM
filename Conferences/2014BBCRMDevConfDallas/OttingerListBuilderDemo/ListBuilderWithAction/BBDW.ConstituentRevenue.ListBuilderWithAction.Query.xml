@@ -1,27 +1,23 @@
 ﻿<QueryViewSpec
 	xmlns="bb_appfx_queryview"
 	xmlns:common="bb_appfx_commontypes" 
-	ID="32F2AE3E-FADA-4DFE-A724-57BA9653027F"
-	Name="Constituent Rev LB with Filter (BBDW) (Custom)"
-	Description="Returns constituent and revenue records from the Blackbaud Data Warehouse"
+	ID="3f5cf088-fb7a-4026-b3af-2512298bb62a"
+	Name="Constituent Rev LB with Action (BBDW) (Custom)"
+	Description="A view defined for querying on d w list builder records"
 	Author="Technical Training"
-	RecordType="Constituent"
-  EnforceRecordAccessSecurity="true"
-	common:SecurityUIFolder="Constituent\Query" 
+	RecordType="CONSTITUENT"
+	common:SecurityUIFolder="Constituent\Query"
   MartKey="BBDW"
 	>
 
-  <TVFImplementation FunctionName="USR_UFN_QUERY_CONSTITUENTREVENUE_LISTBUILDER" FunctionSchema="BBDW">
+  <TVFImplementation FunctionName="USR_UFN_CONSTITUENTREVENUE_DWLISTBUILDER1" FunctionSchema="BBDW">
     <CreateFunctionSQL>
-
-      create function BBDW.USR_UFN_QUERY_CONSTITUENTREVENUE_LISTBUILDER(@CONSTITUENTID uniqueidentifier = null)
-      returns table
-      as
+      CREATE FUNCTION BBDW.USR_UFN_CONSTITUENTREVENUE_DWLISTBUILDER1(@CONSTITUENTID uniqueidentifier)
+      RETURNS TABLE
+      AS
       RETURN
-
-      
-
       SELECT
+
       BBDW.DIM_CONSTITUENT.CONSTITUENTDIMID
       , BBDW.DIM_CONSTITUENT.CONSTITUENTSYSTEMID
       , BBDW.DIM_CONSTITUENT.CONSTITUENTLOOKUPID
@@ -32,14 +28,14 @@
       , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSSTATE
       , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSPOSTCODE
       , SUM(BBDW.FACT_REVENUE.REVENUEAPPLICATIONAMOUNT) AS TOTALGIVEN
-
       FROM BBDW.FACT_REVENUE
       INNER JOIN
       BBDW.DIM_CONSTITUENT ON BBDW.FACT_REVENUE.CONSTITUENTDIMID
       = BBDW.DIM_CONSTITUENT.CONSTITUENTDIMID
 
       WHERE (@CONSTITUENTID is null
-      or  BBDW.DIM_CONSTITUENT.CONSTITUENTSYSTEMID = @CONSTITUENTID)
+      or BBDW.DIM_CONSTITUENT.CONSTITUENTSYSTEMID = @CONSTITUENTID)
+
 
       GROUP BY
       BBDW.DIM_CONSTITUENT.CONSTITUENTDIMID
@@ -51,60 +47,57 @@
       , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSCITY
       , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSSTATE
       , BBDW.DIM_CONSTITUENT.PRIMARYADDRESSPOSTCODE
-
-
-
-
     </CreateFunctionSQL>
     <Parameters>
       <common:FormMetaData>
         <common:FormFields>
-          <common:FormField FieldID="ConstituentID" Caption="Constituent" Required="false" DataType="Guid">
-            <common:SearchList SearchListID="fdf9d631-5277-4300-80b3-fdf5fb8850ec" EnableQuickFind="true" />
+          <common:FormField FieldID="CONSTITUENTID" Caption="Constituent" DataType="Guid">
+            <common:SearchList SearchListID="fdf9d631-5277-4300-80b3-fdf5fb8850ec" EnableQuickFind="true"/>
           </common:FormField>
         </common:FormFields>
       </common:FormMetaData>
     </Parameters>
-  </TVFImplementation>  
-      
-     
+  </TVFImplementation>
 
+		
 
-  <!-- describe each field in the view output -->
+	<!-- describe each field in the view output -->
 	<Output>
 		<OutputFields>
-      <OutputField Name="CONSTITUENTDIMID" Caption="Constituent Dimension ID"  IsHidden="true" DataType="Integer" />
-      <OutputField Name="CONSTITUENTSYSTEMID" Caption="System record ID"  IsHidden="true" DataType="Guid"/>
+			<OutputField Name="CONSTITUENTDIMID" Caption="CONSTITUENTDIMID" DataType="Integer" IsHidden="true"/>
+      <OutputField Name="CONSTITUENTSYSTEMID" Caption="CONSTITUENTSYSTEMID" DataType="Guid" IsHidden="true"/>
 			<OutputField Name="CONSTITUENTLOOKUPID" Caption="Lookup ID" DataType="String" />
-			<OutputField Name="FIRSTNAME" Caption="First Name" DataType="String" />
-      <OutputField Name="KEYNAME" Caption="Last Name/Organization Name" DataType="String" />
-      <OutputField Name="PRIMARYADDRESS" Caption="Address Block"  DataType="String" />
-      <OutputField Name="PRIMARYADDRESSCITY" Caption="City"  DataType="String" />
-      <OutputField Name="PRIMARYADDRESSSTATE" Caption="State"  DataType="String">
+      <OutputField Name="FIRSTNAME" Caption="First" DataType="String" />
+      <OutputField Name="KEYNAME" Caption="Last\Org" DataType="String" />
+      <OutputField Name="PRIMARYADDRESS" Caption="Street" DataType="String" />
+      <OutputField Name="PRIMARYADDRESSCITY" Caption="City" DataType="String" />
+      <OutputField Name = "PRIMARYADDRESSSTATE" Caption ="State"  DataType ="String">
         <LookupInfo>
-          <SimpleDataList SimpleDataListID="B46D36D1-D3ED-4f6e-91DA-89B6C88CA0C6">
+          <SimpleDataList SimpleDataListID ="B46D36D1-D3ED-4f6e-91DA-89B6C88CA0C6">
             <common:Params>
-              <common:Param ID="INCLUDEINACTIVE">
-                <common:Value>1</common:Value>
+              <common:Param ID = "INCLUDEINACTIVE">
+                <common:Value>1 </common:Value>
               </common:Param>
-              <common:Param ID="USEDEFAULTCOUNTRY">
-                <common:Value>0</common:Value>
+              <common:Param ID = "USEDEFAULTCOUNTRY">
+                <common:Value>0 </common:Value>
               </common:Param>
             </common:Params>
           </SimpleDataList>
         </LookupInfo>
       </OutputField>
-      <OutputField Name="TOTALGIVEN" Caption="Total Given" CaptionResourceKey="Revenue" DataType="Money"/>
-		</OutputFields>
-	</Output>
 
+      <OutputField Name="PRIMARYADDRESSPOSTCODE" Caption="Postal Code" DataType="String" />
+      <OutputField Name="TOTALGIVEN" Caption="Total Amount" DataType="Money"/>
+      
+    </OutputFields>
+	</Output>
   <ListBuilder>
     <Columns>
       <Column Name="FIRSTNAME" IsDefaultColumn="true"/>
       <Column Name="KEYNAME" IsDefaultColumn="true"/>
+      <Column Name="PRIMARYADDRESS" IsDefaultColumn="true"/>
       <Column Name="TOTALGIVEN" IsDefaultColumn="true"/>
     </Columns>
   </ListBuilder>
-  
 </QueryViewSpec>
 

@@ -1,0 +1,43 @@
+﻿<PageDefinitionSpec
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    ID="fd7e5799-89c2-47a5-9542-e2588368a910"
+    Name="Constituent Rev LB with Action Page (BBDW) (Custom)"
+    Description="Constituent Revenue List Builder Page (Custom)"
+    Author="BLACKBAUD\TripOt"
+    ExpressionDataFormID="00000000-0000-0000-0000-000000000000"
+    xmlns="bb_appfx_pagedefinition"
+    >
+  <PageHeader Caption="Revenue List Builder from Data Warehouse with Action" />
+  <Tabs>
+    <Tab Caption="DW LB" ID="290deb12-45ea-45fb-89fd-dc35091796f9">
+      <Sections>
+        <Section ID="62df584e-dc75-4242-8dea-45be6b0a235d" Caption="Constituent Revenue List Builder">
+          <ListBuilder QueryViewID="3f5cf088-fb7a-4026-b3af-2512298bb62a">
+            <RequiredColumns>
+              <Column Name="CONSTITUENTSYSTEMID" />
+              <Column Name="PRIMARYADDRESSCITY" />
+              <Column Name="PRIMARYADDRESSSTATE" />
+              <Column Name="PRIMARYADDRESSPOSTCODE" />
+            </RequiredColumns>
+            <RenderStyle>
+              <StandardView />
+            </RenderStyle>
+          </ListBuilder>
+          <SectionContext>
+            <PageContextID xmlns="bb_appfx_commontypes" />
+          </SectionContext>
+          <Actions>
+            <Action ID="faac7513-dc3e-4238-ab80-15073db0cb94" Caption="Go To Constituent" LinkFieldID="KEYNAME">
+              <ShowPage PageID="77b53b34-4271-448d-980d-bba1fe8030ce" TabID="00000000-0000-0000-0000-000000000000" SectionID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes">
+                <ActionContext>
+                  <SectionField>CONSTITUENTSYSTEMID</SectionField>
+                </ActionContext>
+              </ShowPage>
+            </Action>
+          </Actions>
+        </Section>
+      </Sections>
+    </Tab>
+  </Tabs>
+</PageDefinitionSpec>

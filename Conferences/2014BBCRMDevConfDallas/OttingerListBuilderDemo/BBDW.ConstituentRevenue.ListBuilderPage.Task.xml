@@ -2,7 +2,7 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     ID="026638eb-d750-4360-8b16-4447d9feff5c"
-    Name="Data Warehouse/List Builder Page"
+    Name="Constituent Rev LB (BBDW) (Custom) Task"
     Description="Data Warehouse/List Builder Page"
     Author="Technical Training"
     FunctionalAreaID="00050ce8-8abb-4a86-b9af-70a035ce0582"

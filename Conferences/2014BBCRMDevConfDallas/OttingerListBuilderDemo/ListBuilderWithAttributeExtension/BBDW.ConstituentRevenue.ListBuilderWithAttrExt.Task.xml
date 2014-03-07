@@ -1,0 +1,13 @@
+﻿<TaskSpec
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    ID="EBE50F5A-671E-4026-9AA6-A175EDB8F599"
+    Name="Constituent Rev LB with Attr Ext (BBDW) (Custom) Task"
+    Description="Open Constituent Revenue List Builder Page (Custom)"
+    Author="BLACKBAUD\TripOt"
+    FunctionalAreaID="00050ce8-8abb-4a86-b9af-70a035ce0582"
+    Sequence="0"
+    xmlns="bb_appfx_task"
+    >
+  <ShowPage PageID="6E4E8FCE-9D7D-460F-A150-C4CE220EF254" TabID="00000000-0000-0000-0000-000000000000" SectionID="00000000-0000-0000-0000-000000000000" xmlns="bb_appfx_commontypes" />
+</TaskSpec>
