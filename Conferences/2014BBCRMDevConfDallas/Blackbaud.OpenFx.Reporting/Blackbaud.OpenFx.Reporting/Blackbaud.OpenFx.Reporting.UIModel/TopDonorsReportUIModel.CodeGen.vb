@@ -21,6 +21,16 @@ Partial Public Class [TopDonorsReportUIModel]
 #Region "Enums"
 
     ''' <summary>
+    ''' Enumerated values for use with the MAXROWS property
+    ''' </summary>
+	<System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "1.0.0.0")> _
+    Public Enum MAXROWSValues As Integer
+        [_10] = 10
+        [_50] = 50
+        [_100] = 100
+    End Enum
+
+    ''' <summary>
     ''' Enumerated values for use with the DATETYPE property
     ''' </summary>
 	<System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "1.0.0.0")> _
@@ -44,6 +54,7 @@ Partial Public Class [TopDonorsReportUIModel]
 
 #End Region
 
+    Private WithEvents _maxrows As Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of Nullable(Of MAXROWSValues))
     Private WithEvents _startdate As Global.Blackbaud.AppFx.UIModeling.Core.DateField
     Private WithEvents _enddate As Global.Blackbaud.AppFx.UIModeling.Core.DateField
     Private WithEvents _datetype As Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of DATETYPES)
@@ -52,12 +63,22 @@ Partial Public Class [TopDonorsReportUIModel]
     Public Sub New()
         MyBase.New()
 
+        _maxrows = New Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of Nullable(Of MAXROWSValues))
         _startdate = New Global.Blackbaud.AppFx.UIModeling.Core.DateField
         _enddate = New Global.Blackbaud.AppFx.UIModeling.Core.DateField
         _datetype = New Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of DATETYPES)
 
         MyBase.UserInterfaceUrl = "browser/htmlforms/custom/blackbaud.openfx.reporting/TopDonorsReport.html"
 
+        '
+        '_maxrows
+        '
+        _maxrows.Name = "MAXROWS"
+        _maxrows.Caption = "Include top "
+        _maxrows.DataSource.Add(New Global.Blackbaud.AppFx.UIModeling.Core.ValueListItem(Of Nullable(Of MAXROWSValues)) With {.Value = MAXROWSValues.[_10], .Translation = "10"})
+        _maxrows.DataSource.Add(New Global.Blackbaud.AppFx.UIModeling.Core.ValueListItem(Of Nullable(Of MAXROWSValues)) With {.Value = MAXROWSValues.[_50], .Translation = "50"})
+        _maxrows.DataSource.Add(New Global.Blackbaud.AppFx.UIModeling.Core.ValueListItem(Of Nullable(Of MAXROWSValues)) With {.Value = MAXROWSValues.[_100], .Translation = "100"})
+        Me.Fields.Add(_maxrows)
         '
         '_startdate
         '
@@ -90,6 +111,17 @@ Partial Public Class [TopDonorsReportUIModel]
 		OnCreated()
 
     End Sub
+    
+    ''' <summary>
+    ''' Include top 
+    ''' </summary>
+    <System.ComponentModel.Description("Include top ")> _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "1.0.0.0")> _
+    Public ReadOnly Property [MAXROWS]() As Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of Nullable(Of MAXROWSValues))
+        Get
+            Return _maxrows
+        End Get
+    End Property
     
     ''' <summary>
     ''' Start Date

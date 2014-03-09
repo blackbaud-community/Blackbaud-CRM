@@ -16,12 +16,14 @@
 			<![CDATA[
 create procedure BBDW.[USR_USP_REPORT_TOPDONORSREPORT]
 (
+  @MAXROWS tinyint = 10,
   @STARTDATE datetime,
   @ENDDATE datetime
 )
 as
 
   select
+    top (@MAXROWS)
     c.[FULLNAME],
     c.[CONSTITUENTLOOKUPID],
     c.[PRIMARYADDRESS],
@@ -29,7 +31,8 @@ as
     c.[PRIMARYADDRESSSTATEABBREVIATION],
     c.[PRIMARYADDRESSPOSTCODE],
     'http://www.blackbaud.com/CONSTITUENTID?CONSTITUENTID=' + CONVERT(nvarchar(36), c.[CONSTITUENTSYSTEMID]) as [CONSTITUENTDRILLTHROUGH],
-    isnull(sum(r.[REVENUEAPPLICATIONAMOUNT]), 0) as [TOTALREVENUEAMOUNT]
+    isnull(sum(r.[REVENUEAPPLICATIONAMOUNT]), 0) as [TOTALREVENUEAMOUNT],
+    max(r.[REVENUEDATE]) as [LASTGIFTDATE]
   from BBDW.[DIM_CONSTITUENT] c
   left join BBDW.[FACT_REVENUE] r on c.[CONSTITUENTDIMID] = r.[CONSTITUENTDIMID]
   where (@STARTDATE is null or r.[REVENUEDATE] > @STARTDATE)
@@ -49,6 +52,24 @@ as
 
   <c:FormMetaData>
     <c:FormFields>
+      <c:FormField FieldID="MAXROWS" Caption="Include top " DataType="TinyInt" DefaultValueText="50">
+        <c:ValueList>
+          <c:Items>
+            <c:Item>
+              <c:Value>10</c:Value>
+              <c:Label>10</c:Label>
+            </c:Item>
+            <c:Item>
+              <c:Value>50</c:Value>
+              <c:Label>50</c:Label>
+            </c:Item>
+            <c:Item>
+              <c:Value>100</c:Value>
+              <c:Label>100</c:Label>
+            </c:Item>            
+          </c:Items>
+        </c:ValueList>
+      </c:FormField>
       <c:FormField FieldID="STARTDATE" Caption="Start Date" DataType="Date" />
       <c:FormField FieldID="ENDDATE" Caption="End Date" DataType="Date" />
       <c:FormField FieldID="DATETYPE" Caption="Date" DataType="TinyInt" Required="true" DefaultValueText="1">
