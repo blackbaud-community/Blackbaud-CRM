@@ -18,7 +18,11 @@ create procedure BBDW.[USR_USP_REPORT_TOPDONORSREPORT]
 (
   @MAXROWS tinyint = 10,
   @STARTDATE datetime,
-  @ENDDATE datetime
+  @ENDDATE datetime,
+  @SHOWADVANCEDFILTERS bit = 0,
+  @INCLUDENOTPOSTED bit,
+  @INCLUDEANONYMOUS bit,
+  @INCLUDEPLEDGES bit
 )
 as
 
@@ -35,8 +39,13 @@ as
     max(r.[REVENUEDATE]) as [LASTGIFTDATE]
   from BBDW.[DIM_CONSTITUENT] c
   left join BBDW.[FACT_REVENUE] r on c.[CONSTITUENTDIMID] = r.[CONSTITUENTDIMID]
+  left join BBDW.[DIM_REVENUEFLAG] rf on r.[REVENUEFLAGDIMID] = rf.[REVENUEFLAGDIMID]
+  left join BBDW.[DIM_REVENUECODE] rc on r.[REVENUECODEDIMID] = rc.[REVENUECODEDIMID]
   where (@STARTDATE is null or r.[REVENUEDATE] > @STARTDATE)
   and (@ENDDATE is null or r.[REVENUEDATE] < @ENDDATE)
+  and (rf.[GIVENANONYMOUSLY] = 0 or @INCLUDEANONYMOUS = 1)
+  and (rc.[REVENUEPOSTSTATUSCODE] > 1 or @INCLUDENOTPOSTED = 1)
+  and (rc.[REVENUEAPPLICATIONCODE] <> 2 or @INCLUDEPLEDGES = 1)
   group by
   c.[FULLNAME],
   c.[CONSTITUENTLOOKUPID],
@@ -110,15 +119,24 @@ as
           </c:Items>
         </c:ValueList>
       </c:FormField>
-
+      <c:FormField FieldID="SHOWADVANCEDFILTERS" Caption="Show advanced filters" DataType="Boolean" />
+      <c:FormField FieldID="INCLUDENOTPOSTED" Caption="Include not posted revenue" DataType="Boolean" />
+      <c:FormField FieldID="INCLUDEANONYMOUS" Caption="Include anonymous revenue" DataType="Boolean" />
+      <c:FormField FieldID="INCLUDEPLEDGES" Caption="Include pledges" DataType="Boolean" />
     </c:FormFields>
 
-        <c:WebUIComponent>
-            <c:UIModel AssemblyName="Blackbaud.OpenFx.Reporting.UIModel.dll" ClassName="Blackbaud.OpenFx.Reporting.UIModel.TopDonorsReportUIModel" />
-            <c:WebUI>
-                <c:ExternalResource Url="browser/htmlforms/custom/blackbaud.openfx.reporting/TopDonorsReport.html" />
-            </c:WebUI>
-        </c:WebUIComponent>
+    <c:WebUIComponent>
+        <c:UIModel AssemblyName="Blackbaud.OpenFx.Reporting.UIModel.dll" ClassName="Blackbaud.OpenFx.Reporting.UIModel.TopDonorsReportUIModel" />
+        <c:WebUI>
+            <c:ExternalResource Url="browser/htmlforms/custom/blackbaud.openfx.reporting/TopDonorsReport.html" />
+        </c:WebUI>
+    </c:WebUIComponent>
+    
+    <c:Tabs>
+      <c:Tab ID="BASICFILTERSTAB" Caption="Filters" />
+      <c:Tab ID="ADVANCEDFILTERSTAB" Caption="Advanced filters" />
+    </c:Tabs>
+    
   </c:FormMetaData>	
 
   <DataSource>

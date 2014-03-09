@@ -58,6 +58,12 @@ Partial Public Class [TopDonorsReportUIModel]
     Private WithEvents _startdate As Global.Blackbaud.AppFx.UIModeling.Core.DateField
     Private WithEvents _enddate As Global.Blackbaud.AppFx.UIModeling.Core.DateField
     Private WithEvents _datetype As Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of DATETYPES)
+    Private WithEvents _showadvancedfilters As Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+    Private WithEvents _includenotposted As Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+    Private WithEvents _includeanonymous As Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+    Private WithEvents _includepledges As Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+    Private WithEvents _basicfilterstab As Global.Blackbaud.AppFx.UIModeling.Core.TabField
+    Private WithEvents _advancedfilterstab As Global.Blackbaud.AppFx.UIModeling.Core.TabField
 
 	<System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "1.0.0.0")> _
     Public Sub New()
@@ -67,6 +73,12 @@ Partial Public Class [TopDonorsReportUIModel]
         _startdate = New Global.Blackbaud.AppFx.UIModeling.Core.DateField
         _enddate = New Global.Blackbaud.AppFx.UIModeling.Core.DateField
         _datetype = New Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of DATETYPES)
+        _showadvancedfilters = New Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+        _includenotposted = New Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+        _includeanonymous = New Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+        _includepledges = New Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+        _basicfilterstab = New Global.Blackbaud.AppFx.UIModeling.Core.TabField
+        _advancedfilterstab = New Global.Blackbaud.AppFx.UIModeling.Core.TabField
 
         MyBase.UserInterfaceUrl = "browser/htmlforms/custom/blackbaud.openfx.reporting/TopDonorsReport.html"
 
@@ -78,6 +90,7 @@ Partial Public Class [TopDonorsReportUIModel]
         _maxrows.DataSource.Add(New Global.Blackbaud.AppFx.UIModeling.Core.ValueListItem(Of Nullable(Of MAXROWSValues)) With {.Value = MAXROWSValues.[_10], .Translation = "10"})
         _maxrows.DataSource.Add(New Global.Blackbaud.AppFx.UIModeling.Core.ValueListItem(Of Nullable(Of MAXROWSValues)) With {.Value = MAXROWSValues.[_50], .Translation = "50"})
         _maxrows.DataSource.Add(New Global.Blackbaud.AppFx.UIModeling.Core.ValueListItem(Of Nullable(Of MAXROWSValues)) With {.Value = MAXROWSValues.[_100], .Translation = "100"})
+        _maxrows.Value = MAXROWSValues.[_50]
         Me.Fields.Add(_maxrows)
         '
         '_startdate
@@ -107,6 +120,42 @@ Partial Public Class [TopDonorsReportUIModel]
         _datetype.DataSource.Add(New Global.Blackbaud.AppFx.UIModeling.Core.ValueListItem(Of DATETYPES) With {.Value = DATETYPES.[ThisQuarter], .Translation = "This Quarter"})
         _datetype.Value = DATETYPES.[AllDates]
         Me.Fields.Add(_datetype)
+        '
+        '_showadvancedfilters
+        '
+        _showadvancedfilters.Name = "SHOWADVANCEDFILTERS"
+        _showadvancedfilters.Caption = "Show advanced filters"
+        Me.Fields.Add(_showadvancedfilters)
+        '
+        '_includenotposted
+        '
+        _includenotposted.Name = "INCLUDENOTPOSTED"
+        _includenotposted.Caption = "Include not posted revenue"
+        Me.Fields.Add(_includenotposted)
+        '
+        '_includeanonymous
+        '
+        _includeanonymous.Name = "INCLUDEANONYMOUS"
+        _includeanonymous.Caption = "Include anonymous revenue"
+        Me.Fields.Add(_includeanonymous)
+        '
+        '_includepledges
+        '
+        _includepledges.Name = "INCLUDEPLEDGES"
+        _includepledges.Caption = "Include pledges"
+        Me.Fields.Add(_includepledges)
+        '
+        '_basicfilterstab
+        '
+        _basicfilterstab.Name = "BASICFILTERSTAB"
+        _basicfilterstab.Caption = "Filters"
+        Me.Fields.Add(_basicfilterstab)
+        '
+        '_advancedfilterstab
+        '
+        _advancedfilterstab.Name = "ADVANCEDFILTERSTAB"
+        _advancedfilterstab.Caption = "Advanced filters"
+        Me.Fields.Add(_advancedfilterstab)
 
 		OnCreated()
 
@@ -153,6 +202,72 @@ Partial Public Class [TopDonorsReportUIModel]
     Public ReadOnly Property [DATETYPE]() As Global.Blackbaud.AppFx.UIModeling.Core.ValueListField(Of DATETYPES)
         Get
             Return _datetype
+        End Get
+    End Property
+    
+    ''' <summary>
+    ''' Show advanced filters
+    ''' </summary>
+    <System.ComponentModel.Description("Show advanced filters")> _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "1.0.0.0")> _
+    Public ReadOnly Property [SHOWADVANCEDFILTERS]() As Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+        Get
+            Return _showadvancedfilters
+        End Get
+    End Property
+    
+    ''' <summary>
+    ''' Include not posted revenue
+    ''' </summary>
+    <System.ComponentModel.Description("Include not posted revenue")> _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "1.0.0.0")> _
+    Public ReadOnly Property [INCLUDENOTPOSTED]() As Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+        Get
+            Return _includenotposted
+        End Get
+    End Property
+    
+    ''' <summary>
+    ''' Include anonymous revenue
+    ''' </summary>
+    <System.ComponentModel.Description("Include anonymous revenue")> _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "1.0.0.0")> _
+    Public ReadOnly Property [INCLUDEANONYMOUS]() As Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+        Get
+            Return _includeanonymous
+        End Get
+    End Property
+    
+    ''' <summary>
+    ''' Include pledges
+    ''' </summary>
+    <System.ComponentModel.Description("Include pledges")> _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "1.0.0.0")> _
+    Public ReadOnly Property [INCLUDEPLEDGES]() As Global.Blackbaud.AppFx.UIModeling.Core.BooleanField
+        Get
+            Return _includepledges
+        End Get
+    End Property
+    
+    ''' <summary>
+    ''' Filters
+    ''' </summary>
+    <System.ComponentModel.Description("Filters")> _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "1.0.0.0")> _
+    Public ReadOnly Property [BASICFILTERSTAB]() As Global.Blackbaud.AppFx.UIModeling.Core.TabField
+        Get
+            Return _basicfilterstab
+        End Get
+    End Property
+    
+    ''' <summary>
+    ''' Advanced filters
+    ''' </summary>
+    <System.ComponentModel.Description("Advanced filters")> _
+    <System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "1.0.0.0")> _
+    Public ReadOnly Property [ADVANCEDFILTERSTAB]() As Global.Blackbaud.AppFx.UIModeling.Core.TabField
+        Get
+            Return _advancedfilterstab
         End Get
     End Property
     

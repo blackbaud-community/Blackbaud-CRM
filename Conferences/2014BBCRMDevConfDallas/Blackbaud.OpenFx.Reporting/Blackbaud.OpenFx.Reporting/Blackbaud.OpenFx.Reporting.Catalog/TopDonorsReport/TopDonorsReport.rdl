@@ -700,6 +700,18 @@
           <QueryParameter Name="@ENDDATE">
             <Value>=Parameters!ENDDATE.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@SHOWADVANCEDFILTERS">
+            <Value>=Parameters!SHOWADVANCEDFILTERS.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@INCLUDENOTPOSTED">
+            <Value>=Parameters!INCLUDENOTPOSTED.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@INCLUDEANONYMOUS">
+            <Value>=Parameters!INCLUDEANONYMOUS.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@INCLUDEPLEDGES">
+            <Value>=Parameters!INCLUDEPLEDGES.Value</Value>
+          </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
         <CommandText>BBDW.[USR_USP_REPORT_TOPDONORSREPORT]</CommandText>
@@ -765,6 +777,22 @@
       <Nullable>true</Nullable>
       <Prompt>ALTREPORTUSERID</Prompt>
       <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="SHOWADVANCEDFILTERS">
+      <DataType>Boolean</DataType>
+      <Prompt>SHOWADVANCEDFILTERS</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="INCLUDENOTPOSTED">
+      <DataType>Boolean</DataType>
+      <Prompt>INCLUDENOTPOSTED</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="INCLUDEANONYMOUS">
+      <DataType>Boolean</DataType>
+      <Prompt>INCLUDEANONYMOUS</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="INCLUDEPLEDGES">
+      <DataType>Boolean</DataType>
+      <Prompt>INCLUDEPLEDGES</Prompt>
     </ReportParameter>
   </ReportParameters>
   <Language>en-US</Language>

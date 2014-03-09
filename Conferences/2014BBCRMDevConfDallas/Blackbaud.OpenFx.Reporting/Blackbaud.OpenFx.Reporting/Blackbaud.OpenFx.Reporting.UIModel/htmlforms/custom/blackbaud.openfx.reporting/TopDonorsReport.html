@@ -1,30 +1,77 @@
 ﻿<div id="#MAP#TopDonorsReport">
-  <table>
-    <tr id="#MAP#DATETYPE_container">
-      <td>
-          <label id="#MAP#MAXROWS_caption" for="#MAP#MAXROWS_value"></label>
-      </td>
-      <td>
-          <input id="#MAP#MAXROWS_value" type="text" />
-      </td>
-      <td>
-        <label id="#MAP#DATETYPE_caption" for="#MAP#DATETYPE_value"></label>
-      </td>
-      <td>
-        <input id="#MAP#DATETYPE_value" type="text" />
-      </td>
-      <td>
-        <label id="#MAP#STARTDATE_caption" for="#MAP#STARTDATE_value"></label>
-      </td>
-      <td>
-        <input id="#MAP#STARTDATE_value" type="text" />
-      </td>
-      <td>
-        <label id="#MAP#ENDDATE_caption" for="#MAP#ENDDATE_value"></label>
-      </td>
-      <td>
-        <input id="#MAP#ENDDATE_value" type="text" />
-      </td>
-    </tr>
-  </table>
-</div>
+    <div class="bbui-forms-tabs-main">
+        <div id="#MAP#BASICFILTERSTAB_caption">
+            <div class="bbui-forms-fieldset-column">
+                <table>
+                    <tr id="#MAP#DATETYPE_container">
+
+                        <td>
+                            <label id="#MAP#DATETYPE_caption" for="#MAP#DATETYPE_value"></label>
+                        </td>
+                        <td>
+                            <input id="#MAP#DATETYPE_value" type="text" />
+                        </td>
+                        <td>
+                            <label id="#MAP#STARTDATE_caption" for="#MAP#STARTDATE_value"></label>
+                        </td>
+                        <td>
+                            <input id="#MAP#STARTDATE_value" type="text" />
+                        </td>
+                        <td>
+                            <label id="#MAP#ENDDATE_caption" for="#MAP#ENDDATE_value"></label>
+                        </td>
+                        <td>
+                            <input id="#MAP#ENDDATE_value" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label id="#MAP#MAXROWS_caption" for="#MAP#MAXROWS_value"></label>
+                        </td>
+                        <td>
+                            <input id="#MAP#MAXROWS_value" type="text" />
+                        </td>
+                        <td>
+                            <label id="#MAP#SHOWADVANCEDFILTERS_caption" for="#MAP#SHOWADVANCEDFILTERS_value"></label>
+                        </td>
+                        <td>
+                            <input id="#MAP#SHOWADVANCEDFILTERS_value" type="checkbox" />
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            </div>
+
+            <div id="#MAP#ADVANCEDFILTERSTAB_caption">
+                <div class="bbui-forms-fieldset-column">
+                    <table>
+                        <tr>
+                            <td>
+                                <label id="#MAP#INCLUDENOTPOSTED_caption" for="#MAP#INCLUDENOTPOSTED_value"></label>
+                            </td>
+                            <td>
+                                <input id="#MAP#INCLUDENOTPOSTED_value" type="checkbox" />
+                            </td>
+                            </tr>
+                        <tr>
+                            <td>
+                                <label id="#MAP#INCLUDEANONYMOUS_caption" for="#MAP#INCLUDEANONYMOUS_value"></label>
+                            </td>
+                            <td>
+                                <input id="#MAP#INCLUDEANONYMOUS_value" type="checkbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label id="#MAP#INCLUDEPLEDGES_caption" for="#MAP#INCLUDEPLEDGES_value"></label>
+                            </td>
+                            <td>
+                                <input id="#MAP#INCLUDEPLEDGES_value" type="checkbox" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                </div>
+        </div>
+    </div>
