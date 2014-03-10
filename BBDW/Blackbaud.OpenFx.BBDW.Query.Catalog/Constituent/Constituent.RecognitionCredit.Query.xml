@@ -1,0 +1,55 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="88dc3379-c2d2-4e21-96c8-63918f4a0d30"
+	Name="Recognition Credit Query"
+	Description="Returns recognition credits from BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="FINANCIALTRANSACTIONSYSTEMID"
+	common:SecurityUIFolder="BBDW Query"
+  MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_RECOGNITIONCREDIT" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+  rr.[REVENUERECOGNITIONSYSTEMID],
+  rr.[CONSTITUENTDIMID],
+  rr.[FINANCIALTRANSACTIONLINEITEMFACTID],
+  rr.[REVENUERECOGNITIONAMOUNT],
+  rr.[EFFECTIVEDATE],
+  rt.[REVENUERECOGNITIONTYPE]
+from BBDW.[FACT_REVENUERECOGNITION] rr
+left join BBDW.[DIM_REVENUERECOGNITIONTYPE] rt on rr.[REVENUERECOGNITIONTYPEDIMID] = rt.[REVENUERECOGNITIONTYPEDIMID]
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="REVENUERECOGNITIONSYSTEMID" Caption="Recognition System ID" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="CONSTITUENTDIMID" Caption="Constituent Dim ID" DataType="Integer" IsHidden="true" />
+      <OutputField Name="FINANCIALTRANSACTIONLINEITEMFACTID" Caption="Line Item Fact ID" DataType="Integer" IsHidden="true" />
+			<OutputField Name="REVENUERECOGNITIONAMOUNT" Caption="Recognition amount" DataType="Money" Category="Recognition" />
+      <OutputField Name="EFFECTIVEDATE" Caption="Effective date" DataType="Date" Category="Recognition"/>
+      <OutputField Name="REVENUERECOGNITIONTYPE" Caption="Recognition type" DataType="String" Category="Recognition">
+        <LookupInfo>
+          <CodeTable CodeTableName="REVENUERECOGNITIONTYPECODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT" Field="CONSTITUENTDIMID" ParentViewRelatedField="CONSTITUENTDIMID" PathAlias="Recognition Credits"/>
+    <!--
+    <AddRelatedView RelatedView="V_QUERY_BBDW_REVENUEAPPLICATION" Field="FINANCIALTRANSACTIONLINEITEMFACTID" RelatedField="FINANCIALTRANSACTIONLINEITEMFACTID" Cardinality="OneToOne" PathAlias="Revenue Application"/>
+    -->
+  </RelationshipOperations>
+  
+</QueryViewSpec>
+

@@ -1,0 +1,15 @@
+﻿<SimpleDataListSpec
+	xmlns="bb_appfx_simpledatalist"
+	xmlns:common="bb_appfx_commontypes"
+	ID="1747b59c-0e72-4fb8-931a-6d0bde091d48"
+	Name="BBDW Constituency Simple Data List"
+	Description="Returns all constituencies available in BBDW"
+	Author="Blackbaud Open Source"
+	>
+
+	<!-- indicate the server-side catalog implementation that will be used to load the list.  This should refer to a class
+	that inherits AppCatalog.AppSimpleDataList.
+	 -->
+	<CLRSimpleList AssemblyName="Blackbaud.OpenFx.BBDW.Query.Catalog" ClassName="Blackbaud.OpenFx.BBDW.Query.Catalog.ConstituentConstituencySimpleDataList" />
+
+</SimpleDataListSpec>

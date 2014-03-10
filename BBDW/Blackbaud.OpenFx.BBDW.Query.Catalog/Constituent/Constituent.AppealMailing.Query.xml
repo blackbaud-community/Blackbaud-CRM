@@ -1,0 +1,119 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="ef6e53a7-8a62-4246-887e-415e434d3161"
+	Name="Appeal Query"
+	Description="Returns appeals from BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="CONSTITUENTAPPEALSYSTEMID"
+	RecordType="Appeal"
+	common:SecurityUIFolder="BBDW Query"  
+	MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_APPEAL" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+  ca.[CONSTITUENTDIMID],
+  ca.[CONSTITUENTAPPEALSYSTEMID],
+  a.[APPEALSYSTEMID],
+  a.[APPEALNAME],
+  a.[APPEALSTARTDATE],
+  a.[APPEALENDDATE],
+  a.[APPEALCATEGORY],
+  a.[APPEALDESCRIPTION],
+  a.[APPEALGOAL],
+  ms.[SEGMENTATIONDATE],
+  ms.[SEGMENTATIONID],
+  ms.[SEGMENTATIONNAME],
+  ms.[SEGMENTATIONDESCRIPTION],
+  ms.[SEGMENTATIONCOMMUNICATIONTYPE],
+  ms.[SEGMENTATIONSEGMENTNAME],
+  ms.[SEGMENTCATEGORY],
+  ms.[ISTESTSEGMENT],
+  ms.[PACKAGENAME],
+  ms.[PACKAGEDESCRIPTION],
+  ms.[PACKAGECHANNEL],
+  ms.[PACKAGECATEGORY],
+  sc.[SOURCECODE],
+  sc.[SOURCECODELAYOUT]
+from BBDW.[FACT_CONSTITUENTAPPEAL] ca
+left join BBDW.[DIM_APPEAL] a on ca.[APPEALDIMID] = a.[APPEALDIMID]			
+left join BBDW.[DIM_MARKETINGSEGMENT] ms on ms.[MARKETINGSEGMENTDIMID] = ca.[MARKETINGSEGMENTDIMID]
+left join BBDW.[DIM_MARKETINGSOURCECODE] sc on sc.[MARKETINGSEGMENTDIMID] = ms.[MARKETINGSEGMENTDIMID]
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="CONSTITUENTAPPEALSYSTEMID" Caption="Constituent Appeal System ID" DataType="Guid" IsHidden="true"/>
+      <OutputField Name="CONSTITUENTDIMID" Caption="Constituent Dim ID" DataType="Integer" IsHidden="true"/>
+			<OutputField Name="APPEALSYSTEMID" Caption="Appeal System ID" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="APPEALNAME" Caption="Appeal name" DataType="String" Category="Appeal"/>
+      <OutputField Name="APPEALSTARTDATE" Caption="Start date" DataType="Date" Category="Appeal"/>
+      <OutputField Name="APPEALENDDATE" Caption="End date" DataType="Date" Category="Appeal"/>
+      <OutputField Name="APPEALCATEGORY" Caption="Appeal category" DataType="String" Category="Appeal">
+        <LookupInfo>
+          <CodeTable CodeTableName="APPEALCATEGORYCODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="APPEALDESCRIPTION" Caption="Appeal description" DataType="String" Category="Appeal"/>
+      <OutputField Name="APPEALGOAL" Caption="Goal" DataType="Money" Category="Appeal"/>
+      <OutputField Name="SEGMENTATIONDATE" Caption="Marketing effort date" DataType="Date" Category="Marketing Effort"/>
+      <OutputField Name="SEGMENTATIONID" Caption="Marketing effort ID" DataType="Integer" Category="Marketing Effort"/>
+      <OutputField Name="SEGMENTATIONNAME" Caption="Marketing effort name" DataType="String" Category="Marketing Effort"/>
+      <OutputField Name="SEGMENTATIONCOMMUNICATIONTYPE" Caption="Communication type" DataType="String" Category="Marketing Effort">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Marketing effort" />
+              <common:TranslationListOption Value="Appeal mailing" />
+              <common:TranslationListOption Value="Event invitation" />
+              <common:TranslationListOption Value="Acknowledgement" />
+              <common:TranslationListOption Value="Reminder" />
+            </common:Options>
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="SEGMENTATIONSEGMENTNAME" Caption="Segment name" DataType="String" Category="Marketing Effort"/>
+      <OutputField Name="SEGMENTCATEGORY" Caption="Segment category" DataType="String" Category="Marketing Effort">
+        <LookupInfo>
+          <CodeTable CodeTableName="MKTSEGMENTCATEGORYCODE" IncludeInactive="true"/>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="SOURCECODE" Caption="Source code" DataType="String" Category="Marketing Effort"/>
+      <OutputField Name="SOURCECODELAYOUT" Caption="Source code name" DataType="String" Category="Marketing Effort"/>
+      <OutputField Name="ISTESTSEGMENT" Caption="Is test segment" DataType="Boolean" Category="Marketing Effort"/>
+      <OutputField Name="PACKAGENAME" Caption="Package name" DataType="String" Category="Package"/>
+      <OutputField Name="PACKAGEDESCRIPTION" Caption="Package description" DataType="String" Category="Package"/>
+      <OutputField Name="PACKAGECHANNEL" Caption="Channel" DataType="String" Category="Package">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Mail" />
+              <common:TranslationListOption Value="Email" />
+              <common:TranslationListOption Value="Phone" />
+              <common:TranslationListOption Value="Public media" />
+            </common:Options>
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="PACKAGECATEGORY" Caption="Package category" DataType="String" Category="Package">
+        <LookupInfo>
+          <CodeTable CodeTableName="MKTPACKAGECATEGORYCODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT" Field="CONSTITUENTDIMID" ParentViewRelatedField="CONSTITUENTDIMID" PathAlias="Appeal Mailing"/>
+  </RelationshipOperations>
+
+</QueryViewSpec>
+

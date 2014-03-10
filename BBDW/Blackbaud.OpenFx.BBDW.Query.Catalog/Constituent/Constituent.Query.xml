@@ -1,0 +1,281 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="d1045193-f0c8-44e4-8319-b5103a9a12f1"
+	Name="Constituent Reporting"
+	Description="Returns constituent details from BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="true"
+	PrimaryKeyField="CONSTITUENTSYSTEMID"
+	RecordType="Constituent"
+  EnforceRecordAccessSecurity="true"
+	common:SecurityUIFolder="BBDW Query"
+  MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+	c.[CONSTITUENTDIMID],
+	c.[CONSTITUENTSYSTEMID],
+	c.[CONSTITUENTLOOKUPID],
+	c.[FULLNAME],
+	c.[FIRSTNAME],
+	c.[KEYNAME],
+  c.[BIRTHDATE],
+  c.[AGE],
+  c.[ISDECEASED],
+  c.[TITLE],
+  c.[SUFFIX],
+  c.[NICKNAME],
+  c.[MARITALSTATUS],
+  c.[PRIMARYADDRESS],
+  c.[PRIMARYADDRESSCITY],  
+  c.[PRIMARYADDRESSSTATEABBREVIATION],
+  c.[PRIMARYADDRESSPOSTCODE],
+  c.[PRIMARYADDRESSCOUNTRY],
+  e.[EMAILADDRESS],
+  e.[CONSTITUENTEMAILADDRESSTYPE],
+  p.[PHONENUMBER],
+  p.[CONSTITUENTPHONETYPE],
+	ed.[EDUCATIONINSTITUTION],
+	ed.[EDUCATIONDEGREE],
+	ed.[CLASSOF],
+  ed.[PREFERREDCLASSYEAR],  
+	ed.[EDUCATIONSTATUS],
+  ed.[EDUCATIONLEVEL],
+  ed.[EDUCATIONPROGRAM],
+  ed.[EDUCATIONGRADUATEDATE],
+  ed.[EDUCATIONSTARTDATE],
+  ed.[EDUCATIONENDDATE],
+  pb.[PRIMARYBUSINESS],
+  pb.[JOBTITLE],
+  pb.[JOBCATEGORY],
+  pb.[CAREERLEVEL],
+  pb.[BUSINESSADDRESS],
+  pb.[BUSINESSCITY],
+  pb.[BUSINESSSTATE],
+  pb.[BUSINESSPOSTCODE],
+  pb.[BUSINESSCOUNTRY],
+  c.[INCOME],
+  c.[TARGET],
+  c.[RELIGION],
+  c.[GENDER]
+
+
+from BBDW.[DIM_CONSTITUENT] c	
+left join 
+  (select
+    ce.[CONSTITUENTDIMID],
+    ce.[EMAILADDRESS],
+    et.[CONSTITUENTEMAILADDRESSTYPE]
+  from BBDW.[FACT_CONSTITUENTEMAILADDRESS] ce  
+  left join BBDW.[DIM_CONSTITUENTEMAILADDRESSFLAG] ef on ef.[CONSTITUENTEMAILADDRESSFLAGDIMID] = ce.[CONSTITUENTEMAILADDRESSFLAGDIMID]  
+  left join BBDW.[DIM_CONSTITUENTEMAILADDRESSTYPE] et on et.[CONSTITUENTEMAILADDRESSTYPEDIMID] = ce.[CONSTITUENTEMAILADDRESSTYPEDIMID]
+  where ef.[ISPRIMARY] = 1
+  ) e on c.[CONSTITUENTDIMID] = e.[CONSTITUENTDIMID] 
+left join 
+  (select
+    cp.[CONSTITUENTDIMID],
+    cp.[PHONENUMBER],
+    pt.[CONSTITUENTPHONETYPE]
+  from BBDW.[FACT_CONSTITUENTPHONE] cp
+  left join BBDW.[DIM_CONSTITUENTPHONEFLAG] pf on pf.[CONSTITUENTPHONEFLAGDIMID] = cp.[CONSTITUENTPHONEFLAGDIMID]  
+  left join BBDW.[DIM_CONSTITUENTPHONETYPE] pt on pt.[CONSTITUENTPHONETYPEDIMID] = cp.[CONSTITUENTPHONETYPEDIMID]
+  where pf.[ISPRIMARY] = 1
+  ) p on c.[CONSTITUENTDIMID] = p.[CONSTITUENTDIMID] 
+left join BBDW.[DIM_EDUCATION] ed on c.[CONSTITUENTDIMID] = ed.[CONSTITUENTDIMID] and ed.[ISPRIMARYRECORD] = 1 
+left join 
+  (select
+    cr.[CONSTITUENTDIMID],
+    rr.[KEYNAME] as [PRIMARYBUSINESS],
+    re.[JOBTITLE],
+    re.[JOBCATEGORY],
+    re.[CAREERLEVEL],
+    rr.[PRIMARYADDRESS] as [BUSINESSADDRESS],
+    rr.[PRIMARYADDRESSCITY] as [BUSINESSCITY],
+    rr.[PRIMARYADDRESSSTATEABBREVIATION] as [BUSINESSSTATE],
+    rr.[PRIMARYADDRESSPOSTCODE] as [BUSINESSPOSTCODE],
+    rr.[PRIMARYADDRESSCOUNTRY] as [BUSINESSCOUNTRY]
+  from BBDW.[FACT_CONSTITUENTRELATIONSHIP] cr
+  left join BBDW.[DIM_CONSTITUENTRELATIONSHIPFLAG] rf on cr.[CONSTITUENTRELATIONSHIPFLAGDIMID] = rf.[CONSTITUENTRELATIONSHIPFLAGDIMID]
+  left join BBDW.[DIM_CONSTITUENT] rr on rr.[CONSTITUENTDIMID] = cr.[RECIPROCALCONSTITUENTDIMID]
+  left join BBDW.[DIM_CONSTITUENTRELATIONSHIPEMPLOYMENT] re on cr.[CONSTITUENTRELATIONSHIPSETDIMID] = re.[CONSTITUENTRELATIONSHIPSETDIMID]
+  where rf.[ISPRIMARYBUSINESS] = 1 and re.[ISCURRENTEMPLOYMENT] = 1
+  ) pb on pb.CONSTITUENTDIMID = c.[CONSTITUENTDIMID]
+where c.[ISCONSTITUENT] = 1
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+      <OutputField Name="CONSTITUENTDIMID" Caption="Constituent Dimension ID" DataType="Integer" IsHidden="true"/>
+      <OutputField Name="CONSTITUENTSYSTEMID" Caption="Constituent System ID" DataType="Guid" Category="System"/>
+      <OutputField Name="CONSTITUENTLOOKUPID" Caption="Lookup ID" DataType="String" Category="Biographical"/>
+			<OutputField Name="FULLNAME" Caption="Name" DataType="String" Category="Biographical" IsDefaultOutput="true"/>
+			<OutputField Name="FIRSTNAME" Caption="First name" DataType="String" Category="Biographical"/>
+			<OutputField Name="KEYNAME" Caption="Last/Organization/Group/Household name" DataType="String" Category="Biographical"/>
+      <OutputField Name="AGE" Caption="Age" DataType="Integer" Category="Biographical"/>
+      <OutputField Name="ISDECEASED" Caption="Deceased" DataType="Boolean" Category="Biographical"/>
+      <OutputField Name="SUFFIX" Caption="Suffix" DataType="String" Category="Biographical">
+        <LookupInfo>
+          <CodeTable IncludeInactive="true" CodeTableName="SUFFIXCODE" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="TITLE" Caption="Title" DataType="String" Category="Biographical">
+        <LookupInfo>
+          <CodeTable IncludeInactive="true" CodeTableName="TITLECODE" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="NICKNAME" Caption="Nickname" DataType="String" Category="Biographical"/>
+      <OutputField Name="MARITALSTATUS" Caption="Marital status" DataType="String" Category="Biographical">
+        <LookupInfo>
+          <CodeTable CodeTableName="MARITALSTATUSCODE" IncludeInactive="true" UseCodeTableEntrySecurity="true"/>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="BIRTHDATE" Caption="Birth date" DataType="FuzzyDate" Category="Biographical"/>
+      <OutputField Name="PRIMARYADDRESS" Caption="Address lines" DataType="String" Category="Primary Address"/>
+      <OutputField Name="PRIMARYADDRESSCITY" Caption="City" DataType="String" Category="Primary Address"/>
+      <OutputField Name="PRIMARYADDRESSSTATEABBREVIATION" Caption="State" DataType="String" Category="Primary Address">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="7FA91401-596C-4f7c-936D-6E41683121D7" >
+            <common:Params>
+              <common:Param ID="INCLUDEINACTIVE">
+                <common:Value>1</common:Value>
+              </common:Param>
+              <common:Param ID="USEDEFAULTCOUNTRY">
+                <common:Value>0</common:Value>
+              </common:Param>
+            </common:Params>
+          </SimpleDataList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="PRIMARYADDRESSPOSTCODE" Caption="Post code" DataType="String" Category="Primary Address"/>
+      <OutputField Name="PRIMARYADDRESSCOUNTRY" Caption="Country" DataType="String" Category="Primary Address">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="C9649672-353D-42E8-8C25-4D34BBABFBBA">
+            <common:Params>
+              <common:Param ID="INCLUDEINACTIVE">
+                <common:Value>1</common:Value>
+              </common:Param>
+            </common:Params>
+          </SimpleDataList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="EMAILADDRESS" Caption="Email address" DataType="String" Category="Primary Contact Information"/>
+      <OutputField Name="CONSTITUENTEMAILADDRESSTYPE" Caption="Email type" DataType="String" Category="Primary Contact Information">
+        <LookupInfo>
+          <CodeTable CodeTableName="EMAILADDRESSTYPECODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>        
+      <OutputField Name="PHONENUMBER" Caption="Phone number" DataType="String" Category="Primary Contact Information"/>
+      <OutputField Name="CONSTITUENTPHONETYPE" Caption="Phone type" DataType="String" Category="Primary Contact Information">
+        <LookupInfo>
+          <CodeTable CodeTableName="PHONETYPECODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="EDUCATIONINSTITUTION" Caption="Institution" DataType="String" Category="Primary Education">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="c382c9eb-c9a6-4f72-b16b-31909a088f33" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="EDUCATIONDEGREE" Caption="Degree" DataType="String" Category="Primary Education">
+        <LookupInfo>
+          <CodeTable CodeTableName="EDUCATIONALDEGREECODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="CLASSOF" Caption="Class of" DataType="String" Category="Primary Education"/>
+      <OutputField Name="PREFERREDCLASSYEAR" Caption="Preferred class year" DataType="String" Category="Primary Education"/>
+      <OutputField Name="EDUCATIONSTATUS" Caption="Status" DataType="String" Category="Primary Education">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="086c5bfb-1a80-46cf-a2f5-05ef51120891" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="EDUCATIONLEVEL" Caption="Level" Category="Primary Education">
+        <LookupInfo>
+          <CodeTable CodeTableName="EDUCATIONALHISTORYLEVELCODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="EDUCATIONALPROGRAM" Caption="Educational program" Category="Primary Education">
+        <LookupInfo>
+          <CodeTable CodeTableName="EDUCATIONALPROGRAMCODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="EDUCATIONGRADUATEDATE" Caption="Graduation date" Category="Primary Education"/>
+      <OutputField Name="EDUCATIONSTARTDATE" Caption="Date attended from" Category="Primary Education"/>
+      <OutputField Name="EDUCATIONENDDATE" Caption="Date attended to" Category="Primary Education"/>
+      <OutputField Name="PRIMARYBUSINESS" Caption="Organization name" DataType="String" Category="Primary Business"/>      
+      <OutputField Name="JOBTITLE" Caption="Job title" DataType="String" Category="Primary Business"/>
+      <OutputField Name="JOBCATEGORY" Caption="Job category" DataType="String" Category="Primary Business">
+        <LookupInfo>
+          <CodeTable CodeTableName="JOBCATEGORYCODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="CAREERLEVEL" Caption="Career level" DataType="String" Category="Primary Business">
+        <LookupInfo>
+          <CodeTable CodeTableName="CAREERLEVELCODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="BUSINESSADDRESS" Caption="Address" DataType="String" Category="Primary Business"/>
+      <OutputField Name="BUSINESSCITY" Caption="City" DataType="String" Category="Primary Business"/>
+      <OutputField Name="BUSINESSSTATE" Caption="State" DataType="String" Category="Primary Business">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="7FA91401-596C-4f7c-936D-6E41683121D7">
+            <common:Params>
+              <common:Param ID="INCLUDEINACTIVE">
+                <common:Value>1</common:Value>
+              </common:Param>
+              <common:Param ID="USEDEFAULTCOUNTRY">
+                <common:Value>0</common:Value>
+              </common:Param>
+            </common:Params>
+          </SimpleDataList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="BUSINESSPOSTCODE" Caption="Post code" DataType="String" Category="Primary Business"/>
+      <OutputField Name="BUSINESSCOUNTRY" Caption="Country" DataType="String" Category="Primary Business">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="C9649672-353D-42E8-8C25-4D34BBABFBBA">
+            <common:Params>
+              <common:Param ID="INCLUDEINACTIVE">
+                <common:Value>1</common:Value>
+              </common:Param>
+            </common:Params>
+          </SimpleDataList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="INCOME" Caption="Income" Category="Demographic">
+        <LookupInfo>
+          <CodeTable IncludeInactive="true" CodeTableName="INCOMECODE" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="TARGET" Caption="Target" Category="Demographic">
+        <LookupInfo>
+          <CodeTable IncludeInactive="true" CodeTableName="TARGETCODE" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="RELIGION" Caption="Religion" Category="Demographic">
+        <LookupInfo>
+          <CodeTable IncludeInactive="true" CodeTableName="RELIGIONCODE" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="GENDER" Caption="Gender" Category="Demographic">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Unknown" />
+              <common:TranslationListOption Value="Male" />
+              <common:TranslationListOption Value="Female" />
+            </common:Options>
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+    </OutputFields>
+  </Output>
+
+</QueryViewSpec>
+

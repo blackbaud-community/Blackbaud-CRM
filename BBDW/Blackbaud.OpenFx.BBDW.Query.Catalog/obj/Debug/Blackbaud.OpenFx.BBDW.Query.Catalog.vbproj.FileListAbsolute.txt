@@ -1,0 +1,17 @@
+C:\Users\RonFr\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\obj\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.vbprojResolveAssemblyReference.cache
+C:\Users\RonFr\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.dll
+C:\Users\RonFr\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.pdb
+C:\Users\RonFr\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.dll.CodeAnalysisLog.xml
+C:\Users\RonFr\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.dll.lastcodeanalysissucceeded
+C:\Users\RonFr\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.AppFx.SpWrap.dll
+C:\Users\RonFr\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.AppFx.SpWrap.pdb
+C:\Users\RonFr\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\obj\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.dll
+C:\Users\RonFr\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\obj\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.pdb
+C:\Users\RonFr.000\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.dll
+C:\Users\RonFr.000\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.pdb
+C:\Users\RonFr.000\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.dll.CodeAnalysisLog.xml
+C:\Users\RonFr.000\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.dll.lastcodeanalysissucceeded
+C:\Users\RonFr.000\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\bin\Debug\Blackbaud.AppFx.SpWrap.pdb
+C:\Users\RonFr.000\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\obj\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.vbprojResolveAssemblyReference.cache
+C:\Users\RonFr.000\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\obj\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.dll
+C:\Users\RonFr.000\Documents\GitHub\BBDW-Query\Blackbaud.OpenFx.BBDW.Query.Catalog\obj\Debug\Blackbaud.OpenFx.BBDW.Query.Catalog.pdb

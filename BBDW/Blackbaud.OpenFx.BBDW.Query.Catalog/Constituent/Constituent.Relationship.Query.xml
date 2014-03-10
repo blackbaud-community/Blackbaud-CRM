@@ -1,0 +1,101 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="6ee0121e-df59-4798-9728-bc24482340dc"
+	Name="Relationship Query"
+	Description="A view defined for querying on relationship records"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="CONSTITUENTRELATIONSHIPSYSTEMID"
+	common:SecurityUIFolder="BBDW Query"
+  MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_RELATIONSHIP" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+  r.[CONSTITUENTRELATIONSHIPSYSTEMID],
+  r.[CONSTITUENTDIMID],
+  rt.[CONSTITUENTRELATIONSHIPTYPE],
+  rf.[ISCONTACT],
+  rf.[ISCURRENTRELATIONSHIP],
+  rf.[ISEMERGENCYCONTACT],
+  rf.[ISMATCHINGGIFTRELATIONSHIP],
+  rf.[ISPRIMARYBUSINESS],
+  rf.[ISPRIMARYCONTACT],
+  rf.[ISSPOUSE],
+  c.[FULLNAME],
+  c.[CONSTITUENTLOOKUPID],
+  c.[PRIMARYADDRESS],
+  c.[PRIMARYADDRESSCITY],
+  c.[PRIMARYADDRESSSTATEABBREVIATION],
+  c.[PRIMARYADDRESSPOSTCODE],
+  c.[PRIMARYADDRESSCOUNTRY]
+from BBDW.[FACT_CONSTITUENTRELATIONSHIP] r
+left join BBDW.[DIM_CONSTITUENT] c on r.[RECIPROCALCONSTITUENTDIMID] = c.[CONSTITUENTDIMID]
+left join BBDW.[DIM_CONSTITUENTRELATIONSHIPTYPE] rt on rt.[CONSTITUENTRELATIONSHIPTYPEDIMID] = r.[CONSTITUENTRELATIONSHIPTYPEDIMID]
+left join BBDW.[DIM_CONSTITUENTRELATIONSHIPFLAG] rf on rf.[CONSTITUENTRELATIONSHIPFLAGDIMID] = r.[CONSTITUENTRELATIONSHIPFLAGDIMID]
+
+			
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="CONSTITUENTRELATIONSHIPSYSTEMID" Caption="Relationship System ID" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="CONSTITUENTDIMID" Caption="Constituent Dim ID" DataType="Integer" IsHidden="true" />
+      <OutputField Name="CONSTITUENTRELATIONSHIPTYPE" Caption="Relationship type" DataType="String" Category="Relationship">
+        <LookupInfo>
+          <CodeTable CodeTableName="RELATIONSHIPTYPECODE" IncludeInactive="true"/>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="ISCONTACT" Caption="Is Contact" DataType="Boolean" Category="Relationship" />
+      <OutputField Name="ISCURRENTRELATIONSHIP" Caption="Is current relationship" DataType="Boolean" Category="Relationship" />
+      <OutputField Name="ISEMERGENCYCONTACT" Caption="Is emergency contact" DataType="Boolean" Category="Relationship" />
+      <OutputField Name="ISMATCHINGGIFTRELATIONSHIP" Caption="Is matching gift relationship" DataType="Boolean" Category="Relationship" />
+      <OutputField Name="ISPRIMARYBUSINESS" Caption="Is primary business" DataType="Boolean" Category="Relationship" />
+      <OutputField Name="ISPRIMARYCONTACT" Caption="Is primary contact" DataType="Boolean" Category="Relationship" />
+      <OutputField Name="ISSPOUSE" Caption="Is spouse" DataType="Boolean" Category="Relationship" />
+      <OutputField Name="FULLNAME" Caption="Full Name" DataType="String" Category="Related Constituent" />
+      <OutputField Name="CONSTITUENTLOOKUPID" Caption="Lookup ID" DataType="String" Category="Related Constituent" />
+      <OutputField Name="PRIMARYADDRESS" Caption="Primary address" DataType="String" Category="Related Constituent" />
+      <OutputField Name="PRIMARYADDRESSCITY" Caption="City" DataType="String" Category="Related Constituent" />
+      <OutputField Name="PRIMARYADDRESSSTATEABBREVIATION" Caption="State" DataType="String" Category="Related Constituent">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="7FA91401-596C-4f7c-936D-6E41683121D7" >
+            <common:Params>
+              <common:Param ID="INCLUDEINACTIVE">
+                <common:Value>1</common:Value>
+              </common:Param>
+              <common:Param ID="USEDEFAULTCOUNTRY">
+                <common:Value>0</common:Value>
+              </common:Param>
+            </common:Params>
+          </SimpleDataList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="PRIMARYADDRESSPOSTCODE" Caption="Post code" DataType="String" Category="Related Constituent" />
+      <OutputField Name="PRIMARYADDRESSCOUNTRY" Caption="Country" DataType="String" Category="Related Constituent">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="C9649672-353D-42E8-8C25-4D34BBABFBBA">
+            <common:Params>
+              <common:Param ID="INCLUDEINACTIVE">
+                <common:Value>1</common:Value>
+              </common:Param>
+            </common:Params>
+          </SimpleDataList>
+        </LookupInfo>
+      </OutputField>
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT" Field="CONSTITUENTDIMID" ParentViewRelatedField="CONSTITUENTDIMID" PathAlias="Relationships"/>
+  </RelationshipOperations>
+  
+</QueryViewSpec>
+

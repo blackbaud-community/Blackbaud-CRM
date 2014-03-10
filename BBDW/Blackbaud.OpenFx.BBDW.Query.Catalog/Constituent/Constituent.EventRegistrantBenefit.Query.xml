@@ -1,0 +1,56 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="3b29d88d-898d-4a9f-a225-467c4095caf7"
+	Name="Event Registrant Benefit Query"
+	Description="Returns event registration benefits from BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="EVENTREGISTRANTBENEFITSYSTEMID"
+	common:SecurityUIFolder="BBDW Query"  
+	MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_EVENTREGISTRANTBENEFIT" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+  rb.[EVENTREGISTRANTBENEFITSYSTEMID],
+  rb.[EVENTREGISTRANTFACTID],
+  rb.[QUANTITY],
+  rb.[TOTALVALUE],
+  b.[BENEFITNAME],
+  b.[BENEFITCATEGORY],
+  b.[BENEFITDESCRIPTION],
+  b.[SENDBENEFIT],
+  b.[VALUE],
+  b.[COST]  
+from BBDW.[FACT_EVENTREGISTRANTBENEFIT] rb
+left join BBDW.[DIM_BENEFIT] b on rb.[BENEFITDIMID] = b.[BENEFITDIMID]			
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="EVENTREGISTRANTBENEFITSYSTEMID" Caption="Registrant Benefit System ID" DataType="Guid" IsHidden="true" />
+			<OutputField Name="EVENTREGISTRANTFACTID" Caption="Registrant Fact ID" DataType="Integer" IsHidden="true"/>
+			<OutputField Name="QUANTITY" Caption="Quantity" DataType="Integer" Category="Benefit"/>
+      <OutputField Name="TOTALVALUE" Caption="Total value" DataType="Money" Category="Benefit"/>
+      <OutputField Name="BENEFITNAME" Caption="Benefit name" DataType="String" Category="Benefit"/>
+      <OutputField Name="BENEFITCATEGORY" Caption="Benefit category" DataType="String" Category="Benefit"/>
+      <OutputField Name="BENEFITDESCRIPTION" Caption="Benefit description" DataType="String" Category="Benefit"/>
+      <OutputField Name="SENDBENEFIT" Caption="Send benefit" DataType="String" Category="Benefit"/>
+      <OutputField Name="VALUE" Caption="Unit value" DataType="Money" Category="Benefit"/>
+      <OutputField Name="COST" Caption="Unit cost" DataType="Money" Category="Benefit"/>
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT_EVENTREGISTRANT" Cardinality="OneToMany" Field="EVENTREGISTRANTFACTID" ParentViewRelatedField="EVENTREGISTRANTFACTID" PathAlias="Benefits"/>
+  </RelationshipOperations>
+  
+</QueryViewSpec>
+

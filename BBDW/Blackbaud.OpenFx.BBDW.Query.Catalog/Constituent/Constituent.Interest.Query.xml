@@ -1,0 +1,47 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="1ab3e6f3-bd1b-4077-a705-ad897207da61"
+	Name="Constituent Interests Query"
+	Description="Returns constituent interests from BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="CONSTITUENTINTERESTSYSTEMID"
+	common:SecurityUIFolder="BBDW Query"
+  MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_INTEREST" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+  [CONSTITUENTINTERESTSYSTEMID],
+  [CONSTITUENTDIMID],
+  [INTEREST],
+  [INTERESTNOTE]
+from BBDW.[DIM_CONSTITUENTINTEREST]		
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+      <OutputField Name="CONSTITUENTINTERESTSYSTEMID" Caption="Interest System ID" DataType="Guid" IsHidden="true"/>
+      <OutputField Name="CONSTITUENTDIMID" Caption="Constituent Dimension ID" DataType="Integer" IsHidden="true" />
+      <OutputField Name="INTEREST" Caption="Interest type" DataType="String" Category="Interest">
+        <LookupInfo>
+          <CodeTable CodeTableName="CONSTITUENTINTERESTCODE" IncludeInactive="true"/>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="INTERESTNOTE" Caption="Comments" DataType="String" Category="Interest" />
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT" Field="CONSTITUENTDIMID" ParentViewRelatedField="CONSTITUENTDIMID" PathAlias="Interests"/>
+  </RelationshipOperations>
+  
+</QueryViewSpec>
+

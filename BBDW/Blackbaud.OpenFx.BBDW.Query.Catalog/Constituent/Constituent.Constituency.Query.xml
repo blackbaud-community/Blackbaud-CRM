@@ -1,0 +1,50 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="8adb13b4-0ba6-4e3d-b681-345d158071e9"
+	Name="Constituency Query"
+	Description="Returns all constituencies stored in BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="CONSTITUENCYFACTID"
+	common:SecurityUIFolder="BBDW Query"
+  MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENCY" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+fc.[CONSTITUENCYFACTID],
+fc.[CONSTITUENTDIMID],
+dc.[CONSTITUENCY],
+fc.[FROMDATE],
+fc.[TODATE]
+from BBDW.[FACT_CONSTITUENCY] fc
+left join BBDW.[DIM_CONSTITUENCY] dc on fc.[CONSTITUENCYDIMID] = dc.[CONSTITUENCYDIMID]
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+      <OutputField Name="CONSTITUENCYFACTID" Caption="Constituency Fact ID" DataType="Integer" IsHidden="true"/>
+      <OutputField Name="CONSTITUENTDIMID" Caption="Constituency Dim ID" DataType="Integer" IsHidden="true"/>
+      <OutputField Name="CONSTITUENCY" Caption="Constituency" DataType="String" Category="Constituencies">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="1747b59c-0e72-4fb8-931a-6d0bde091d48"/>
+        </LookupInfo>
+      </OutputField>
+			<OutputField Name="FROMDATE" Caption="Date from" DataType="Date" Category="Constituencies"/>
+      <OutputField Name="TODATE" Caption="Date to" DataType="Date" Category="Constituencies"/>
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT" Field="CONSTITUENTDIMID" ParentViewRelatedField="CONSTITUENTDIMID" PathAlias="Constituencies"/>
+  </RelationshipOperations>
+  
+</QueryViewSpec>
+

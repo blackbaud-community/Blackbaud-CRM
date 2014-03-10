@@ -1,0 +1,78 @@
+<PackageSpec 
+    xmlns="bb_appfx_package"
+    xmlns:common="bb_appfx_commontypes"
+    ID="4fb99eaa-b8d0-41ee-b634-1bcd488a4a05"
+    Name="BBDW Query Package"
+    Description="A package defining specs related to BBDW Query"
+    Author="Blackbaud Open Source"
+    >
+
+	<!-- Note:  the order of the items listed here is important.  For example, you won't be able to load a data form that references 
+	a table that hasn't been loaded, etc.  In general, the following order is recommended:
+	
+		(functions and procedures first)
+		SQLFunctionSpec
+		SQLStoredProcedureSpec
+		TranslationFunctionSpec
+
+		(tables next)
+		CodeTableSpec
+		TableSpec
+		SQLViewSpec
+
+		(features next)
+		SimpleDataListSpec		
+		SearchListSpec
+		RecordOperationSpec
+		DataListSpec
+		
+		(forms next)
+		AddDataFormTemplateSpec
+		EditDataFormTemplateSpec
+		ViewDataFormTemplateSpec		
+
+		(more feature types)
+		BatchTypeSpec
+		BusinessProcessSpec
+		CalendarSpec
+		FlashDashSpec
+		GlobalChangeSpec
+		IDMapperSpec
+		KpiSpec
+		MapEntitySpec
+		MergeConfiguration
+		MergeTaskSpec
+		QueryViewSpec
+		ReportSpec
+		RelationshipMapSpec
+		SmartFieldSpec
+		SmartQuerySpec
+		WorkflowInboxSpec
+		WorkflowSpec
+		
+		(functional areas, pages, and tasks last)
+		PageDefinitionSpec
+		FunctionalAreaSpec
+		TaskSpec	
+	-->
+	
+	<common:DependencyList>
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.AppealMailing.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.EventRegistrant.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.Revenue.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.RevenueApplication.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.Interaction.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.Interest.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.Constituency.SimpleList.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.Constituency.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.RevenueCampaign.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.EventRegistrantBenefit.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.RecognitionCredit.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.RevenueSolicitor.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.Membership.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.Relationship.Query.xml" />
+        <common:Dependency CatalogAssembly="Blackbaud.OpenFx.BBDW.Query.Catalog.dll" CatalogItem="Blackbaud.OpenFx.BBDW.Query.Catalog.Constituent.EventRegistrantBenefit.Query.xml" />
+  </common:DependencyList>
+
+</PackageSpec>

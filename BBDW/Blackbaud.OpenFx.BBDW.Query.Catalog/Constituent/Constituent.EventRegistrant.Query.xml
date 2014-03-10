@@ -1,0 +1,108 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="2817d058-9f52-4052-ba4d-bd1f1fc6ee5d"
+	Name="Event Registrant Query"
+	Description="Returns event details from BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="EVENTREGISTRANTSYSTEMID"
+	RecordType="Registrant"
+	common:SecurityUIFolder="BBDW Query"  
+	MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_EVENTREGISTRANT" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+  r.[EVENTREGISTRANTSYSTEMID],
+  r.[EVENTREGISTRANTFACTID],
+  r.[CONSTITUENTDIMID],
+  e.[EVENTNAME],
+  e.[EVENTSTARTDATE],
+  e.[EVENTENDDATE],
+  e.[EVENTLOOKUPID],
+  er.[ATTENDED],
+  er.[ISCANCELLED],
+  er.[WILLNOTATTEND],
+  e.[EVENTSTARTTIME],
+  e.[EVENTENDTIME],
+  e.[EVENTCAPACITY],
+  e.[EVENTCATEGORY],
+  e.[EVENTTYPE],
+  r.[REGISTRATIONFEE],
+  r.[REGISTRATIONFEERECEIVED],
+  er.[ONLINEREGISTRANT],
+  rc.[INBOUNDCHANNEL],
+  rc.[RECRUITEMENTCHANNEL],
+  rc.[ROLE]
+from BBDW.[FACT_EVENTREGISTRANT] r
+left join BBDW.[DIM_EVENT] e on r.[EVENTDIMID] = e.[EVENTDIMID]
+left join BBDW.[DIM_EVENTREGISTRATION] er on er.[EVENTREGISTRATIONDIMID] = r.[EVENTREGISTRATIONDIMID]
+left join BBDW.[DIM_EVENTREGISTRATIONCODES] rc on r.[EVENTREGISTRATIONCODESDIMID] = rc.[EVENTREGISTRATIONCODESDIMID]
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+  
+  <!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="EVENTREGISTRANTSYSTEMID" Caption="Registrant System ID" DataType="Guid" IsHidden="true" />
+      <OutputField Name="EVENTREGISTRANTFACTID" Caption="Registrant Fact ID" DataType="Integer" IsHidden="true" />
+			<OutputField Name="CONSTITUENTDIMID" Caption="Constituent Dim ID" DataType="Integer" IsHidden="true" />
+			<OutputField Name="EVENTNAME" Caption="Event name" DataType="String" Category="Event" />
+      <OutputField Name="EVENTSTARTDATE" Caption="Start date" DataType="Date" Category="Event"/>
+      <OutputField Name="EVENTENDDATE" Caption="End date" DataType="Date" Category="Event"/>
+      <OutputField Name="EVENTLOOKUPID" Caption="Event lookup ID" DataType="String" Category="Event" />
+      <OutputField Name="EVENTSTARTTIME" Caption="Start time" DataType="HourMinute" Category="Event" />
+      <OutputField Name="EVENTENDTIME" Caption="End time" DataType="HourMinute" Category="Event" />
+      <OutputField Name="ATTENDED" Caption="Attended" DataType="Boolean" Category="Registration"/>
+      <OutputField Name="ISCANCELLED" Caption="Cancelled" DataType="Boolean" Category="Registration" />
+      <OutputField Name="WILLNOTATTEND" Caption="Will not attend" DataType="Boolean" Category="Registration" />
+      <OutputField Name="CAPACITY" Caption="Capacity" DataType="Integer" Category="Event"/>
+      <OutputField Name="EVENTCATEGORY" Caption="Event category" DataType="String" Category="Event">
+        <LookupInfo>
+          <CodeTable CodeTableName="EVENTCATEGORYCODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="EVENTTYPE" Caption="Event type" DataType="String" Category="Event">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Other" />
+              <common:TranslationListOption Value="Athletic Challenge" />
+              <common:TranslationListOption Value="Auction/Raffle/Give-a-way" />
+              <common:TranslationListOption Value="Bike" />
+              <common:TranslationListOption Value="Independent or 3rd Party Fundraising Events" />
+              <common:TranslationListOption Value="Other Sport-a-Thon" />
+              <common:TranslationListOption Value="Run/Walk" />
+              <common:TranslationListOption Value="Virtual Event" />
+            </common:Options>
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="REGISTRATIONFEE" Caption="Registration fee" DataType="Money" Category="Registration"/>
+      <OutputField Name="REGISTRATIONFEERECEIVED" Caption="Registration fee received" DataType="Money" Category="Registration"/>
+      <OutputField Name="ONLINEREGISTRANT" Caption="Is online registration" DataType="Boolean" Category="Registration"/>
+      <OutputField Name="INBOUNDCHANNEL" Caption="Inbound Channel" DataType="String" Category="Registration">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Send through both mail and email, according to each constituent's preferences." />
+              <common:TranslationListOption Value="Send through email only" />
+              <common:TranslationListOption Value="Send through mail only" />
+            </common:Options>
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT" Field="CONSTITUENTDIMID" ParentViewRelatedField="CONSTITUENTDIMID" PathAlias="Event Registrations"/>
+  </RelationshipOperations>
+  
+</QueryViewSpec>
+

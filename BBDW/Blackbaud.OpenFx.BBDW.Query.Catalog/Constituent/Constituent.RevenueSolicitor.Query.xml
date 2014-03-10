@@ -1,0 +1,46 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="3fd06ec7-da18-4754-987a-325069c58e1b"
+	Name="Revenue Solicitor Query"
+	Description="A view defined for querying on revenue solicitor records"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="REVENUEFUNDRAISERSYSTEMID"
+  MartKey ="BBDW"
+	common:SecurityUIFolder="BBDW Query"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_REVENUESOLICITOR" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+rf.[FINANCIALTRANSACTIONLINEITEMFACTID],
+rf.[REVENUEFUNDRAISERSYSTEMID],
+rf.[REVENUEFUNDRAISERAMOUNT],
+f.[FULLNAME],
+f.[CONSTITUENTLOOKUPID]
+from BBDW.[FACT_REVENUEFUNDRAISER] rf 
+left join BBDW.[DIM_FUNDRAISER] f on f.[FUNDRAISERDIMID] = rf.[FUNDRAISERDIMID]		
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="FINANCIALTRANSACTIONLINEITEMFACTID" Caption="Line Item Fact ID" DataType="Integer" IsHidden="true"/>
+			<OutputField Name="REVENUEFUNDRAISERSYSTEMID" Caption="Revenue Fundraiser System ID" DataType="Guid" IsHidden="true" />
+			<OutputField Name="REVENUEFUNDRAISERAMOUNT" Caption="Amount" DataType="Money" Category="Solicitor" />
+      <OutputField Name="FULLNAME" Caption="Solicitor Name" DataType="String" Category="Solicitor" />
+      <OutputField Name="CONSTITUENTLOOKUPID" Caption="Solicitor Lookup ID" DataType="String" Category="Solicitor" />
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT_REVENUEAPPLICATION" Cardinality="OneToMany" Field="FINANCIALTRANSACTIONLINEITEMFACTID" ParentViewRelatedField="FINANCIALTRANSACTIONLINEITEMFACTID" PathAlias="Solicitors"/>
+  </RelationshipOperations>
+  
+</QueryViewSpec>
+

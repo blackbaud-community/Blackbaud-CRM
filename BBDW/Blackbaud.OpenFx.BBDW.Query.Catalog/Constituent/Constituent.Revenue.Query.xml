@@ -1,0 +1,146 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="3648cdaa-33c5-4aa0-948f-c92a92432a8e"
+	Name="Revenue Reporting"
+	Description="Returns revenue details from BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="FINANCIALTRANSACTIONSYSTEMID"
+	RecordType="Revenue"
+  EnforceRecordAccessSecurity="true"  
+	common:SecurityUIFolder="BBDW Query"
+  MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_REVENUE" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+	ft.[FINANCIALTRANSACTIONFACTID],
+  ft.[FINANCIALTRANSACTIONSYSTEMID],
+	ft.[AMOUNT],
+  ft.[RECEIPTAMOUNT],
+	ft.[FINANCIALTRANSACTIONDATE],
+  ft.[POSTDATE],
+	ft.[CONSTITUENTDIMID],
+  rch.[REVENUECHANNELDESCRIPTION],
+  rc.[REVENUEPOSTSTATUS],
+  rc.[REVENUEPAYMENTMETHOD],
+  rc.[REVENUETRANSACTIONTYPE],
+  a.[APPEALNAME],
+  sc.[SOURCECODE],
+  ft.[BATCHNUMBER]
+from BBDW.[FACT_FINANCIALTRANSACTION] ft
+left join BBDW.[DIM_REVENUECODE] rc on rc.[REVENUECODEDIMID] = ft.[REVENUECODEDIMID]
+left join BBDW.[DIM_REVENUEFLAG] rf on rf.[REVENUEFLAGDIMID] = ft.[REVENUEFLAGDIMID]
+left join BBDW.[DIM_REVENUECHANNEL] rch on rch.[REVENUECHANNELDIMID] = ft.[REVENUECHANNELDIMID]
+left join BBDW.[DIM_APPEAL] a on ft.[APPEALDIMID] = a.[APPEALDIMID]
+left join BBDW.[DIM_MARKETINGSOURCECODE] sc on sc.[MARKETINGSOURCECODEDIMID] = ft.[MARKETINGSOURCECODEDIMID]
+
+where rc.[REVENUETRANSACTIONTYPECODE] in (0,1,2,3,4,5,6,7,8,9, 15)
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="FINANCIALTRANSACTIONFACTID" Caption="Financial Transaction Fact ID" DataType="Integer" IsHidden="true"/>
+			<OutputField Name="FINANCIALTRANSACTIONSYSTEMID" Caption="Financial Transaction System ID" DataType="Guid" IsHidden="true"/>
+      <OutputField Name="AMOUNT" Caption="Amount" DataType="Money" Category="Transaction"/>
+      <OutputField Name="FINANCIALTRANSACTIONDATE" Caption="Date" DataType="Date" Category="Transaction"/>
+      <OutputField Name="POSTDATE" Caption="Post date" DataType="Date" Category="Transaction"/>      
+     <OutputField Name="CONSTITUENTDIMID" Caption="Constituent Dimension ID" DataType="Integer" IsHidden="true"/>
+     <OutputField Name="REVENUECHANNELDESCRIPTION" Caption="Channel" DataType="String" Category="Transaction"/>
+     <OutputField Name="REVENUEPOSTSTATUS" Caption="Post status" DataType="String" Category="Transaction">
+       <LookupInfo>
+         <TranslationList>
+           <common:Options>
+             <common:TranslationListOption Value="Not posted" />
+             <common:TranslationListOption Value="Posted" />
+             <common:TranslationListOption Value="Do not post" />
+           </common:Options>
+         </TranslationList>
+       </LookupInfo>
+     </OutputField>
+     <OutputField Name="REVENUEPAYMENTMETHOD" Caption="Payment method" DataType="String" Category="Transaction">
+       <LookupInfo>
+         <TranslationList>
+           <common:Options>
+             <common:TranslationListOption Value="Cash" />
+             <common:TranslationListOption Value="Check" />
+             <common:TranslationListOption Value="Credit Card" />
+             <common:TranslationListOption Value="Direct Debit" />
+             <common:TranslationListOption Value="Stock" />
+             <common:TranslationListOption Value="Property" />
+             <common:TranslationListOption Value="Gift-in-kind" />
+             <common:TranslationListOption Value="Standing order" />
+             <common:TranslationListOption Value="None" />
+             <common:TranslationListOption Value="Other" />
+             <common:TranslationListOption Value="Auction donation">
+               <common:InstalledProductList>
+                 <common:InstalledProduct ID="0321D454-B28B-4FAB-BD58-F2ECC7050594" />
+               </common:InstalledProductList>
+             </common:TranslationListOption>
+           </common:Options>
+         </TranslationList>
+       </LookupInfo>
+     </OutputField>
+     <OutputField Name="REVENUETRANSACTIONTYPE" Caption="Transaction type" DataType="String" Category="Transaction">
+       <LookupInfo>
+         <TranslationList>
+           <common:Options>
+             <common:TranslationListOption Value="Payment" />
+             <common:TranslationListOption Value="Pledge" />
+             <common:TranslationListOption Value="Recurring gift" />
+             <common:TranslationListOption Value="Matching gift claim" />
+             <common:TranslationListOption Value="Planned gift">
+               <common:InstalledProductList>
+                 <common:InstalledProduct ID="3117D2C8-7F46-42F2-ABEB-B654F2F63046" />
+                 <common:InstalledProduct ID="0A07AA22-ED88-42B7-8C55-D80DF4F4CEA2" />
+               </common:InstalledProductList>
+             </common:TranslationListOption>
+             <common:TranslationListOption Value="Grant award">
+               <common:InstalledProductList>
+                 <common:InstalledProduct ID="3117d2c8-7f46-42f2-abeb-b654f2f63046" />
+               </common:InstalledProductList>
+             </common:TranslationListOption>
+             <common:TranslationListOption Value="Auction donation">
+               <common:InstalledProductList>
+                 <common:InstalledProduct ID="0321D454-B28B-4FAB-BD58-F2ECC7050594" />
+               </common:InstalledProductList>
+             </common:TranslationListOption>
+             <common:TranslationListOption Value="Order">
+               <common:InstalledProductList>
+                 <common:InstalledProduct ID="bb1c17bc-9e0b-4683-b490-ee40d511fa05" />
+               </common:InstalledProductList>
+             </common:TranslationListOption>
+             <common:TranslationListOption Value="Donor challenge claim" />
+             <common:TranslationListOption Value="Pending Gift">
+               <common:InstalledProductList>
+                 <common:InstalledProduct ID="a919502c-a2f6-4a56-9183-28e3f667916e" />
+               </common:InstalledProductList>
+             </common:TranslationListOption>
+             <common:TranslationListOption Value="Membership installment plan">
+               <common:InstalledProductList EvaluationMethod="All">
+                 <common:InstalledProduct ID="5e696818-62ee-4c90-8c28-b1f52d77176e" />
+                 <common:InstalledProduct ID="3117D2C8-7F46-42F2-ABEB-B654F2F63046" />
+               </common:InstalledProductList>
+             </common:TranslationListOption>
+           </common:Options>
+         </TranslationList>
+       </LookupInfo>
+     </OutputField>       
+     <OutputField Name="APPEALNAME" Caption="Appeal" DataType="String" Category="Transaction"/>
+     <OutputField Name="SOURCECODE" Caption="Source code" DataType="String" Category="Transaction"/>
+     <OutputField Name="BATCHNUMBER" Caption="Batch number" DataType="String" Category="Transaction"/>
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT" Field="CONSTITUENTDIMID" ParentViewRelatedField="CONSTITUENTDIMID" PathAlias="Revenue"/>
+  </RelationshipOperations>
+</QueryViewSpec>
+

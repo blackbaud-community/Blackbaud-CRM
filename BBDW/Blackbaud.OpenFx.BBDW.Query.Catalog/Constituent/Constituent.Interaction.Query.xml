@@ -1,0 +1,88 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="4f9d1bc0-346a-42aa-a37c-ba5cb5a287c0"
+	Name="Interaction Query"
+	Description="Returns interactions from BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="INTERACTIONSYSTEMID"
+	RecordType="Interaction"
+	common:SecurityUIFolder="BBDW Query"  
+  MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_INTERACTION" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+  i.[CONSTITUENTDIMID],
+  i.[INTERACTIONSYSTEMID],
+  i.[INTERACTIONDATE],
+  di.[INTERACTIONCATEGORY],
+  di.[INTERACTIONSTATUS],
+  di.[INTERACTIONSUBCATEGORY],
+  di.[INTERACTIONTYPE] as [CONTACTMETHOD]
+from BBDW.[FACT_INTERACTION] i
+left join BBDW.[DIM_INTERACTION] di on i.[INTERACTIONDIMID] = di.[INTERACTIONDIMID]
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="CONSTITUENTDIMID" Caption="Constituent Dim ID" DataType="Integer" IsHidden="true"/>
+			<OutputField Name="INTERACTIONSYSTEMID" Caption="Interaction System ID" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="INTERACTIONDATE" Caption="Date" DataType="Date" Category="Interaction" />
+      <OutputField Name="INTERACTIONCATEGORY" Caption="Category" DataType="String" Category="Interaction">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="CBBA7545-B66F-44AC-AA24-D9C2F8CBC4EC">
+            <common:Params>
+              <common:Param ID="INCLUDEINACTIVE">
+                <common:Value>1</common:Value>
+              </common:Param>
+            </common:Params>
+          </SimpleDataList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="INTERACTIONSTATUS" Caption="Status" DataType="String" Category="Interaction">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Planned" />
+              <common:TranslationListOption Value="Pending" />
+              <common:TranslationListOption Value="Completed" />
+              <common:TranslationListOption Value="Unsuccessful" />
+              <common:TranslationListOption Value="Cancelled" />
+              <common:TranslationListOption Value="Declined" />
+            </common:Options>
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="INTERACTIONSUBCATEGORY" Caption="SubCategory" DataType="String" Category="Interaction">
+        <LookupInfo>
+          <SimpleDataList SimpleDataListID="0EACC39B-07D1-4641-8774-E319559535A7">
+            <common:Params>
+              <common:Param ID="INCLUDEINACTIVE">
+                <common:Value>1</common:Value>
+              </common:Param>
+            </common:Params>
+          </SimpleDataList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Caption="Contact method" Name="CONTACTMETHOD" Category="Interaction">
+        <LookupInfo>
+          <CodeTable CodeTableName="INTERACTIONTYPECODE" IncludeInactive="true"/>
+        </LookupInfo>
+      </OutputField>
+    </OutputFields>
+	</Output>
+  
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT" Field="CONSTITUENTDIMID" ParentViewRelatedField="CONSTITUENTDIMID" PathAlias="Interactions"/>
+  </RelationshipOperations>
+  
+</QueryViewSpec>
+

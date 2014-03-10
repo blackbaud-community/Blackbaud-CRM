@@ -1,0 +1,59 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="03fd92da-6746-4255-a5ce-fa39d7e5de25"
+	Name="Campaign Query"
+	Description="Returns campaigns from BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="REVENUECAMPAIGNSYSTEMID"
+	common:SecurityUIFolder="BBDW Query"
+  MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_REVENUECAMPAIGN" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+  rc.[FINANCIALTRANSACTIONLINEITEMFACTID],
+  rc.[REVENUECAMPAIGNSYSTEMID],
+  cp.[CAMPAIGNPRIORITY],
+  cp.[CAMPAIGNPRIORITYGOAL],
+  cp.[CAMPAIGNSUBPRIORITYGOAL],
+  cp.[CAMPAIGNSUBPRIORITY],
+  c.[CAMPAIGNNAME],
+  c.[CAMPAIGNDESCRIPTION],
+  c.[CAMPAIGNLOOKUPID],
+  c.[CAMPAIGNSTARTDATE],
+  c.[CAMPAIGNENDDATE]
+from BBDW.[FACT_REVENUECAMPAIGN] rc
+left join BBDW.[DIM_CAMPAIGN] c on rc.[CAMPAIGNDIMID] = c.[CAMPAIGNDIMID]
+left join BBDW.[DIM_CAMPAIGNPRIORITY] cp on rc.[CAMPAIGNPRIORITYDIMID] = cp.[CAMPAIGNPRIORITYDIMID]		
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="FINANCIALTRANSACTIONLINEITEMFACTID" Caption="Financial Transaction Line Item ID" DataType="Integer" IsHidden="true"/>
+			<OutputField Name="REVENUECAMPAIGNSYSTEMID" Caption="Revenue Campaign System ID" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="CAMPAIGNPRIORITY" Caption="Campaign priority" DataType="String" Category="Campaign Priority"/>
+      <OutputField Name="CAMPAIGNPRIORITYGOAL" Caption="Campaign priority goal" DataType="Money" Category="Campaign Priority"/>
+      <OutputField Name="CAMPAIGNSUBPRIORITY" Caption="Campaign subpriority" DataType="String" Category="Campaign Subpriority"/>
+      <OutputField Name="CAMPAIGNSUBPRIORITYGOAL" Caption="Campaign subpriority goal" DataType="Money" Category="Campaign Subpriority"/>
+      <OutputField Name="CAMPAIGNNAME" Caption="Campaign name" DataType="String" Category="Campaign"/>
+      <OutputField Name="CAMPAIGNDESCRIPTION" Caption="Campaign description" DataType="String" Category="Campaign"/>
+      <OutputField Name="CAMPAIGNLOOKUPID" Caption="Campaign lookup ID" DataType="String" Category="Campaign"/>
+      <OutputField Name="CAMPAIGNSTARTDATE" Caption="Start date" DataType="Date" Category="Campaign"/>
+      <OutputField Name="CAMPAIGNENDDATE" Caption="End date" DataType="Date" Category="Campaign"/>
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT_REVENUEAPPLICATION" Cardinality="OneToMany" Field="FINANCIALTRANSACTIONLINEITEMFACTID" ParentViewRelatedField="FINANCIALTRANSACTIONLINEITEMFACTID" PathAlias="Campaign"/>
+  </RelationshipOperations>
+
+</QueryViewSpec>
+

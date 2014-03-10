@@ -1,0 +1,77 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="21378b2d-cd8b-4651-a6e9-2bfc8d318f2d"
+	Name="BBDW Membership Query"
+	Description="Returns membership from BBDW"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="MEMBERSYSTEMID"
+	RecordType="Member"
+	common:SecurityUIFolder="BBDW Query"  
+  MartKey="BBDW"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_MEMBERSHIP" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+  fm.[CONSTITUENTDIMID],
+  fm.[MEMBERSYSTEMID],
+  dm.[JOINDATE],
+  dm.[EXPIRATIONDATE],
+  mp.[MEMBERSHIPPROGRAMCATEGORY],  
+  mp.[MEMBERSHIPPROGRAM],
+  mp.[MEMBERSHIPPROGRAMDESCRIPTION],
+  mp.[MEMBERSHIPPROGRAMTYPE],
+  mp.[MEMBERSHIPLEVEL],
+  mp.[MEMBERSHIPLEVELDESCRIPTION],
+  ms.[MEMBERSHIPSTATUS]
+
+from 
+BBDW.[FACT_MEMBER] fm
+left join BBDW.[DIM_MEMBERSHIP] dm on fm.[MEMBERSHIPDIMID] = dm.[MEMBERSHIPDIMID]
+left join BBDW.[DIM_MEMBERSHIPPROGRAM] mp on dm.[MEMBERSHIPPROGRAMDIMID] = mp.[MEMBERSHIPPROGRAMDIMID]
+left join BBDW.[DIM_MEMBERSHIPSTATUS] ms on dm.[MEMBERSHIPSTATUSDIMID] = ms.[MEMBERSHIPSTATUSDIMID]
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+	<!-- describe each field in the view output -->
+	<Output>
+		<OutputFields>
+			<OutputField Name="CONSTITUENTDIMID" Caption="Constituent Dim ID" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="MEMBERSYSTEMID" Caption="Member System ID" DataType="Guid" IsHidden="true"/>
+			<OutputField Name="JOINDATE" Caption="Membership join date" DataType="Date" Category="Membership"/>
+      <OutputField Name="EXPIRATIONDATE" Caption="Membership expiration date" DataType="Date" Category="Membership"/>
+      <OutputField Name="MEMBERSHIPPROGRAMCATEGORY" Caption="Membership program category" DataType="String" Category="Membership Program"/>
+      <OutputField Name="MEMBERSHIPPROGRAM" Caption="Membership program" DataType="String" Category="Membership Program"/>
+      <OutputField Name="MEMBERSHIPPROGRAMDESCRIPTION" Caption="Membership program description" DataType="String" Category="Membership Program"/>
+      <OutputField Name="MEMBERSHIPPROGRAMTYPE" Caption="Membership program type" DataType="String" Category="Membership Program"/>
+      <OutputField Name="MEMBERSHIPLEVEL" Caption="Membership level" DataType="String" Category="Membership"/>
+      <OutputField Name="MEMBERSHIPLEVELDESCRIPTION" Caption="Membership level description" DataType="String" Category="Membership"/>
+      <OutputField Name="MEMBERSHIPSTATUS" Caption="Membership Status" DataType="String" Category="Membership">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Active" />
+              <common:TranslationListOption Value="Cancelled" />
+              <common:TranslationListOption Value="Pending" />
+              <common:TranslationListOption Value="Grace" />
+              <common:TranslationListOption Value="Lapsed" />
+              <common:TranslationListOption Value="Expired" />
+              <common:TranslationListOption Value="Expiring" />
+            </common:Options>            
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+    </OutputFields>
+	</Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT" Field="CONSTITUENTDIMID" ParentViewRelatedField="CONSTITUENTDIMID" PathAlias="Memberships"/>
+  </RelationshipOperations>
+  
+</QueryViewSpec>
+

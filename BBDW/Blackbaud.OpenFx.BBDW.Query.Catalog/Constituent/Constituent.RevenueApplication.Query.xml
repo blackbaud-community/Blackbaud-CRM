@@ -1,0 +1,269 @@
+﻿<QueryViewSpec
+	xmlns="bb_appfx_queryview"
+	xmlns:common="bb_appfx_commontypes" 
+	ID="13f8c107-143a-4f32-b7ad-3a4828cc0511"
+	Name="Revenue Application Query"
+	Description="A view defined for querying on revenue application records"
+	Author="Blackbaud Open Source"
+	IsRoot="false"
+	PrimaryKeyField="FINANCIALTRANSACTIONLINEITEMSYSTEMID"
+	RecordType="Revenue Application"
+  MartKey ="BBDW"
+	common:SecurityUIFolder="BBDW Query"
+	>
+
+	<!-- define the view used to return data for the query -->
+	<ViewImplementation ViewName="USR_V_QUERY_BBDW_CONSTITUENT_REVENUEAPPLICATION" ViewSchema="BBDW">
+		<ViewSQL>
+			<![CDATA[
+select
+   --top 100
+  li.[FINANCIALTRANSACTIONLINEITEMFACTID],
+  li.[FINANCIALTRANSACTIONLINEITEMSYSTEMID],
+  li.[FINANCIALTRANSACTIONFACTID],
+  li.[FINANCIALTRANSACTIONLINEITEMAMOUNT],
+  rc.[REVENUEAPPLICATION],
+  rc.[REVENUEAPPLICATIONTYPE],
+  d.[DESIGNATIONNAME],
+  d.[DESIGNATIONPUBLICNAME],
+  d.[DESIGNATIONLOOKUPID],
+  d.[DESIGNATIONPROJECTCODE],
+  p1.[PURPOSELEVELNAME] as [PURPOSELEVEL1NAME],
+  p1.[PURPOSELEVELPUBLICNAME] as [PURPOSELEVEL1PUBLICNAME],
+  p1.[PURPOSELEVELTYPE] as [PURPOSELEVEL1TYPE],
+  p1.[PURPOSELEVELDESCRIPTION] as [PURPOSELEVEL1DESCRIPTION],
+  p2.[PURPOSELEVELNAME] as [PURPOSELEVEL2NAME],
+  p2.[PURPOSELEVELPUBLICNAME] as [PURPOSELEVEL2PUBLICNAME],
+  p2.[PURPOSELEVELTYPE] as [PURPOSELEVEL2TYPE],
+  p2.[PURPOSELEVELDESCRIPTION] as [PURPOSELEVEL2DESCRIPTION],
+  p3.[PURPOSELEVELNAME] as [PURPOSELEVEL3NAME],
+  p3.[PURPOSELEVELPUBLICNAME] as [PURPOSELEVEL3PUBLICNAME],
+  p3.[PURPOSELEVELTYPE] as [PURPOSELEVEL3TYPE],
+  p3.[PURPOSELEVELDESCRIPTION] as [PURPOSELEVEL3DESCRIPTION],
+  p4.[PURPOSELEVELNAME] as [PURPOSELEVEL4NAME],
+  p4.[PURPOSELEVELPUBLICNAME] as [PURPOSELEVEL4PUBLICNAME],
+  p4.[PURPOSELEVELTYPE] as [PURPOSELEVEL4TYPE],
+  p4.[PURPOSELEVELDESCRIPTION] as [PURPOSELEVEL4DESCRIPTION],
+  p5.[PURPOSELEVELNAME] as [PURPOSELEVEL5NAME],
+  p5.[PURPOSELEVELPUBLICNAME] as [PURPOSELEVEL5PUBLICNAME],
+  p5.[PURPOSELEVELTYPE] as [PURPOSELEVEL5TYPE],
+  p5.[PURPOSELEVELDESCRIPTION] as [PURPOSELEVEL5DESCRIPTION],
+  o.[OPPORTUNITYAMOUNT],
+  o.[ASKAMOUNT],
+  o.[ASKDATE],
+  o.[OPPORTUNITYTYPE],
+  o.[OPPORTUNITYLIKELIHOODTYPE],
+  o.[EXPECTEDASKAMOUNT],
+  o.[EXPECTEDASKDATE],
+  o.[RESPONSEDATE],
+  o.[OPPORTUNITYSTATUS],
+  pf.[FULLNAME] as [PRIMARYFUNDRAISER],
+  pf.[CONSTITUENTLOOKUPID] as [PRIMARYFUNDRAISERLOOKUPID],
+  sf.[FULLNAME] as [SECONDARYFUNDRAISER],
+  sf.[CONSTITUENTLOOKUPID] as [SECONDARYFUNDRAISERLOOKUPID],
+  pp.[PROSPECTPLANNAME],
+  pp.[PROSPECTPLANSTATUS],
+  pp.[PROSPECTPLANTYPE],
+  pp.[NARRATIVE]
+
+from BBDW.[FACT_FINANCIALTRANSACTIONLINEITEM] li
+left join BBDW.[DIM_REVENUECODE] rc on li.[REVENUECODEDIMID] = rc.[REVENUECODEDIMID]
+left join BBDW.[DIM_REVENUEFLAG] rf on rf.[REVENUEFLAGDIMID] = li.[REVENUEFLAGDIMID]
+left join BBDW.[DIM_DESIGNATION] d on li.[DESIGNATIONDIMID] = d.[DESIGNATIONDIMID]
+left join BBDW.[DIM_PURPOSELEVEL] p1 on li.[PURPOSELEVEL1DIMID] = p1.[PURPOSELEVELDIMID]
+left join BBDW.[DIM_PURPOSELEVEL] p2 on li.[PURPOSELEVEL2DIMID] = p2.[PURPOSELEVELDIMID]
+left join BBDW.[DIM_PURPOSELEVEL] p3 on li.[PURPOSELEVEL3DIMID] = p3.[PURPOSELEVELDIMID]
+left join BBDW.[DIM_PURPOSELEVEL] p4 on li.[PURPOSELEVEL4DIMID] = p4.[PURPOSELEVELDIMID]
+left join BBDW.[DIM_PURPOSELEVEL] p5 on li.[PURPOSELEVEL5DIMID] = p5.[PURPOSELEVELDIMID]	
+left join BBDW.[FACT_REVENUEOPPORTUNITY] ro on ro.[FINANCIALTRANSACTIONLINEITEMFACTID] = li.[FINANCIALTRANSACTIONLINEITEMFACTID]
+left join BBDW.[FACT_OPPORTUNITY] o on o.[OPPORTUNITYFACTID] = ro.[OPPORTUNITYFACTID]
+left join BBDW.[DIM_FUNDRAISER] pf on o.[PRIMARYFUNDRAISERDIMID] = pf.[FUNDRAISERDIMID]
+left join BBDW.[DIM_FUNDRAISER] sf on o.[SECONDARYFUNDRAISERDIMID] = sf.[FUNDRAISERDIMID]
+left join BBDW.[DIM_PROSPECTPLAN] pp on pp.[PROSPECTPLANDIMID] = o.[PROSPECTPLANDIMID]
+
+where rc.[REVENUETRANSACTIONTYPECODE] in (0,1,2,3,4,5,6,7,8,9, 15)
+and rc.[REVENUEAPPLICATIONTYPECODE] > -1	
+and rc.[FINANCIALTRANSACTIONLINEITEMTYPECODE] != 1
+and rf.[ISDELETEDFINANCIALTRANSACTIONLINEITEM] = 0  
+			]]>
+		</ViewSQL>
+	</ViewImplementation>
+
+  <!-- describe each field in the view output -->
+  <Output>
+    <OutputFields>
+      <OutputField Name="FINANCIALTRANSACTIONLINEITEMFACTID" Caption="Financial Transaction Line Item Fact ID" DataType="Integer" IsHidden="true"/>
+      <OutputField Name="FINANCIALTRANSACTIONLINEITEMSYSTEMID" Caption="Financial Transaction Line Item System ID" DataType="Guid" IsHidden="true"/>
+      <OutputField Name="FINANCIALTRANSACTIONFACTID" Caption="Financial Transaction Fact ID" DataType="Integer" IsHidden="true"/>
+      <OutputField Name="FINANCIALTRANSACTIONLINEITEMAMOUNT" Caption="Amount" DataType="Money" Category="Application"/>
+      <OutputField Name="REVENUEAPPLICATION" Caption="Application" DataType="String" Category="Application">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Donation" />
+              <common:TranslationListOption Value="Event registration" />
+              <common:TranslationListOption Value="Pledge" />
+              <common:TranslationListOption Value="Recurring gift" />
+              <common:TranslationListOption Value="Other" />
+              <common:TranslationListOption Value="Membership" />
+              <common:TranslationListOption Value="Planned gift">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="3117d2c8-7f46-42f2-abeb-b654f2f63046"/>
+                  <common:InstalledProduct ID="0a07aa22-ed88-42b7-8c55-d80df4f4cea2"/>
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Matching gift" />
+              <common:TranslationListOption Value="Auction purchase">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="0321D454-B28B-4FAB-BD58-F2ECC7050594" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Order">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="bb1c17bc-9e0b-4683-b490-ee40d511fa05" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Donor challenge" />
+              <common:TranslationListOption Value="Grant award">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="9d9e2fee-e2e5-46d1-b087-25c538bf3334"/>
+                  <common:InstalledProduct ID="3117d2c8-7f46-42f2-abeb-b654f2f63046"/>
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Merchandise">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="bb1c17bc-9e0b-4683-b490-ee40d511fa05" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Membership add-on">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="5E696818-62EE-4C90-8C28-B1F52D77176E" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Membership installment plan">
+                <common:InstalledProductList EvaluationMethod="All">
+                  <common:InstalledProduct ID="5e696818-62ee-4c90-8c28-b1f52d77176e" />
+                  <common:InstalledProduct ID="3117D2C8-7F46-42F2-ABEB-B654F2F63046" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+            </common:Options>
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="REVENUEAPPLICATIONTYPE" Caption="Application type" DataType="String" Category="Application">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Gift" />
+              <common:TranslationListOption Value="Event registration" />
+              <common:TranslationListOption Value="Membership" />
+              <common:TranslationListOption Value="Other" />
+              <common:TranslationListOption Value="Sponsorship" />
+              <common:TranslationListOption Value="Sponsorship additional gift" />
+              <common:TranslationListOption Value="Auction purchase">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="0321D454-B28B-4FAB-BD58-F2ECC7050594" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Ticket">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="bb1c17bc-9e0b-4683-b490-ee40d511fa05" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Facility">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="bb1c17bc-9e0b-4683-b490-ee40d511fa05" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Grant award" />
+              <common:TranslationListOption Value="Merchandise">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="bb1c17bc-9e0b-4683-b490-ee40d511fa05" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Membership add-on">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="5E696818-62EE-4C90-8C28-B1F52D77176E" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+              <common:TranslationListOption Value="Liability">
+                <common:InstalledProductList>
+                  <common:InstalledProduct ID="bb1c17bc-9e0b-4683-b490-ee40d511fa05" />
+                </common:InstalledProductList>
+              </common:TranslationListOption>
+            </common:Options>
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="DESIGNATIONNAME" Caption="Name" DataType="String" Category="Designation"/>
+      <OutputField Name="DESIGNATIONPUBLICNAME" Caption="Public name" DataType="String" Category="Designation"/>
+      <OutputField Name="DESIGNATIONLOOKUPID" Caption="Lookup ID" DataType="String" Category="Designation"/>
+      <OutputField Name="DESIGNATIONPROJECTCODE" Caption="Project code" DataType="String" Category="Designation"/>
+      <OutputField Name="PURPOSELEVEL1NAME" Caption="Purpose level 1 name" DataType="String" Category="Purpose Level 1"/>
+      <OutputField Name="PURPOSELEVEL1PUBLICNAME" Caption="Purpose level 1 public name" DataType="String" Category="Purpose Level 1"/>
+      <OutputField Name="PURPOSELEVEL1TYPE" Caption="Purpose level 1 type" DataType="String" Category="Purpose Level 1"/>
+      <OutputField Name="PURPOSELEVEL1DESCRIPTION" Caption="Purpose level 1 description" DataType="String" Category="Purpose Level 1"/>
+      <OutputField Name="PURPOSELEVEL2NAME" Caption="Purpose level 2 name" DataType="String" Category="Purpose Level 2"/>
+      <OutputField Name="PURPOSELEVEL2PUBLICNAME" Caption="Purpose level 2 public name" DataType="String" Category="Purpose Level 2"/>
+      <OutputField Name="PURPOSELEVEL2TYPE" Caption="Purpose level 2 type" DataType="String" Category="Purpose Level 2"/>
+      <OutputField Name="PURPOSELEVEL2DESCRIPTION" Caption="Purpose level 2 description" DataType="String" Category="Purpose Level 2"/>
+      <OutputField Name="PURPOSELEVEL3NAME" Caption="Purpose level 3 name" DataType="String" Category="Purpose Level 3"/>
+      <OutputField Name="PURPOSELEVEL3PUBLICNAME" Caption="Purpose level 3 public name" DataType="String" Category="Purpose Level 3"/>
+      <OutputField Name="PURPOSELEVEL3TYPE" Caption="Purpose level 3 type" DataType="String" Category="Purpose Level 3"/>
+      <OutputField Name="PURPOSELEVEL3DESCRIPTION" Caption="Purpose level 3 description" DataType="String" Category="Purpose Level 3"/>
+      <OutputField Name="PURPOSELEVEL4NAME" Caption="Purpose level 4 name" DataType="String" Category="Purpose Level 4"/>
+      <OutputField Name="PURPOSELEVEL4PUBLICNAME" Caption="Purpose level 4 public name" DataType="String" Category="Purpose Level 4"/>
+      <OutputField Name="PURPOSELEVEL4TYPE" Caption="Purpose level 4 type" DataType="String" Category="Purpose Level 4"/>
+      <OutputField Name="PURPOSELEVEL4DESCRIPTION" Caption="Purpose level 4 description" DataType="String" Category="Purpose Level 4"/>
+      <OutputField Name="PURPOSELEVEL5NAME" Caption="Purpose level 5 name" DataType="String" Category="Purpose Level 5"/>
+      <OutputField Name="PURPOSELEVEL5PUBLICNAME" Caption="Purpose level 5 public name" DataType="String" Category="Purpose Level 5"/>
+      <OutputField Name="PURPOSELEVEL5TYPE" Caption="Purpose level 5 type" DataType="String" Category="Purpose Level 5"/>
+      <OutputField Name="PURPOSELEVEL5DESCRIPTION" Caption="Purpose level 5 description" DataType="String" Category="Purpose Level 5"/>
+      <OutputField Name="OPPORTUNITYAMOUNT" Caption="Opportunity amount" DataType="Money" Category="Opportunity"/>
+      <OutputField Name="ASKAMOUNT" Caption="Ask amount" DataType="Money" Category="Opportunity"/>
+      <OutputField Name="ASKDATE" Caption="Ask date" DataType="Date" Category="Opportunity"/>
+      <OutputField Name="OPPORTUNITYTYPE" Caption="Opportunity type" DataType="String" Category="Opportunity">
+        <LookupInfo>
+          <CodeTable CodeTableName="OPPORTUNITYTYPECODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="OPPORTUNITYLIKELIHOODTYPE" Caption="Opportunity likelihood" DataType="String" Category="Opportunity">
+        <LookupInfo>
+          <CodeTable CodeTableName="LIKELIHOODTYPECODE" IncludeInactive="true" />
+        </LookupInfo>
+      </OutputField>        
+      <OutputField Name="EXPECTEDASKAMOUNT" Caption="Expected ask amount" DataType="Money" Category="Opportunity"/>
+      <OutputField Name="EXPECTEDASKDATE" Caption="Expected ask date" DataType="Date" Category="Opportunity"/>
+      <OutputField Name="RESPONSEDATE" Caption="Response date" DataType="Date" Category="Opportunity"/>
+      <OutputField Name="OPPORTUNITYSTATUS" Caption="Opportunity status" DataType="String" Category="Opportunity">
+        <LookupInfo>
+          <TranslationList>
+            <common:Options>
+              <common:TranslationListOption Value="Unqualified" />
+              <common:TranslationListOption Value="Qualified" />
+              <common:TranslationListOption Value="Response pending" />
+              <common:TranslationListOption Value="Accepted" />
+              <common:TranslationListOption Value="Rejected" />
+              <common:TranslationListOption Value="Canceled" />
+            </common:Options>
+          </TranslationList>
+        </LookupInfo>
+      </OutputField>
+      <OutputField Name="PRIMARYFUNDRAISER" Caption="Primary fundraiser" DataType="String" Category="Opportunity"/>
+      <OutputField Name="PRIMARYFUNDRAISERLOOKUPID" Caption="Primary fundraiser lookup ID" DataType="String" Category="Opportunity"/>
+      <OutputField Name="SECONDARYFUNDRAISER" Caption="Secondary fundraiser" DataType="String" Category="Opportunity"/>
+      <OutputField Name="SECONDARYFUNDRAISERLOOKUPID" Caption="Secondary fundraiser lookup ID" DataType="String" Category="Opportunity"/>
+      <OutputField Name="PROSPECTPLANNAME" Caption="Prospect plan" DataType="String" Category="Opportunity Prospect Plan"/>
+      <OutputField Name="PROSPECTPLANSTATUS" Caption="Prospect plan status" DataType="String" Category="Opportunity Prospect Plan"/>
+      <OutputField Name="PROSPECTPLANTYPE" Caption="Prospect plan type" DataType="String" Category="Opportunity Prospect Plan"/>
+      <OutputField Name="NARRATIVE" Caption="Prospect plan narrative" DataType="String" Category="Opportunity Prospect Plan"/>
+
+    </OutputFields>
+  </Output>
+
+  <RelationshipOperations>
+    <AddToParentView ParentView="USR_V_QUERY_BBDW_CONSTITUENT_REVENUE" Cardinality="OneToMany" Field="FINANCIALTRANSACTIONFACTID" ParentViewRelatedField="FINANCIALTRANSACTIONFACTID" PathAlias="Revenue Application"/>  
+  </RelationshipOperations>
+  
+</QueryViewSpec>
+
