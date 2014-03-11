@@ -1,0 +1,88 @@
+﻿<PageDefinitionSpec 
+    xmlns="bb_appfx_pagedefinition" 
+    xmlns:common="bb_appfx_commontypes"
+    ID="7e7c6eb2-b401-49ad-ba93-de4b948fbbfc"
+    Name="Kitchen Sink Individual Page"
+    Description="Displays information about a biograhical record in the kitchen sink sample data."
+    Author="Blackbaud Product Development"
+    ContextRecordType="Kitchen Sink Individual"	
+    ExpressionDataFormID="dfa61f9f-24c5-4e2f-8944-f86a1186b380"
+    >
+
+	<PageHeader Caption="=Page.Fields!NAME" />
+
+	<SummarySection ID="5E33F49A-6876-4272-9889-9C5C5695D23D" Caption="Summary section">
+		<DataForm ID="f90f69f7-d2e4-4235-b43a-b4de807e1266" />
+	</SummarySection>
+
+	<Tabs>
+		<Tab ID="ba4ff9e7-48eb-467b-a8af-9f1b11d67c8d" Caption="Summary">
+			<Sections>
+				<Section ID="3fa16437-4d72-4c4b-9a17-3c49da7b449b" Caption="Individual" HideCaption="true">
+                    <DataForm ID="f90f69f7-d2e4-4235-b43a-b4de807e1266" />					
+				</Section>
+				<Section ID="97D73F63-7071-4C33-8397-97F22EC99418" Caption="Attributes" HideCaption="true">
+					<DataList ID="2a3b6026-18cb-4eec-b1c7-ec4a42608165">
+						<RenderStyle>
+							<StandardView/>
+						</RenderStyle>
+					</DataList>
+					<Actions>
+						<Action ID="7B4808CF-5245-483A-AA97-234A563F6212" Caption="Add" >
+							<common:ShowAddDataForm DataFormID="8384c18b-08b2-4701-95a4-c39e311035a8">
+								<common:ActionContext>
+									<common:PageContextID/>
+								</common:ActionContext>
+							</common:ShowAddDataForm>
+						</Action>
+						<Action Caption="Edit" ID="03707016-6595-4AD0-B4AB-20C986E8D4E5" ImageKey="res:edit" DefaultAction="true">
+							<common:ShowDataForm DataFormID="467987A6-7517-4D3D-8787-8957184237AB">
+								<common:ActionContext>
+									<common:SectionField>ATTRIBUTEKEY</common:SectionField>
+								</common:ActionContext>
+								<common:PostActionEvent>
+									<common:RefreshSection />
+								</common:PostActionEvent>
+							</common:ShowDataForm>
+						</Action>
+						<Action Caption="Delete" ID="0D4DDF2B-4723-4D52-ACC7-680F185BB498" ImageKey="res:delete">
+							<common:ExecuteRecordOperation RecordOperationID="16F0D258-866E-4992-91BA-AA5DA5980A42" ShowPrompt="true">
+								<common:ActionContext>
+									<common:SectionField>ATTRIBUTEKEY</common:SectionField>
+								</common:ActionContext>
+								<common:PostActionEvent>
+									<common:RefreshSection />
+								</common:PostActionEvent>
+							</common:ExecuteRecordOperation>
+						</Action>
+					</Actions>
+				</Section>
+			</Sections>
+		</Tab>
+        <Tab ID="bd04caaa-ddab-4a57-a08f-7b2d81706be1" Caption="Friends">
+            <Sections>
+                <Section ID="fbd32bd8-2ef2-4063-9873-0941ae6adf7e" Caption="Friends">
+                    <ListBuilder QueryViewID="2c66e121-e4ef-4d6c-9111-51996cd7ec66"
+                                 StoreSettingsByContextRecordId="true"   >
+                        <RequiredColumns>
+                            <Column Name="ID" />
+                        </RequiredColumns>
+                    </ListBuilder>
+                    <SectionContext>
+                        <common:PageContextID />
+                    </SectionContext>
+                    <Actions>
+                        <Action ID="e77ea7f8-ff03-4538-ae57-aba83a60dfae" LinkFieldID="NAME" Caption="Go to individual">
+                            <common:ShowPage PageID="717f5daa-1426-48d7-a979-3785359b678d" TabID="43b84f2c-6c2a-4de5-a99d-918c67ebcaf8" SectionID="172223bf-178b-4205-9e15-943cd3041d4a">
+                                <common:SectionRecordContext>
+                                    <common:SectionField>ID</common:SectionField>
+                                </common:SectionRecordContext>
+                            </common:ShowPage>
+                        </Action>
+                    </Actions>
+                </Section>
+            </Sections>
+        </Tab>
+	</Tabs>
+	
+</PageDefinitionSpec>

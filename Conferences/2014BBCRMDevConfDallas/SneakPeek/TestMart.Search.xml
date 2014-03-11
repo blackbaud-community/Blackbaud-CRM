@@ -1,0 +1,72 @@
+﻿<SearchListSpec 
+    xmlns="bb_appfx_searchlist"
+    xmlns:c="bb_appfx_commontypes"
+    ID="569b6b67-78b3-402b-b422-8996a489aecd"
+    Name="Test Data Mart Search"
+    Description="A manually defined SP-based search list against the data mart."
+    Author="Technical Training"
+    RecordType="Constituent"
+    TranslationFunctionID="68EE2516-F46F-45AE-A6C2-E480D0E794D8"
+    c:SecurityUIFolder="Data Mart"
+    MartKey="BBDW"
+	>
+
+	<!-- describe the SP used to fetch the results from the given filters.  Note that the @MAXROWS parameter is required, and should be 
+	used to limit the number of rows returned to a reasonable number. -->
+	<SPSearchList SPName="USR_USP_SEARCHLIST_TESTMART" SPSchema="BBDW">
+		<c:CreateProcedureSQL>
+			<![CDATA[
+create procedure BBDW.USR_USP_SEARCHLIST_TESTMART
+(
+    @KEYNAME nvarchar(100) = null,
+	@FIRSTNAME nvarchar(50) = null,
+	@MIDDLENAME nvarchar(50) = null,
+	@MAXROWS smallint = 500
+)
+as
+    set @KEYNAME = BBDW.UFN_SEARCHCRITERIA_GETLIKEPARAMETERVALUE2(@KEYNAME, 0, null, 1);
+    set @FIRSTNAME = BBDW.UFN_SEARCHCRITERIA_GETLIKEPARAMETERVALUE2(@FIRSTNAME, 0, null, 1);
+    set @MIDDLENAME = BBDW.UFN_SEARCHCRITERIA_GETLIKEPARAMETERVALUE2(@MIDDLENAME, 0, null, 1);
+
+	select top(@MAXROWS)
+		CONSTITUENTSYSTEMID as ID,
+		FULLNAME,
+		PRIMARYADDRESS,
+		PRIMARYADDRESSCITY,
+        PRIMARYADDRESSSTATEABBREVIATION,
+        PRIMARYADDRESSPOSTCODE
+	from 
+		BBDW.DIM_CONSTITUENT
+	where
+		 ((@KEYNAME is null) or (KEYNAME like @KEYNAME)) and 
+		 ((@FIRSTNAME is null) or (FIRSTNAME like @FIRSTNAME)) and 
+		 ((@MIDDLENAME is null) or (MIDDLENAME like @MIDDLENAME))
+	order by 
+		KEYNAME asc
+			]]>
+		</c:CreateProcedureSQL>
+	</SPSearchList>
+
+	<!-- describe the filter fields for the search screen -->
+	<FormMetaData xmlns="bb_appfx_commontypes">
+		<FormFields>
+            <FormField FieldID="KEYNAME" Caption="Last/Org name" DataType="String" MaxLength="100" />
+            <FormField FieldID="FIRSTNAME" Caption="First name" DataType="String" MaxLength="50" />
+            <FormField FieldID="MIDDLENAME" Caption="Middle name" DataType="String" MaxLength="50" />
+		</FormFields>
+	</FormMetaData>
+
+	<!-- also describe the output fields for the search screen -->
+	<Output TranslationField="Name">
+		<OutputFields>
+			<OutputField FieldID="ID" Caption="ID" DataType="Guid" IsHidden="true" />
+			<OutputField FieldID="NAME" Caption="Name" DataType="String" />
+			<OutputField FieldID="PRIMARYADDRESS" Caption="Address" DataType="String" />
+      <OutputField FieldID="PRIMARYADDRESSCITY" Caption="City" DataType="String" />
+      <OutputField FieldID="PRIMARYADDRESSSTATEABBREVIATION" Caption="State" DataType="String" />
+      <OutputField FieldID="PRIMARYADDRESSPOSTCODE" Caption="ZIP" DataType="String" />
+		</OutputFields>
+	</Output>
+
+</SearchListSpec>
+
