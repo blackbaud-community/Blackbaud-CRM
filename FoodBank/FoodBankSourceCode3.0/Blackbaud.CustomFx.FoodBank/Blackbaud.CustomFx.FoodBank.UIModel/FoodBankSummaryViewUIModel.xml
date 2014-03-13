@@ -1,9 +1,0 @@
-﻿<UIModelWizardMetadata>
-  <SpecFileName>FoodBankSummary.View.xml</SpecFileName>
-  <Namespace></Namespace>
-  <HtmlInfo GenerateHtml="true">
-    <HtmlFile>FoodBankSummaryView.html</HtmlFile>
-    <HtmlFolder>htmlforms\custom\blackbaud.customfx.foodbank\</HtmlFolder>
-  </HtmlInfo>
-  <GenerateFromDatabase>true</GenerateFromDatabase>
-</UIModelWizardMetadata>

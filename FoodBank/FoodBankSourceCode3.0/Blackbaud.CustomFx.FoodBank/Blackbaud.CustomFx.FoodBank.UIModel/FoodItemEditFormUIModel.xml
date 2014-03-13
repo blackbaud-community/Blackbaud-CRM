@@ -1,9 +1,0 @@
-﻿<UIModelWizardMetadata>
-  <SpecFileName>FoodItem.Edit.xml</SpecFileName>
-  <Namespace></Namespace>
-  <HtmlInfo GenerateHtml="true">
-    <HtmlFile>FoodItemEditForm.html</HtmlFile>
-    <HtmlFolder>htmlforms\custom\blackbaud.customfx.foodbank\</HtmlFolder>
-  </HtmlInfo>
-  <GenerateFromDatabase>true</GenerateFromDatabase>
-</UIModelWizardMetadata>

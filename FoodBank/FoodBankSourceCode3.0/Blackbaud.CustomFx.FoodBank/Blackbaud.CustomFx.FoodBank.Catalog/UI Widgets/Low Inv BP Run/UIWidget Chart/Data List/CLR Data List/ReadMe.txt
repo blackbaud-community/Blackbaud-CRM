@@ -1,1 +1,0 @@
-﻿While not utilized by the UI Widget, this is an example of a CLR data list.  
