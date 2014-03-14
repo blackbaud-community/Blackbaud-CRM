@@ -29,7 +29,7 @@ The organization within GitHub which holds code samples for Blackbaud CRM is cal
 
 ## How should we use GitHub to collaborate with Blackbaud? ##
 
-See How to Contribute.  
+See [How to collaborate](https://github.com/blackbaud-community/Blackbaud-CRM/blob/master/contributing.md).  
 
 
 ## I'm not ready to contribute.  I just want to download the code samples.  How do I do that? ##
