@@ -36,15 +36,15 @@ See [How to collaborate](https://github.com/blackbaud-community/Blackbaud-CRM/bl
 
 To get the code samples, you *could* just clone one of the repositories such as the [API Cookbook](https://github.com/blackbaud-community/Blackbaud-CRM-API-Cookbook). Cloning will bring a copy of the project to your local computer. And you are free to play around with the code sample on your local computer.  This is a good thing. But, any changes you make to your local copy can't be merged back into the blackbaud-community/Blackbaud-CRM-API-Cookbook repo.  In other words, you wont be able to suggest changes to the code because you don't have rights to do so.  If you are okay with this scenario, then by all means feel free to clone the appropriate branch within the repo.
 
-A better way is to create your own personal copy by *forking* the blackbaud-community/Blackbaud-CRM-API-Cookbook repo and then *cloning your fork*. Cloning will bring the forked repo to your local computer. Once the code is on your local computer you are are free to play with the code, commit local changes, and push those changes back to your fork on GitHub.  In this way you get your own copy of the code that you can play with, you can sync it on GitHub via a push, and most importantly, you can submit Pull Requests to Blackbaud.  By submitting a Pull Request you are indicating that you wish to change the original blackbaud-community/Blackbaud-CRM-API-Cookbook repo.  For more information, See How to Contribute.   
+A better way is to create your own personal copy by *forking* the blackbaud-community/Blackbaud-CRM-API-Cookbook repo and then *cloning your fork*. Cloning will bring the forked repo to your local computer. Once the code is on your local computer you are are free to play with the code, commit local changes, and push those changes back to your fork on GitHub.  In this way you get your own copy of the code that you can play with, you can sync it on GitHub via a push, and most importantly, you can submit Pull Requests to Blackbaud.  By submitting a Pull Request you are indicating that you wish to change the original blackbaud-community/Blackbaud-CRM-API-Cookbook repo.  For more information,see [How to collaborate](https://github.com/blackbaud-community/Blackbaud-CRM/blob/master/contributing.md). .   
 
 ## What are the legal issues around contributing to projects?  What do I need to sign before I can contribute? ##
    
-**Before you push changes to your fork of the repository, you should sign the Contributor License Agreement. See How to Contribute.**
+**Before you push changes to your fork of the repository, you should sign the Contributor License Agreement.  See [How to collaborate](https://github.com/blackbaud-community/Blackbaud-CRM/blob/master/contributing.md). .**
 
 
 ## I built a cool customization/integration for Blackbaud CRM using the SDK/API.  How do I add my code? ##
-See How to Contribute.
+See [How to collaborate](https://github.com/blackbaud-community/Blackbaud-CRM/blob/master/contributing.md). 
 
 ## What if I find a problem with the code sample? What if I want to improve an existing code sample?##
 
@@ -53,7 +53,7 @@ Firstly, the code samples are not covered under Blackbaud support.  If you find 
 - Raise an issue within the repo within GitHub.  Be nice.  Be detailed and specific. 
 
 - If you feel you can solve the issue yourself or you have a better way to do it, fork the project and begin hacking away at the problem/improvement.  That's what GitHub is all about.  
-- Submit your code changes.  See How to Contribute  
+- See [How to collaborate](https://github.com/blackbaud-community/Blackbaud-CRM/blob/master/contributing.md). 
 
 ## Resources ##
 
