@@ -21,7 +21,7 @@ Below is an outline of the high level steps required to grab the code, begin mak
 * Hack - Hack away!  Begin making local changes to the code within your new development branch.  
 * Commit - Commit your local changes.  (things are still local at this point)
 * Push - Push your local changes up to your fork on GitHub.com
-* Sign - ***Sign the CLA before you Push***
+* Sign - ***[Sign the CLA before you Push](http://www.bbdevnetwork.com/cla)***
 * Pull Request - Submit a Pull Request
 
 Note:  Throughout this document, I will display images from the [GitHub for Windows](http://windows.github.com/) client Version 1.2.11.0.  The client helps you to become familiar with Git's main features by making cloning, branching, and syncing (push) relatively easy.  The Windows client is not a substitution for knowing why you should clone, branch, and push.  For that you should study and practice using the resources listed in the **Read Me** as well as read this content. 
