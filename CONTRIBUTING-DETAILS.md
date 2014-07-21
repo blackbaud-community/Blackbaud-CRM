@@ -81,7 +81,7 @@ When you are ready to sync your local changes back up to GitHub.com you will nee
 
 **Sign the CLA Before you Push**
 
-Your efforts will likely require you to sign a Contributor License Agreement (CLA).  We recommend you talk to your employer (if applicable) before signing any sort of CLA, since some employment agreements may have restrictions on your contributions to other projects.  *So, whether it's a trivial enhancement or a major addition/improvement, you will need to sign the CLA before you push.* For questions about your potential contributions, you can contact trip.ottinger@blackbaud.com.  Once we have the necessary legal documents and process in place, we will provide a link to the CLA and/or other legal documentation.  
+Your efforts will likely require you to sign a Contributor License Agreement (CLA).  We recommend you talk to your employer (if applicable) before signing any sort of CLA, since some employment agreements may have restrictions on your contributions to other projects.  *So, whether it's a trivial enhancement or a major addition/improvement, you will need to [sign the CLA](http://www.github.com/cla) before you push.* For questions about your potential contributions, you can contact trip.ottinger@blackbaud.com.  Once we have the necessary legal documents and process in place, we will provide a link to the CLA and/or other legal documentation.  
 
 **Push**
 
