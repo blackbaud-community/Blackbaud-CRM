@@ -21,7 +21,7 @@ Below is an outline of the high level steps required to grab the code, begin mak
 * Hack - Hack away!  Begin making local changes to the code within your new development branch.  
 * Commit - Commit your local changes.  (things are still local at this point)
 * Push - Push your local changes up to your fork on GitHub.com
-* Sign - ***[Sign the CLA before you Push](http://www.bbdevnetwork.com/cla)***
+* Sign - ***[Sign the CLA before you submit a Pull Request](http://www.bbdevnetwork.com/cla)***
 * Pull Request - Submit a Pull Request
 
 Note:  Throughout this document, I will display images from the [GitHub for Windows](http://windows.github.com/) client Version 1.2.11.0.  The client helps you to become familiar with Git's main features by making cloning, branching, and syncing (push) relatively easy.  The Windows client is not a substitution for knowing why you should clone, branch, and push.  For that you should study and practice using the resources listed in the **Read Me** as well as read this content. 
@@ -79,10 +79,6 @@ By selecting the 'show' button, you can provide a summary and description of the
 
 When you are ready to sync your local changes back up to GitHub.com you will need to perform a 'Push'. 
 
-**Sign the CLA Before you Push**
-
-Your efforts will likely require you to sign a Contributor License Agreement (CLA).  We recommend you talk to your employer (if applicable) before signing any sort of CLA, since some employment agreements may have restrictions on your contributions to other projects.  *So, whether it's a trivial enhancement or a major addition/improvement, you will need to [sign the CLA](http://www.github.com/cla) before you push.* For questions about your potential contributions, you can contact trip.ottinger@blackbaud.com.  Once we have the necessary legal documents and process in place, we will provide a link to the CLA and/or other legal documentation.  
-
 **Push**
 
 Pushing will synchronize the files from your local computer to your personal copy (fork) of the repo within GitHub.com.  
@@ -96,6 +92,10 @@ The direction of the arrow along with the number indicate the number of commits 
 ![](http://blackbaud-community.github.io/Blackbaud-CRM/images/SyncAhead1GitHubWindows.png)
 
 If you want to propose your changes to be merged back into Blackbaud's repo, there is still one more step: a Pull Request.
+
+**Sign the CLA before you submit a Pull Request**
+
+Your efforts will likely require you to sign a Contributor License Agreement (CLA).  We recommend you talk to your employer (if applicable) before signing any sort of CLA, since some employment agreements may have restrictions on your contributions to other projects.  *So, whether it's a trivial enhancement or a major addition/improvement, you will need to [sign the CLA](http://www.github.com/cla) before you push.* For questions about your potential contributions, you can contact trip.ottinger@blackbaud.com.  Once we have the necessary legal documents and process in place, we will provide a link to the CLA and/or other legal documentation.  
 
 **Pull Request**
 
