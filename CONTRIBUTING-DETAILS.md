@@ -83,19 +83,17 @@ When you are ready to sync your local changes back up to GitHub.com you will nee
 
 Pushing will synchronize the files from your local computer to your personal copy (fork) of the repo within GitHub.com.  
 
-**Before you push changes to your fork of the repository, you should sign the Contributor License Agreement.  Sign the CLA Before you Push.**  
-
 If you are using the GitHub for Windows client, you can use the 'Sync' button to push the commits from your branch up to GitHub.com. Sync can also be used to bring down changes from the branch.  
 
 The direction of the arrow along with the number indicate the number of commits that your local branch is either ahead or behind.  In the image below, the up arrow and the number '1' indicates we have a single commit that needs to be sync'd up to GitHub.com.  In other words, we are locally ahead of GitHub.com by one commit.  
 
 ![](http://blackbaud-community.github.io/Blackbaud-CRM/images/SyncAhead1GitHubWindows.png)
 
-If you want to propose your changes to be merged back into Blackbaud's repo, there is still one more step: a Pull Request.
+If you want to propose your changes to be merged back into Blackbaud's repo, there are two more steps: signing the CLA and submitting a Pull Request.
 
 **Sign the CLA before you submit a Pull Request**
 
-Your efforts will likely require you to sign a Contributor License Agreement (CLA).  We recommend you talk to your employer (if applicable) before signing any sort of CLA, since some employment agreements may have restrictions on your contributions to other projects.  *So, whether it's a trivial enhancement or a major addition/improvement, you will need to [sign the CLA](http://www.github.com/cla) before you push.* For questions about your potential contributions, you can contact trip.ottinger@blackbaud.com.  Once we have the necessary legal documents and process in place, we will provide a link to the CLA and/or other legal documentation.  
+Your efforts will likely require you to sign a Contributor License Agreement (CLA).  We recommend you talk to your employer (if applicable) before signing any sort of CLA, since some employment agreements may have restrictions on your contributions to other projects.  *So, whether it's a trivial enhancement or a major addition/improvement, you will need to [sign the CLA](http://www.github.com/cla) before you submit a pull request.* For questions about your potential contributions, please contact bobby.earl@blackbaud.com.  
 
 **Pull Request**
 
