@@ -1,4 +1,4 @@
-# How to collaborate
+# How to Contribute
 
 Third-party contributions are how we keep the code samples great. Blackbaud simply can't create every conceivable code sample. We want to keep it as easy as possible to contribute changes that show others how to do cool things with the Blackbaud CRM SDK and API. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things.
 
@@ -23,6 +23,6 @@ Below is an outline of the high level steps required to grab the code, begin mak
 * Sign - ***[Sign the CLA before you submit a Pull Request](http://www.bbdevnetwork.com/cla/)***
 * Pull Request - Submit a Pull Request
 
-## New Samples
+# Requesting New Repository
 
 If you have new samples you wish to contribute, which don't apply to our current repositories, we invite you to [open an issue](https://github.com/blackbaud-community/issues], providing more information and tagging it with the "code sample request" label.
