@@ -23,6 +23,6 @@ Below is an outline of the high level steps required to grab the code, begin mak
 * Sign - ***[Sign the CLA before you submit a Pull Request](http://www.bbdevnetwork.com/cla/)***
 * Pull Request - Submit a Pull Request
 
-# Requesting New Repository
+# Requesting a New Repository
 
 If you have new samples you wish to contribute, which don't apply to our current repositories, we invite you to [open an issue](https://github.com/blackbaud-community/issues], providing more information and tagging it with the "code sample request" label.
