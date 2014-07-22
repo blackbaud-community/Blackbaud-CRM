@@ -27,7 +27,7 @@ Over time, Blackbaud will migrate existing code samples from our [Blackbaud CRM 
 
 The organization within GitHub which holds code samples for Blackbaud CRM is called "[blackbaud-community](https://github.com/blackbaud-community)".  Within this organization, there are various code sample repositories.  For more details see the related [project web site](http://blackbaud-community.github.io/Blackbaud-CRM/).
 
-## How should we use GitHub to contribute back to Blackbaud? ##
+## How should we use GitHub to contribute back to the code samples? ##
 
 See [How to contribute](CONTRIBUTING.md).  
 
