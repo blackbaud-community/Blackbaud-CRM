@@ -8,7 +8,7 @@ Below is an outline of the high level steps required to grab the code, begin mak
 
 * Have a basic understanding of Github.  Additional details of our workflow are provided in the [detailed contributing document](CONTRIBUTING-DETAILS.md).
 * Make sure you have a [Github account](https://github.com/signup/free)
-* Fork - Fork the appropriate [blackbaud-community](https://github.com/blackbaud-community) repository using  GitHub.com.  Now you've got your own version to play with. 
+* Fork - Fork the appropriate [blackbaud-community](https://github.com/blackbaud-community) repository.  Now you've got your own version to play with. 
 
 ## Make Changes
 
