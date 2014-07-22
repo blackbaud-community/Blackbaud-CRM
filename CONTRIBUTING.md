@@ -8,16 +8,16 @@ Below is an outline of the high level steps required to grab the code, begin mak
 
 * Have a basic understanding of Github.  Additional details of our workflow are provided in the [detailed contributing document](CONTRIBUTING-DETAILS.md).
 * Make sure you have a [Github account](https://github.com/signup/free)
-* Fork - Fork the appropriate [blackbaud-community](https://github.com/blackbaud-community) repository.  Now you've got your own version to play with. 
+* Fork - Fork any of the [blackbaud-community](https://github.com/blackbaud-community) repositories you're interested in contributing to.
 
 ## Make Changes
 
-* Clone - Clone your fork to your local computer.  Now the code for your fork is on your machine.
-* Branch - Get off the master branch by setting up a development branch.
-* Hack - Hack away!  Begin making local changes to the code within your new development branch.  
-* Commit - Commit your local changes (things are still local at this point).
+* Clone - Clone your fork to your local computer.
+* Although not necessary, we also suggest creating a development branch to work in.
+* Hack away!  Begin making local changes to the code, preferably in your development branch.  
+* Commit your local changes.
 
 ## Submit Changes
-* Push - Push your local changes up to your fork on GitHub.com
+* Push - Push your local changes to your fork on GitHub.
 * Sign - ***[Sign the CLA before you submit a Pull Request](http://www.bbdevnetwork.com/cla/)***
 * Pull Request - Submit a Pull Request
