@@ -4,9 +4,10 @@ Third-party contributions are how we keep the code samples great. Blackbaud simp
 
 ## Getting Started
 
-Below is an outline of the high level steps required to grab the code, begin making changes, and optionally contribute your work back to the community.  Additional detail is provided in our [Contributing Details](CONTRIBUTING-DETAILS.md) document. 
+Below is an outline of the high level steps required to grab the code, begin making changes, and optionally contribute your work back to the community.
 
 * Make sure you have a [Github account](https://github.com/signup/free)
+* Additional details of our workflow are provided in the [detailed contributing document](CONTRIBUTING-DETAILS.md).
 * Fork - Fork the appropriate [blackbaud-community](https://github.com/blackbaud-community) repository using  GitHub.com.  Now you've got your own version to play with. 
 
 ## Make Changes
