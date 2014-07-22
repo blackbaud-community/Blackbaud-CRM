@@ -14,7 +14,7 @@ Below is an outline of the high level steps required to grab the code, begin mak
 * Clone - Clone your fork to your local computer.  Now the code for your fork is on your machine.
 * Branch - Get off the master branch by setting up a development branch.
 * Hack - Hack away!  Begin making local changes to the code within your new development branch.  
-* Commit - Commit your local changes.  (things are still local at this point)
+* Commit - Commit your local changes (things are still local at this point).
 
 ## Submit Changes
 * Push - Push your local changes up to your fork on GitHub.com
