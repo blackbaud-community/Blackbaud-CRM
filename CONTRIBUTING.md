@@ -25,4 +25,4 @@ Below is an outline of the high level steps required to grab the code, begin mak
 
 # Requesting a New Repository
 
-If you have new samples you wish to contribute, which don't apply to our current repositories, we invite you to [open an issue](https://github.com/blackbaud-community/issues).  Please include any necessary information and tag the issue with the "code sample request" label.  If you prefer, you may also contact bobby.earl@blackbaud.com
+If you have new samples you wish to contribute, which don't apply to our current repositories, we invite you to [open an issue](../issues).  Please include any necessary information and tag the issue with the "code sample request" label.  If you prefer, you may also contact bobby.earl@blackbaud.com
