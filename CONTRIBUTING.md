@@ -20,7 +20,7 @@ Below is an outline of the high level steps required to grab the code, begin mak
 ## Submit Changes
 
 * Push - Push your local changes to your fork on GitHub.
-* Sign - ***[Sign the CLA before you submit a Pull Request](http://www.bbdevnetwork.com/cla/)***
+* Sign - ***[Sign the CLA before you submit a Pull Request](http://developer.blackbaud.com/cla/)***
 * Pull Request - Submit a Pull Request
 
 # Requesting a New Repository
